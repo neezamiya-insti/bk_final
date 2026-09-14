@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navbar — Prime Arabia Theme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#13233F;
+    --red:#C0272D;
+    --gold:#F5B301;
+    --green:#1E7A46;
+    --text:#1A1A1A;
+    --muted:#5C5C5C;
+    --white:#FFFFFF;
+    --border:#E8E8E8;
+    --heading-font:'Playfair Display', serif;
+    --body-font:'Poppins', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:var(--body-font);
+    color:var(--text);
+    background:#F7F7F8;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar{
+    position:sticky;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    background:var(--white);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 40px;
+    transition:box-shadow .25s ease, padding .25s ease;
+    border-bottom:1px solid transparent;
+  }
+  .navbar.scrolled{
+    box-shadow:0 4px 18px rgba(19,35,63,0.10);
+    padding:10px 40px;
+    border-bottom:1px solid var(--border);
+  }
+
+  /* Logo */
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+  }
+  .logo-mark{
+    width:44px;
+    height:44px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .logo-text{
+    display:flex;
+    flex-direction:column;
+    line-height:1.05;
+  }
+  .logo-text .name{
+    font-family:var(--heading-font);
+    font-weight:800;
+    font-size:16px;
+    color:var(--navy);
+    letter-spacing:.3px;
+  }
+  .logo-text .tagline{
+    font-family:var(--body-font);
+    font-weight:300;
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:.4px;
+    margin-top:2px;
+  }
+
+  /* Nav links */
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .nav-links > li{
+    position:relative;
+  }
+  .nav-links a.nav-link{
+    font-family:var(--heading-font);
+    font-weight:700;
+    font-size:15px;
+    color:var(--navy);
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    padding:8px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a.nav-link:hover{
+    color:var(--red);
+  }
+  .nav-links li.active > a.nav-link{
+    color:var(--gold);
+    position:relative;
+  }
+  .nav-links li.active > a.nav-link::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:100%;
+    height:2px;
+    background:var(--gold);
+  }
+  .chevron{
+    width:9px;
+    height:9px;
+    border-right:2px solid currentColor;
+    border-bottom:2px solid currentColor;
+    transform:rotate(45deg);
+    margin-top:-3px;
+    transition:transform .2s ease;
+  }
+  .nav-links li.has-dropdown:hover .chevron{
+    transform:rotate(225deg);
+    margin-top:3px;
+  }
+
+  /* Dropdown */
+  .dropdown{
+    position:absolute;
+    top:calc(100% + 14px);
+    left:50%;
+    transform:translateX(-50%) translateY(8px);
+    background:var(--white);
+    border-radius:6px;
+    box-shadow:0 16px 40px rgba(19,35,63,0.16);
+    padding:22px 26px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 40px;
+    min-width:380px;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+  }
+  .nav-links li.has-dropdown:hover .dropdown{
+    opacity:1;
+    visibility:visible;
+    transform:translateX(-50%) translateY(0);
+  }
+  .dropdown a{
+    font-family:var(--body-font);
+    font-weight:500;
+    font-size:13.5px;
+    color:var(--navy);
+    text-decoration:none;
+    padding:7px 0;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+    transition:color .15s ease;
+  }
+  .dropdown a:hover{
+    color:var(--red);
+  }
+  .dropdown a.all-link{
+    color:var(--red);
+    font-weight:700;
+  }
+  .dropdown a.all-link .arrow{
+    font-size:14px;
+  }
+
+  /* Right side */
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:26px;
+  }
+  .lang-select{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-family:var(--body-font);
+    font-weight:500;
+    font-size:14px;
+    color:var(--navy);
+    cursor:pointer;
+  }
+  .lang-select .globe{
+    width:16px;
+    height:16px;
+    border:1.5px solid var(--navy);
+    border-radius:50%;
+    position:relative;
+    flex-shrink:0;
+  }
+  .lang-select .globe::before,
+  .lang-select .globe::after{
+    content:"";
+    position:absolute;
+    border:1.5px solid var(--navy);
+    border-radius:50%;
+  }
+  .lang-select .globe::before{
+    inset:-1.5px 4.5px;
+    border-left:none;
+    border-right:none;
+  }
+  .btn-partner{
+    font-family:var(--body-font);
+    font-weight:600;
+    font-size:14px;
+    color:var(--white);
+    background:var(--navy);
+    border:none;
+    padding:13px 24px;
+    border-radius:5px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .btn-partner:hover{
+    background:var(--red);
+  }
+  .btn-partner .arrow-ico{
+    transition:transform .2s ease;
+  }
+  .btn-partner:hover .arrow-ico{
+    transform:translateX(3px);
+  }
+
+  /* Hamburger (mobile) */
+  .hamburger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:6px;
+  }
+  .hamburger span{
+    width:24px;
+    height:2px;
+    background:var(--navy);
+    border-radius:2px;
+  }
+
+  /* Mobile panel */
+  .mobile-panel{
+    position:fixed;
+    top:0;
+    right:0;
+    height:100%;
+    width:300px;
+    background:var(--white);
+    box-shadow:-10px 0 40px rgba(19,35,63,0.18);
+    transform:translateX(100%);
+    transition:transform .28s ease;
+    z-index:200;
+    display:flex;
+    flex-direction:column;
+    padding:22px 24px;
+  }
+  .mobile-panel.open{
+    transform:translateX(0);
+  }
+  .mobile-panel .panel-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:26px;
+  }
+  .close-btn{
+    background:none;
+    border:none;
+    font-size:20px;
+    color:var(--navy);
+    cursor:pointer;
+    line-height:1;
+  }
+  .mobile-links{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+  }
+  .mobile-links li{
+    border-bottom:1px solid var(--border);
+  }
+  .mobile-links li.active{
+    border-left:3px solid var(--gold);
+  }
+  .mobile-links a{
+    font-family:var(--heading-font);
+    font-weight:700;
+    font-size:15px;
+    color:var(--navy);
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 12px;
+  }
+  .mobile-links li.active a{
+    color:var(--gold);
+  }
+  .mobile-links .chevron-right{
+    width:7px;
+    height:7px;
+    border-right:2px solid var(--muted);
+    border-bottom:2px solid var(--muted);
+    transform:rotate(-45deg);
+  }
+  .mobile-panel .panel-bottom{
+    margin-top:auto;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .mobile-panel .lang-select{
+    justify-content:center;
+    padding:10px 0;
+  }
+  .mobile-panel .btn-partner{
+    justify-content:center;
+    background:var(--gold);
+    color:var(--navy);
+  }
+  .mobile-panel .btn-partner:hover{
+    background:var(--red);
+    color:var(--white);
+  }
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(19,35,63,0.35);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .25s ease, visibility .25s ease;
+    z-index:150;
+  }
+  .overlay.show{
+    opacity:1;
+    visibility:visible;
+  }
+
+  @media (max-width:960px){
+    .nav-links, .nav-right .lang-select, .nav-right .btn-partner{
+      display:none;
+    }
+    .hamburger{
+      display:flex;
+    }
+    .navbar{
+      padding:14px 20px;
+    }
+  }
+
+  /* Demo page filler so you can see the scroll/shadow state */
+  .demo-content{
+    max-width:760px;
+    margin:60px auto;
+    padding:0 24px;
+    font-family:var(--body-font);
+  }
+  .demo-content h1{
+    font-family:var(--heading-font);
+    font-weight:800;
+    color:var(--navy);
+    font-size:34px;
+  }
+  .demo-content p{
+    color:var(--muted);
+    line-height:1.8;
+    font-weight:300;
+  }
+  .demo-content .spacer{
+    height:900px;
+  }
+  .hint{
+    display:inline-block;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:10px 14px;
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="#" class="logo">
+    <span class="logo-mark">
+      <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="6" fill="#13233F"/>
+        <path d="M10 9h9c4 0 6.5 2 6.5 5.3 0 2.3-1.3 3.8-3.2 4.5 2.4.6 4 2.3 4 5 0 3.7-2.8 6.2-7.2 6.2H10V9zm8.4 8.4c1.9 0 3-.9 3-2.6 0-1.7-1.1-2.5-3-2.5h-4v5.1h4zm.6 8.3c2.1 0 3.3-1 3.3-2.8 0-1.8-1.2-2.7-3.4-2.7h-4.5v5.5h4.6z" fill="#F5B301"/>
+        <path d="M28 9h3.6v9.1L37.4 9H31l-6 9 6.4 12h3.9l-6.2-11.6L28 9z" fill="#F5B301" opacity="0"/>
+      </svg>
+    </span>
+    <span class="logo-text">
+      <span class="name">BOYUT AL-KAWTHAR</span>
+      <span class="tagline">Global Trade . Local Expertise.</span>
+    </span>
+  </a>
+
+  <ul class="nav-links">
+    <li class="active"><a href="#" class="nav-link">Home</a></li>
+    <li class="has-dropdown">
+      <a href="#" class="nav-link">About Us <span class="chevron"></span></a>
+      <div class="dropdown" style="grid-template-columns:1fr; min-width:200px;">
+        <a href="#">Our Story</a>
+        <a href="#">Leadership</a>
+        <a href="#">Careers</a>
+      </div>
+    </li>
+    <li class="has-dropdown">
+      <a href="#" class="nav-link">Services <span class="chevron"></span></a>
+      <div class="dropdown">
+        <a href="#" class="all-link">All Services <span class="arrow">→</span></a>
+        <a href="#">Pricing Strategy</a>
+        <a href="#">Market Research</a>
+        <a href="#">Shipping &amp; Logistics</a>
+        <a href="#">Distributor Finder</a>
+        <a href="#">Banking Support</a>
+        <a href="#">Lead Generation</a>
+        <a href="#">Certification Support</a>
+        <a href="#">Trade Missions</a>
+      </div>
+    </li>
+    <li class="has-dropdown">
+      <a href="#" class="nav-link">Markets <span class="chevron"></span></a>
+      <div class="dropdown" style="grid-template-columns:1fr; min-width:200px;">
+        <a href="#">GCC</a>
+        <a href="#">Africa</a>
+        <a href="#">Asia</a>
+      </div>
+    </li>
+    <li><a href="#" class="nav-link">News</a></li>
+    <li><a href="#" class="nav-link">Blog</a></li>
+    <li><a href="#" class="nav-link">Contact Us</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-select">
+      <span class="globe"></span> EN <span class="chevron"></span>
+    </div>
+    <a href="#" class="btn-partner">Become a Partner <span class="arrow-ico">→</span></a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="mobile-panel" id="mobilePanel">
+  <div class="panel-top">
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <svg width="34" height="34" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="6" fill="#13233F"/>
+          <path d="M10 9h9c4 0 6.5 2 6.5 5.3 0 2.3-1.3 3.8-3.2 4.5 2.4.6 4 2.3 4 5 0 3.7-2.8 6.2-7.2 6.2H10V9zm8.4 8.4c1.9 0 3-.9 3-2.6 0-1.7-1.1-2.5-3-2.5h-4v5.1h4zm.6 8.3c2.1 0 3.3-1 3.3-2.8 0-1.8-1.2-2.7-3.4-2.7h-4.5v5.5h4.6z" fill="#F5B301"/>
+        </svg>
+      </span>
+      <span class="logo-text">
+        <span class="name" style="font-size:14px;">BOYUT AL-KAWTHAR</span>
+      </span>
+    </a>
+    <button class="close-btn" id="closeBtn" aria-label="Close menu">✕</button>
+  </div>
+
+  <ul class="mobile-links">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">About Us <span class="chevron-right"></span></a></li>
+    <li><a href="#">Services <span class="chevron-right"></span></a></li>
+    <li><a href="#">Markets <span class="chevron-right"></span></a></li>
+    <li><a href="#">News <span class="chevron-right"></span></a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+
+  <div class="panel-bottom">
+    <div class="lang-select"><span class="globe"></span> EN <span class="chevron"></span></div>
+    <a href="#" class="btn-partner">Become a Partner <span class="arrow-ico">→</span></a>
+  </div>
+</aside>
+
+<div class="demo-content">
+  <span class="hint">Scroll down to see the "scrolled" shadow state ↓</span>
+  <h1>Boyut Al-Kawthar</h1>
+  <p>This is placeholder page content so you can test the sticky navbar's scrolled shadow state, and try the mobile menu by resizing the window below 960px.</p>
+  <div class="spacer"></div>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const mobilePanel = document.getElementById('mobilePanel');
+  const overlay = document.getElementById('overlay');
+
+  function openMenu(){
+    mobilePanel.classList.add('open');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu(){
+    mobilePanel.classList.remove('open');
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  hamburgerBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+</script>
+
+</body>
+</html>
