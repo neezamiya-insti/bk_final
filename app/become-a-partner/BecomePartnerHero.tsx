@@ -21,6 +21,7 @@ const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
 
 const BACKGROUND_IMAGE = "/partner/part.png";
+const BACKGROUND_IMAGE_MOBILE = "/partner/mp.png";
 
 const TEXT = {
   EN: {
@@ -115,14 +116,25 @@ export default function BecomePartnerHero() {
       dir={isAr ? "rtl" : "ltr"}
       className={`${playfair.variable} ${poppins.variable} relative flex min-h-[460px] w-full items-center justify-center overflow-hidden bg-[#13233F] sm:min-h-[520px] lg:min-h-[580px]`}
     >
-      {/* Background image — /partner/part.png */}
+      {/* ===== Background image — mobile: mp.png | desktop: part.png ===== */}
+      {/* Desktop / tablet image — slight down shift (object-[center_45%]) */}
       <Image
         src={BACKGROUND_IMAGE}
         alt=""
         fill
         sizes="100vw"
         quality={85}
-        className="object-cover object-center"
+        className="hidden object-cover object-[center_45%] md:block"
+        priority
+      />
+      {/* Mobile image */}
+      <Image
+        src={BACKGROUND_IMAGE_MOBILE}
+        alt=""
+        fill
+        sizes="100vw"
+        quality={85}
+        className="block object-cover object-center md:hidden"
         priority
       />
 
