@@ -22,7 +22,7 @@ const ABOUT_IMAGE = "/about/about1.png";
 const BACKGROUND_IMAGE = "/about/back.png";
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const TEXT = {
   EN: {
@@ -45,11 +45,27 @@ const TEXT = {
     cta: "استكشف المزيد",
     checklist: ["إرشاد لدخول الأسواق", "دعم مستندات التصدير", "التواصل مع المشترين الدوليين"],
   },
+  FR: {
+    topHeading: "Qui sommes-nous ?",
+    heading: "Votre partenaire stratégique dans le commerce mondial.",
+    paragraph1:
+      "Nous sommes Bayout Al Kawthar. Une maison d'exportation relevant de l'Autorité saoudienne de développement des exportations, nous sommes spécialisés dans le rapprochement entre les producteurs locaux et les marchés internationaux.",
+    paragraph2:
+      "Notre mission est simple : simplifier votre parcours d'exportation et vous ouvrir l'accès aux marchés les plus prometteurs au monde.",
+    cta: "En savoir plus",
+    checklist: [
+      "Conseils pour l'entrée sur le marché",
+      "Soutien documentaire à l'exportation",
+      "Connexions avec des acheteurs internationaux",
+    ],
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 /** Reveals an element once it scrolls into view; fires only the first time. */
@@ -84,10 +100,13 @@ export default function WhoWeAreSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };
@@ -124,7 +143,7 @@ export default function WhoWeAreSection() {
       />
 
       {/* Content wrapper */}
-      <div className="relative z-10 mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <div className="relative z-10 mx-auto max-w-none px-4 pb-10 pt-10 sm:px-4 sm:pb-14 sm:pt-14 md:px-4 md:pb-16 md:pt-16 lg:px-4 lg:pb-20 lg:pt-20">
         {/* Two-column content */}
         <div
           dir="ltr"
@@ -143,7 +162,7 @@ export default function WhoWeAreSection() {
             <h3
               ref={leftBlockRef}
               className={[
-                "font-[family-name:var(--font-playfair)] text-xl font-extrabold leading-[1.25] text-[#F5B301] sm:text-2xl md:text-3xl",
+                "font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.25] text-[#F5B301] sm:text-3xl md:text-4xl",
                 "transition-all duration-700 ease-out",
                 leftBlockInView
                   ? "translate-x-0 opacity-100"
@@ -163,22 +182,24 @@ export default function WhoWeAreSection() {
               ].join(" ")}
             >
               {/* Paragraphs — WHITE */}
-              <p className="mt-4 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-white sm:mt-5 md:mt-6 sm:text-[14px] md:text-[15px]">
+              <p className="mt-4 font-[family-name:var(--font-poppins)] text-[14px] font-light leading-relaxed text-white sm:mt-5 md:mt-6 sm:text-[15px] md:text-[16px]">
                 {t.paragraph1}
               </p>
-              <p className="mt-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-white sm:mt-4 md:mt-5 sm:text-[14px] md:text-[15px]">
+              <p className="mt-3 font-[family-name:var(--font-poppins)] text-[14px] font-light leading-relaxed text-white sm:mt-4 md:mt-5 sm:text-[15px] md:text-[16px]">
                 {t.paragraph2}
               </p>
 
               {/* Checklist — WHITE text with gold icons */}
               <ul
                 className="mt-5 grid grid-cols-1 gap-2.5 sm:mt-6 sm:grid-cols-2 sm:gap-3 md:mt-7 md:gap-4"
-                aria-label={isAr ? "خدماتنا" : "Our capabilities"}
+                aria-label={
+                  isAr ? "خدماتنا" : langCode === "FR" ? "Nos capacités" : "Our capabilities"
+                }
               >
                 {t.checklist.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-2 font-[family-name:var(--font-poppins)] text-[11.5px] font-medium leading-snug text-white sm:text-[12px]"
+                    className="flex items-start gap-2 font-[family-name:var(--font-poppins)] text-[12px] font-medium leading-snug text-white sm:text-[13px]"
                   >
                     <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[10px] font-bold text-[#13233F] sm:h-5 sm:w-5 sm:text-xs">
                       ✓
@@ -193,7 +214,7 @@ export default function WhoWeAreSection() {
                 href={EXPLORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/btn mt-6 inline-flex items-center gap-2 rounded-full bg-[#F5B301] px-5 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-[#13233F] transition-colors duration-300 hover:bg-[#C0272D] hover:text-white cursor-pointer sm:mt-8 md:mt-10 sm:px-6 sm:text-[13.5px]"
+                className="group/btn mt-6 inline-flex items-center gap-2 rounded-full bg-[#F5B301] px-5 py-2.5 font-[family-name:var(--font-poppins)] text-[13px] font-semibold text-[#13233F] transition-colors duration-300 hover:bg-[#C0272D] hover:text-white cursor-pointer sm:mt-8 md:mt-10 sm:px-6 sm:text-[14px]"
               >
                 {t.cta}
                 <span
@@ -211,7 +232,7 @@ export default function WhoWeAreSection() {
           <div
             ref={topHeadingRef}
             className={[
-              "order-2 flex w-full items-center justify-start gap-3 lg:h-full lg:min-h-[28rem] lg:w-auto lg:flex-col lg:items-center lg:gap-0",
+              "order-2 flex w-full items-center justify-start gap-3 lg:h-full lg:min-h-[24rem] lg:w-auto lg:flex-col lg:items-center lg:gap-0",
               "transition-all duration-700 ease-out",
               topHeadingInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
             ].join(" ")}

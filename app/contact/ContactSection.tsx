@@ -17,7 +17,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 // Same subtle background image as WhoWeAreSection
 const BG_IMAGE =
@@ -27,11 +27,14 @@ type ContactItem = {
   id: string;
   title: string;
   titleAr: string;
+  titleFr: string;
   value: string;
   valueAr: string;
+  valueFr: string;
   href: string;
   desc: string;
   descAr: string;
+  descFr: string;
   icon: string;
 };
 
@@ -40,88 +43,112 @@ const CONTACT_ITEMS: ContactItem[] = [
     id: "location",
     title: "Location",
     titleAr: "الموقع",
+    titleFr: "Emplacement",
     value: "4329 Ibrahim Ibn Baz st., Al Sulay District, Riyadh 14276, Saudi Arabia.",
     valueAr: "٤٣٢٩ شارع إبراهيم بن باز، حي السلي، الرياض ١٤٢٧٦، المملكة العربية السعودية.",
+    valueFr: "Rue Ibrahim Ibn Baz, District Al Sulay, Riyad 14276, Arabie Saoudite.",
     href: "https://maps.google.com/?q=Riyadh+Al+Sulay",
     desc: "Visit our head office in Riyadh for in-person consultations and meetings with our export experts.",
     descAr: "قم بزيارة مكتبنا الرئيسي في الرياض للاستشارات الشخصية والاجتماعات مع خبراء التصدير لدينا.",
+    descFr: "Visitez notre siège à Riyad pour des consultations en personne et des réunions avec nos experts en exportation.",
     icon: "location",
   },
   {
     id: "phone",
     title: "Call Us",
     titleAr: "اتصل بنا",
+    titleFr: "Appelez-nous",
     value: "+966538597719",
     valueAr: "+966538597719",
+    valueFr: "+966538597719",
     href: "tel:+966538597719",
     desc: "Our team is available Sunday to Thursday, 9 AM to 6 PM (KSA time) to answer your questions.",
     descAr: "فريقنا متاح من الأحد إلى الخميس، من ٩ صباحًا حتى ٦ مساءً (بتوقيت السعودية) للإجابة على أسئلتك.",
+    descFr: "Notre équipe est disponible du dimanche au jeudi, de 9h à 18h (heure saoudienne) pour répondre à vos questions.",
     icon: "phone",
   },
   {
     id: "email",
     title: "Email Us",
     titleAr: "راسلنا",
+    titleFr: "Écrivez-nous",
     value: "Info@bk.com.sa",
     valueAr: "Info@bk.com.sa",
+    valueFr: "Info@bk.com.sa",
     href: "mailto:Info@bk.com.sa",
     desc: "Send us your inquiries and we'll get back to you within 24 hours with the information you need.",
     descAr: "أرسل لنا استفساراتك وسنرد عليك خلال ٢٤ ساعة بالمعلومات التي تحتاجها.",
+    descFr: "Envoyez-nous vos demandes et nous vous répondrons dans les 24 heures avec les informations dont vous avez besoin.",
     icon: "email",
   },
   {
     id: "instagram",
     title: "Instagram",
     titleAr: "إنستغرام",
+    titleFr: "Instagram",
     value: "@boyutalkawthar",
     valueAr: "@boyutalkawthar",
+    valueFr: "@boyutalkawthar",
     href: "https://www.instagram.com/boyutalkawthar/",
     desc: "Follow us for behind-the-scenes, event highlights, and daily updates from our global trade journey.",
     descAr: "تابعنا لمشاهدة الكواليس وأبرز الفعاليات والتحديثات اليومية من رحلتنا في التجارة العالمية.",
+    descFr: "Suivez-nous pour les coulisses, les moments forts des événements et les mises à jour quotidiennes de notre parcours dans le commerce mondial.",
     icon: "instagram",
   },
   {
     id: "linkedin",
     title: "LinkedIn",
     titleAr: "لينكد إن",
+    titleFr: "LinkedIn",
     value: "@boyutalkawthar",
     valueAr: "@boyutalkawthar",
+    valueFr: "@boyutalkawthar",
     href: "https://www.linkedin.com/company/boyutalkawthar/",
     desc: "Connect with us professionally to explore partnerships, opportunities, and industry insights.",
     descAr: "تواصل معنا بشكل احترافي لاستكشاف الشراكات والفرص ورؤى الصناعة.",
+    descFr: "Connectez-vous avec nous professionnellement pour explorer les partenariats, les opportunités et les tendances du secteur.",
     icon: "linkedin",
   },
   {
     id: "x",
     title: "X (Twitter)",
     titleAr: "إكس (تويتر)",
+    titleFr: "X (Twitter)",
     value: "@boyutalkawthar",
     valueAr: "@boyutalkawthar",
+    valueFr: "@boyutalkawthar",
     href: "https://x.com/boyutalkawthar",
     desc: "Stay updated with our latest news, announcements, and quick insights on global trade.",
     descAr: "ابقَ على اطلاع بأحدث أخبارنا وإعلاناتنا ورؤى سريعة حول التجارة العالمية.",
+    descFr: "Restez informé de nos dernières nouvelles, annonces et aperçus rapides sur le commerce mondial.",
     icon: "x",
   },
   {
     id: "facebook",
     title: "Facebook",
     titleAr: "فيسبوك",
+    titleFr: "Facebook",
     value: "@boyutalkawthar",
     valueAr: "@boyutalkawthar",
+    valueFr: "@boyutalkawthar",
     href: "https://web.facebook.com/boyutalkawthar",
     desc: "Join our Facebook community to engage with other exporters and stay informed about events.",
     descAr: "انضم إلى مجتمعنا على فيسبوك للتفاعل مع مصدّرين آخرين والبقاء على اطلاع بالفعاليات.",
+    descFr: "Rejoignez notre communauté Facebook pour échanger avec d'autres exportateurs et rester informé des événements.",
     icon: "facebook",
   },
   {
     id: "snapchat",
     title: "Snapchat",
     titleAr: "سناب شات",
+    titleFr: "Snapchat",
     value: "@baoyutalkawthar",
     valueAr: "@baoyutalkawthar",
+    valueFr: "@baoyutalkawthar",
     href: "https://www.snapchat.com/add/baoyutalkawthar",
     desc: "Follow us on Snapchat for a more casual, real-time look at what we do.",
     descAr: "تابعنا على سناب شات للحصول على نظرة أكثر عفوية وفورية لما نقوم به.",
+    descFr: "Suivez-nous sur Snapchat pour un aperçu plus décontracté et en temps réel de ce que nous faisons.",
     icon: "snapchat",
   },
 ];
@@ -153,11 +180,26 @@ const TEXT = {
     formSuccess: "شكرًا لك! سنرد عليك خلال ٢٤ ساعة.",
     openLink: "فتح الرابط",
   },
+  FR: {
+    heading: "Entrons en contact",
+    subheading: "Contactez-nous via n'importe quel canal ci-dessous, ou envoyez-nous un message.",
+    formTitle: "Envoyez-nous un message",
+    formName: "Nom complet",
+    formEmail: "Adresse e-mail",
+    formPhone: "Numéro de téléphone",
+    formSubject: "Sujet",
+    formMessage: "Votre message",
+    formSubmit: "Envoyer le message",
+    formSuccess: "Merci ! Nous vous répondrons dans les 24 heures.",
+    openLink: "Ouvrir le lien",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 function useInView<T extends HTMLElement>(threshold = 0.15) {
@@ -256,6 +298,23 @@ function ContactIcon({ type }: { type: string }) {
   }
 }
 
+/** Helper: returns the right field for the current language */
+function pickField(item: ContactItem, field: "title" | "value" | "desc", lang: LangCode) {
+  if (lang === "AR") {
+    if (field === "title") return item.titleAr;
+    if (field === "value") return item.valueAr;
+    return item.descAr;
+  }
+  if (lang === "FR") {
+    if (field === "title") return item.titleFr;
+    if (field === "value") return item.valueFr;
+    return item.descFr;
+  }
+  if (field === "title") return item.title;
+  if (field === "value") return item.value;
+  return item.desc;
+}
+
 export default function ContactSection() {
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
   const [activeId, setActiveId] = useState<string>("location");
@@ -271,10 +330,13 @@ export default function ContactSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };
@@ -359,7 +421,7 @@ export default function ContactSection() {
           <aside className="flex flex-col gap-3">
             {CONTACT_ITEMS.map((item) => {
               const isActive = activeId === item.id;
-              const title = isAr ? item.titleAr : item.title;
+              const title = pickField(item, "title", langCode);
               return (
                 <button
                   key={item.id}
@@ -405,7 +467,7 @@ export default function ContactSection() {
               className="animate-[fadeIn_0.5s_ease-out] rounded-3xl bg-white p-5 shadow-sm sm:p-6 md:p-7"
             >
               <h3 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#13233F] sm:text-xl">
-                {isAr ? active.titleAr : active.title}
+                {pickField(active, "title", langCode)}
               </h3>
               <div className="my-3 h-[2px] w-12 rounded-full bg-[#F5B301]" />
 
@@ -413,11 +475,11 @@ export default function ContactSection() {
                 className="font-[family-name:var(--font-poppins)] text-[13.5px] font-medium leading-relaxed text-[#13233F] sm:text-[14.5px]"
                 dir={active.id === "phone" ? "ltr" : isAr ? "rtl" : "ltr"}
               >
-                {isAr ? active.valueAr : active.value}
+                {pickField(active, "value", langCode)}
               </p>
 
               <p className="mt-3 font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-[#5C5C5C] sm:text-[13px]">
-                {isAr ? active.descAr : active.desc}
+                {pickField(active, "desc", langCode)}
               </p>
 
               <a

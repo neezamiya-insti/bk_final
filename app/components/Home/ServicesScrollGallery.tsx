@@ -17,7 +17,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 type ServiceCard = {
   title: string;
@@ -126,6 +126,55 @@ const TEXT = {
       ],
     },
   },
+  FR: {
+    tabs: {
+      aspiration: "Aspiration",
+      whatWeDo: "Ce que nous faisons",
+    },
+    tabTexts: {
+      aspiration:
+        "Nous envisageons un avenir où la qualité de nos produits saoudiens est reconnue et célébrée dans le monde entier. Notre objectif est de transformer cette vision en réalité, en ouvrant des portes aux producteurs locaux pour qu'ils présentent leur excellence sur la scène mondiale.",
+      whatWeDo:
+        "Notre force motrice est de permettre à nos fabricants et exportateurs d'atteindre une croissance sans précédent. Nous fournissons les outils et le soutien nécessaires pour naviguer dans les complexités du commerce international.",
+    },
+    learnMore: "En savoir plus",
+    services: {
+      aspiration: [
+        {
+          title: "Étude de marché",
+          desc: "BOYUT AL-KAWTHAR, grâce à ses activités de R&D et à son réseau de bureaux, analyse tous les besoins et perspectives du marché pour un produit spécifique et fournit toutes les informations de marché nécessaires aux processus de prise de décision.",
+          image: "/services/s1.png",
+        },
+        {
+          title: "Recherche de distributeur",
+          desc: "BOYUT AL-KAWTHAR met ses clients en relation avec les meilleurs prospects d'agents et de distributeurs capables de porter leur marque dans leurs régions de manière adéquate pour mener une activité d'exportation durable sur plusieurs années.",
+          image: "/services/s2.png",
+        },
+        {
+          title: "Génération de prospects",
+          desc: "BOYUT AL-KAWTHAR mène des campagnes de marketing digital dans différentes régions pour vos produits dans le cadre d'une stratégie marketing efficace fondée sur des informations précises issues de son expertise sur différents marchés.",
+          image: "/services/s3.png",
+        },
+      ],
+      whatWeDo: [
+        {
+          title: "Ordre du jour des réunions avec les acheteurs potentiels",
+          desc: "BOYUT AL-KAWTHAR organise des réunions et des visites officielles pour les acheteurs directement dans vos installations de fabrication afin de discuter avec vous de tous les détails techniques, des conditions de livraison et des prix.",
+          image: "/services/s4.png",
+        },
+        {
+          title: "Missions commerciales",
+          desc: "BOYUT AL-KAWTHAR organise des missions commerciales spécialisées et regroupées par secteur vers des marchés potentiels afin d'accélérer les communications et de trouver une pierre de touche pour ouvrir efficacement de nouveaux marchés.",
+          image: "/services/s5.png",
+        },
+        {
+          title: "Analyse de la concurrence",
+          desc: "Avant de vous lancer sur la scène mondiale, vous devez connaître les acteurs. Chez BOYUT AL-KAWTHAR, nous réalisons des analyses complètes de la concurrence, en examinant vos marchés cibles pour identifier vos rivaux, leurs forces et faiblesses, ainsi que les lacunes du marché que vous pouvez combler.",
+          image: "/services/s6.png",
+        },
+      ],
+    },
+  },
 } as const;
 
 const ORDER: TabKey[] = ["aspiration", "whatWeDo"];
@@ -134,7 +183,9 @@ type Phase = "idle" | "exit" | "enterStart" | "enter";
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 export default function AspirationServicesSection() {
@@ -149,10 +200,13 @@ export default function AspirationServicesSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };

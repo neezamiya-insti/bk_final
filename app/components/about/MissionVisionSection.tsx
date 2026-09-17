@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Playfair_Display, Poppins } from "next/font/google";
 
 const playfair = Playfair_Display({
@@ -17,11 +17,12 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
-type HoveredCard = "mission" | "vision" | null;
+type LangCode = "EN" | "AR" | "FR";
 
 // Local background image (public/about/ab.png)
 const BG_IMAGE = "/about/ab.png";
+// Center logo
+const CENTER_LOGO = "/logo-Boyot-1.png";
 
 const TEXT = {
   EN: {
@@ -44,11 +45,23 @@ const TEXT = {
       text: "أن نكون الشركة الرائدة في تسهيل التجارة السعودية، وربط الأسواق المتنوعة، وتعزيز النمو الاقتصادي من خلال حلول تصديرية فعالة لجميع المنتجات المصنعة محليًا في المملكة، وصياغة مستقبل التجارة الدولية.",
     },
   },
+  FR: {
+    mission: {
+      label: "Notre mission",
+      text: "Permettre aux entreprises saoudiennes de toutes tailles de surmonter les difficultés du commerce international en fournissant des solutions d'exportation complètes et en assurant la circulation fluide des marchandises à travers les frontières.",
+    },
+    vision: {
+      label: "Notre vision",
+      text: "Être une entreprise leader dans la facilitation du commerce saoudien, en connectant divers marchés et en renforçant la croissance économique grâce à des solutions d'exportation efficaces pour tous les produits fabriqués localement dans le Royaume. Façonner l'avenir du commerce international.",
+    },
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 /** Reveals an element once it scrolls into view; fires only the first time. */
@@ -98,15 +111,17 @@ function VisionIcon() {
 
 export default function MissionVisionSection() {
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
-  const [hoveredCard, setHoveredCard] = useState<HoveredCard>(null);
 
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };
@@ -131,7 +146,6 @@ export default function MissionVisionSection() {
       ...t.mission,
       Icon: MissionIcon,
       dir: -1,
-      type: "mission" as const,
     },
     {
       ref: visionRef,
@@ -139,53 +153,44 @@ export default function MissionVisionSection() {
       ...t.vision,
       Icon: VisionIcon,
       dir: 1,
-      type: "vision" as const,
     },
   ];
-
-  const dividerImage =
-    hoveredCard === "mission"
-      ? "/about/m.png"
-      : hoveredCard === "vision"
-      ? "/about/v.png"
-      : "/about/ab.png";
 
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full bg-white px-4 py-14 sm:px-6 md:px-8 md:py-16`}
+      className={`${playfair.variable} ${poppins.variable} min-w-0 w-full overflow-x-clip bg-white px-4 py-14 sm:px-6 md:px-8 md:py-16`}
     >
-      <div className="relative mx-auto grid w-full grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 md:gap-28">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 z-20 hidden h-48 w-48 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border-4 border-white bg-white shadow-xl md:block">
-          <Image
-            src={dividerImage}
-            alt=""
-            fill
-            sizes="192px"
-            className="object-cover transition-opacity duration-300"
-            aria-hidden="true"
-          />
+      <div className="relative mx-auto grid min-w-0 w-full grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 md:gap-28">
+        {/* Center logo — static, rounded, no dynamic images */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 z-20 hidden h-48 w-48 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-white bg-[#13233F] shadow-xl md:block">
+          <div className="relative h-full w-full p-6">
+            <Image
+              src={CENTER_LOGO}
+              alt="Boyut Al-Kawthar"
+              fill
+              sizes="192px"
+              className="object-contain"
+              aria-hidden="true"
+            />
+          </div>
         </div>
 
-        {cards.map((card) => (
-          <div
-            key={card.label}
-            ref={card.ref}
-            onMouseEnter={() => setHoveredCard(card.type)}
-            onMouseLeave={() => setHoveredCard(null)}
-            onFocus={() => setHoveredCard(card.type)}
-            onBlur={() => setHoveredCard(null)}
-            className={[
-              "group relative cursor-pointer overflow-hidden rounded-[2.5rem] bg-white p-8 shadow-lg shadow-[#13233F]/10 ring-1 ring-[#13233F]/5 md:w-[78%] md:justify-self-center",
-              "transition-all duration-500 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#13233F]/20 sm:p-10",
-              "transition-[transform,opacity,box-shadow] duration-700",
-              card.inView
-                ? "translate-y-0 opacity-100"
-                : card.dir < 0
-                ? "-translate-x-10 opacity-0"
-                : "translate-x-10 opacity-0",
-            ].join(" ")}
-          >
+        {cards.map((card, index) => (
+          <Fragment key={card.label}>
+            <div
+              ref={card.ref}
+              className={[
+                "group relative cursor-pointer overflow-hidden rounded-[2.5rem] bg-white p-8 shadow-lg shadow-[#13233F]/10 ring-1 ring-[#13233F]/5 md:w-[78%] md:justify-self-center",
+                "transition-all duration-500 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#13233F]/20 sm:p-10",
+                "transition-[transform,opacity,box-shadow] duration-700",
+                card.inView
+                  ? "translate-y-0 opacity-100"
+                  : card.dir < 0
+                  ? "-translate-x-10 opacity-0"
+                  : "translate-x-10 opacity-0",
+              ].join(" ")}
+            >
             {/* Background photo layer */}
             <div className="pointer-events-none absolute inset-0">
               <Image
@@ -215,7 +220,22 @@ export default function MissionVisionSection() {
             <p className="relative mt-4 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-[#5C5C5C] sm:text-[14.5px]">
               {card.text}
             </p>
-          </div>
+            </div>
+            {index === 0 && (
+              <div className="relative z-20 flex items-center justify-center md:hidden">
+                <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-white bg-[#13233F] p-3 shadow-xl">
+                  <Image
+                    src={CENTER_LOGO}
+                    alt="Boyut Al-Kawthar logo"
+                    fill
+                    sizes="96px"
+                    className="object-contain"
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+            )}
+          </Fragment>
         ))}
       </div>
     </section>

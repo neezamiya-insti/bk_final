@@ -4,9 +4,10 @@ import WhoWeAreSection from '../components/about/WhoWeAreSection'
 import MissionVisionSection from '../components/about/MissionVisionSection'
 import OurPhilosophySection from '../components/about/OurPhilosophySection'
 import ContactPage from '../components/Home/ContactPage'
-import DiscoverPotentialSection from '../components/about/DiscoverPotentialSection'
+
 import Partners from '../components/about/Partners'
 import OurValuesSection from '../components/about/OurValuesSection'
+import ManagementBoardSection from '../components/about/ManagementBoardSection'
 
 function page() {
   return (
@@ -15,9 +16,10 @@ function page() {
         <WhoWeAreSection/>
         <MissionVisionSection/>
         <OurPhilosophySection/>
-        <DiscoverPotentialSection/>
+       
         <Partners/>
         <OurValuesSection/>
+        <ManagementBoardSection/>
         <ContactPage/>
       
     </div>

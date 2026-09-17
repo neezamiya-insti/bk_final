@@ -18,16 +18,19 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 type NewsCard = {
   id: number;
   image: string;
   title: string;
+  titleFr: string;
   titleAr: string;
   desc: string;
+  descFr: string;
   descAr: string;
   date: string;
+  dateFr: string;
   dateAr: string;
 };
 
@@ -37,12 +40,17 @@ const NEWS_ITEMS: NewsCard[] = [
     image: "/news/new1.png",
     title:
       "Saudi Ambassador, Saudi Commercial Attaché, and President of the Saudi Exporters Association at BIF",
+    titleFr:
+      "L'ambassadeur saoudien et la délégation commerciale au pavillon de la Foire internationale de Bagdad",
     titleAr:
       "السفير السعودي والملحق التجاري ورئيس جمعية المصدرين السعوديين في معرض بغداد الدولي",
     desc: "We were honored to be visited at our pavilion at the exhibition by His Excellency Mr. Abdulaziz Al-Shammari, Ambassador of the Kingdom of Saudi Arabia to the Republic of Iraq, H.E. the Saudi Deputy Ambassador, and the President of the Saudi Exporters Association, during Baghdad International Fair.",
+    descFr:
+      "Nous avons eu l'honneur d'accueillir Son Excellence M. Abdulaziz Al-Shammari, ambassadeur du Royaume d'Arabie saoudite en Irak, ainsi que la délégation commerciale saoudienne.",
     descAr:
       "تشرّفنا بزيارة معالي السيد عبدالعزيز الشمري، سفير المملكة العربية السعودية لدى جمهورية العراق، وسعادة نائب السفير السعودي، ورئيس جمعية المصدرين السعوديين، لجناحنا في معرض بغداد الدولي.",
     date: "Feb 2, 2026",
+    dateFr: "2 févr. 2026",
     dateAr: "٢ فبراير ٢٠٢٦",
   },
   {
@@ -50,12 +58,16 @@ const NEWS_ITEMS: NewsCard[] = [
     image: "/news/new2.png",
     title:
       "High-Level Saudi Delegation Visits Boyut Al-Kawthar Booth at Baghdad International Fair",
+    titleFr: "Une délégation saoudienne de haut niveau visite le pavillon de Boyut Al-Kawthar",
     titleAr:
       "وفد سعودي رفيع المستوى يزور جناح بيوت الكوثر في معرض بغداد الدولي",
     desc: "Boyut Al-Kawthar was honored by the visit of the Saudi Deputy Ambassador to Iraq, the embassy delegation, and President of the Saudi Exporters Association to Boyut Al-Kawthar booth during their tour of Baghdad Fair.",
+    descFr:
+      "Boyut Al-Kawthar a eu l'honneur d'accueillir le vice-ambassadeur saoudien en Irak, la délégation de l'ambassade et le président de l'Association des exportateurs saoudiens.",
     descAr:
       "تشرّفت بيوت الكوثر بزيارة نائب السفير السعودي في العراق، ووفد السفارة، ورئيس جمعية المصدرين السعوديين لجناح بيوت الكوثر خلال جولتهم في معرض بغداد.",
     date: "Feb 1, 2026",
+    dateFr: "1er févr. 2026",
     dateAr: "١ فبراير ٢٠٢٦",
   },
   {
@@ -63,12 +75,16 @@ const NEWS_ITEMS: NewsCard[] = [
     image: "/news/new3.png",
     title:
       "Visit of H.E. the Minister of Industry and Mineral Resources and H.E. the CEO of the SEDA",
+    titleFr: "Visite du ministre de l'Industrie et du PDG de l'Autorité saoudienne des exportations",
     titleAr:
       "زيارة معالي وزير الصناعة والثروة المعدنية وسعادة الرئيس التنفيذي لهيئة تنمية الصادرات السعودية",
     desc: "We were honored by the visit of His Excellency Mr. Bandar Al-Khorayef, Minister of Industry and Mineral Resources, and His Excellency Eng. Abdulrahman Alzukair, CEO of the Saudi Export Development Authority, at our booth.",
+    descFr:
+      "Nous avons eu l'honneur d'accueillir Son Excellence M. Bandar Al-Khorayef, ministre de l'Industrie et des Ressources minérales, ainsi que le PDG de l'Autorité saoudienne des exportations.",
     descAr:
       "تشرّفنا بزيارة معالي الأستاذ بندر الخريف، وزير الصناعة والثروة المعدنية، وسعادة المهندس عبدالرحمن الزكير، الرئيس التنفيذي لهيئة تنمية الصادرات السعودية، لجناحنا.",
     date: "Dec 16, 2025",
+    dateFr: "16 déc. 2025",
     dateAr: "١٦ ديسمبر ٢٠٢٥",
   },
   {
@@ -76,12 +92,16 @@ const NEWS_ITEMS: NewsCard[] = [
     image: "/news/new4.png",
     title:
       "Boyut Al-Kawthar participates in The Made in Saudi Expo 2025, held in Riyadh",
+    titleFr: "Boyut Al-Kawthar participe au salon Made in Saudi Expo 2025 à Riyad",
     titleAr:
       "بيوت الكوثر تشارك في معرض صنع في السعودية ٢٠٢٥ بالرياض",
     desc: "Participation of Boyut Al-Kawthar considered an official and accredited export house recognized by SEDA. As a service provider for international trade and business development to exporters and manufacturers, it offers comprehensive solutions to help them access global markets.",
+    descFr:
+      "Boyut Al-Kawthar, maison d'exportation officielle et accréditée par la SEDA, propose des solutions complètes pour aider les exportateurs et les fabricants à accéder aux marchés mondiaux.",
     descAr:
       "تُعتبر مشاركة بيوت الكوثر كبيت تصدير رسمي ومعتمد من هيئة تنمية الصادرات السعودية. كمزود خدمة للتجارة الدولية وتطوير الأعمال للمصدّرين والمصنّعين، تقدم حلولاً شاملة لمساعدتهم على الوصول إلى الأسواق العالمية.",
     date: "Dec 15, 2025",
+    dateFr: "15 déc. 2025",
     dateAr: "١٥ ديسمبر ٢٠٢٥",
   },
   {
@@ -89,12 +109,16 @@ const NEWS_ITEMS: NewsCard[] = [
     image: "/news/new5.png",
     title:
       "The Third Business Matching Forum Between Small and Medium Factories and Licensed Export Houses",
+    titleFr: "Le troisième forum de mise en relation entre PME industrielles et maisons d'exportation agréées",
     titleAr:
       "المنتدى الثالث للشراكات التجارية بين المصانع الصغيرة والمتوسطة وبيوت التصدير المرخّصة",
     desc: "Participation of Boyut Al-Kawthar, in the third Business Matching Forum between small and medium factories one of the export houses licensed by the Saudi Export Development Authority.",
+    descFr:
+      "Boyut Al-Kawthar a participé au troisième forum de mise en relation entre petites et moyennes usines, en tant que maison d'exportation agréée par l'Autorité saoudienne des exportations.",
     descAr:
       "مشاركة بيوت الكوثر في المنتدى الثالث للشراكات التجارية بين المصانع الصغيرة والمتوسطة، كأحد بيوت التصدير المرخّصة من هيئة تنمية الصادرات السعودية.",
     date: "Jun 24, 2025",
+    dateFr: "24 juin 2025",
     dateAr: "٢٤ يونيو ٢٠٢٥",
   },
   {
@@ -102,12 +126,16 @@ const NEWS_ITEMS: NewsCard[] = [
     image: "/news/new6.png",
     title:
       "Strategic Cooperation Between BOYUT AL-KAWTHAR and GIT-ZONE International",
+    titleFr: "Coopération stratégique entre BOYUT AL-KAWTHAR et GIT-ZONE International",
     titleAr:
       "تعاون استراتيجي بين بيوت الكوثر وشركة جيت زون الدولية",
     desc: "In a strategic step to support Saudi exporters and expand the scope of their products in global markets, Boyut Al-Kawthar signed on Sunday, April 6, 2025, a strategic cooperation agreement with GIT-ZONE International.",
+    descFr:
+      "Pour soutenir les exportateurs saoudiens et élargir leurs marchés, Boyut Al-Kawthar a signé le 6 avril 2025 un accord de coopération stratégique avec GIT-ZONE International.",
     descAr:
       "في خطوة استراتيجية لدعم المصدرين السعوديين وتوسيع نطاق منتجاتهم في الأسواق العالمية، وقّعت بيوت الكوثر يوم الأحد ٦ أبريل ٢٠٢٥ اتفاقية تعاون استراتيجي مع شركة جيت زون الدولية.",
     date: "Apr 6, 2025",
+    dateFr: "6 avr. 2025",
     dateAr: "٦ أبريل ٢٠٢٥",
   },
 ];
@@ -131,11 +159,21 @@ const TEXT = {
     readMore: "اقرأ المزيد",
     showLess: "عرض أقل",
   },
+  FR: {
+    heading: "Dernières actualités",
+    subheading:
+      "Découvrez les dernières actualités, événements et réussites de Boyut Al-Kawthar.",
+    searchPlaceholder: "Rechercher une actualité...",
+    noResults: "Aucune actualité ne correspond à votre recherche.",
+    readMore: "Lire la suite",
+    showLess: "Afficher moins",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const storedLang = window.localStorage.getItem(LANG_KEY);
+  return storedLang === "AR" || storedLang === "FR" ? storedLang : "EN";
 }
 
 function SearchIcon() {
@@ -201,13 +239,13 @@ function useInView<T extends HTMLElement>(threshold = 0.15) {
 function NewsRow({
   item,
   index,
-  isAr,
+  langCode,
   readMoreLabel,
   showLessLabel,
 }: {
   item: NewsCard;
   index: number;
-  isAr: boolean;
+  langCode: LangCode;
   readMoreLabel: string;
   showLessLabel: string;
 }) {
@@ -217,9 +255,10 @@ function NewsRow({
   // Alternate: even index → image left; odd index → image right
   const imageLeft = index % 2 === 0;
 
-  const title = isAr ? item.titleAr : item.title;
-  const desc = isAr ? item.descAr : item.desc;
-  const date = isAr ? item.dateAr : item.date;
+  const isAr = langCode === "AR";
+  const title = langCode === "AR" ? item.titleAr : langCode === "FR" ? item.titleFr : item.title;
+  const desc = langCode === "AR" ? item.descAr : langCode === "FR" ? item.descFr : item.desc;
+  const date = langCode === "AR" ? item.dateAr : langCode === "FR" ? item.dateFr : item.date;
 
   return (
     <div
@@ -325,10 +364,10 @@ export default function NewsSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")) {
         setLangCode(e.newValue);
       }
     };
@@ -351,9 +390,9 @@ export default function NewsSection() {
     return NEWS_ITEMS.filter((item) => {
       if (!searchQuery.trim()) return true;
       const query = searchQuery.toLowerCase();
-      const title = isAr ? item.titleAr : item.title;
-      const desc = isAr ? item.descAr : item.desc;
-      const date = isAr ? item.dateAr : item.date;
+      const title = langCode === "AR" ? item.titleAr : langCode === "FR" ? item.titleFr : item.title;
+      const desc = langCode === "AR" ? item.descAr : langCode === "FR" ? item.descFr : item.desc;
+      const date = langCode === "AR" ? item.dateAr : langCode === "FR" ? item.dateFr : item.date;
 
       return (
         title.toLowerCase().includes(query) ||
@@ -361,7 +400,7 @@ export default function NewsSection() {
         date.toLowerCase().includes(query)
       );
     });
-  }, [searchQuery, isAr]);
+  }, [searchQuery, langCode]);
 
   return (
     <section
@@ -424,7 +463,7 @@ export default function NewsSection() {
                 key={item.id}
                 item={item}
                 index={index}
-                isAr={isAr}
+                langCode={langCode}
                 readMoreLabel={t.readMore}
                 showLessLabel={t.showLess}
               />

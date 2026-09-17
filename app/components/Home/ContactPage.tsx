@@ -17,22 +17,48 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const CONTACT_IMAGE = "/contact/contact1.jpg";
 
-const SERVICES = [
-  "Market Research",
-  "Distributor Finder",
-  "Lead Generation",
-  "Meeting Agenda with Potential Buyers",
-  "Trade Missions",
-  "Competition Analysis",
-  "Pricing Strategy",
-  "Shipping Report",
-  "Banking Report",
-  "Certification Report",
-];
+const SERVICES = {
+  EN: [
+    "Market Research",
+    "Distributor Finder",
+    "Lead Generation",
+    "Meeting Agenda with Potential Buyers",
+    "Trade Missions",
+    "Competition Analysis",
+    "Pricing Strategy",
+    "Shipping Report",
+    "Banking Report",
+    "Certification Report",
+  ],
+  AR: [
+    "بحوث السوق",
+    "إيجاد الموزعين",
+    "توليد العملاء المحتملين",
+    "جدولة اجتماعات مع المشترين المحتملين",
+    "البعثات التجارية",
+    "تحليل المنافسين",
+    "استراتيجية التسعير",
+    "تقرير الشحن",
+    "التقرير المصرفي",
+    "تقرير الشهادات",
+  ],
+  FR: [
+    "Étude de marché",
+    "Recherche de distributeur",
+    "Génération de prospects",
+    "Ordre du jour des réunions avec les acheteurs potentiels",
+    "Missions commerciales",
+    "Analyse de la concurrence",
+    "Stratégie de prix",
+    "Rapport d'expédition",
+    "Rapport bancaire",
+    "Rapport de certification",
+  ],
+} as const;
 
 const TEXT = {
   EN: {
@@ -49,6 +75,8 @@ const TEXT = {
     selectService: "Select a service",
     submit: "Submit",
     required: "Required",
+    thankYou: "Thank you!",
+    thankYouMsg: "Your request has been received. We'll get back to you shortly.",
   },
   AR: {
     overlayTitle: "ما وراء الربح، ما وراء التأثير",
@@ -64,12 +92,35 @@ const TEXT = {
     selectService: "اختر خدمة",
     submit: "إرسال",
     required: "مطلوب",
+    thankYou: "شكرًا لك!",
+    thankYouMsg: "تم استلام طلبك، وسنتواصل معك قريبًا.",
+  },
+  FR: {
+    overlayTitle: "Au-delà du profit, au-delà de l'impact",
+    overlaySubtitle: "Façonner un avenir responsable avec Boyut Al-Kawthar",
+    formTitle:
+      "Veuillez remplir le formulaire pour planifier votre consultation GRATUITE dès aujourd'hui !",
+    name: "Nom",
+    position: "Poste",
+    company: "Entreprise",
+    email: "E-mail",
+    services: "Services",
+    subject: "Sujet",
+    message: "Message",
+    selectService: "Sélectionnez un service",
+    submit: "Envoyer",
+    required: "Requis",
+    thankYou: "Merci !",
+    thankYouMsg:
+      "Votre demande a été reçue. Nous vous répondrons sous peu.",
   },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 function useInView<T extends HTMLElement>(threshold = 0.15) {
@@ -103,10 +154,13 @@ export default function ContactPage() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };
@@ -120,6 +174,7 @@ export default function ContactPage() {
 
   const isAr = langCode === "AR";
   const t = TEXT[langCode];
+  const servicesList = SERVICES[langCode];
 
   // Form state
   const [form, setForm] = useState({
@@ -184,12 +239,10 @@ export default function ContactPage() {
           {submitted ? (
             <div className="mt-5 rounded-2xl border border-[#F5B301]/40 bg-[#F5B301]/10 p-5 text-center">
               <p className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#13233F]">
-                {isAr ? "شكرًا لك!" : "Thank you!"}
+                {t.thankYou}
               </p>
               <p className="mt-2 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-[#5C5C5C]">
-                {isAr
-                  ? "تم استلام طلبك، وسنتواصل معك قريبًا."
-                  : "Your request has been received. We'll get back to you shortly."}
+                {t.thankYouMsg}
               </p>
             </div>
           ) : (
@@ -277,7 +330,7 @@ export default function ContactPage() {
                   <option value="" disabled>
                     {t.selectService}
                   </option>
-                  {SERVICES.map((s) => (
+                  {servicesList.map((s) => (
                     <option key={s} value={s}>
                       {s}
                     </option>

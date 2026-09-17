@@ -17,15 +17,18 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 type NewsCard = {
   image: string;
   title: string;
+  titleFr: string;
   titleAr: string;
   desc: string;
+  descFr: string;
   descAr: string;
   date: string;
+  dateFr: string;
   dateAr: string;
 };
 
@@ -34,72 +37,127 @@ const TOP_ROW: NewsCard[] = [
     image: "/news/new1.png",
     title:
       "Saudi Ambassador, Saudi Commercial Attaché, and President of the Saudi Exporters Association at BIF",
+    titleFr:
+      "L'ambassadeur saoudien et la délégation commerciale au pavillon de la Foire internationale de Bagdad",
     titleAr:
       "سفير المملكة والملحق التجاري السعودي ورئيس اتحاد المصدرين السعوديين في معرض بغداد الدولي",
     desc: "We were honored to be visited at our pavilion at the exhibition by His Excellency Mr. Abdulaziz Al-Shammari, Ambassador of the Kingdom of Saudi Arabia to the Republic of Iraq, H.E. the Saudi Deputy Ambassador, and the President of the Saudi Exporters Association, during Baghdad International Fair.",
+    descFr:
+      "Nous avons eu l'honneur d'accueillir à notre pavillon Son Excellence M. Abdulaziz Al-Shammari, ambassadeur du Royaume d'Arabie saoudite en Irak, ainsi que la délégation commerciale saoudienne.",
     descAr:
       "تشرفنا بزيارة معالي السيد عبدالعزيز الشمري، سفير المملكة العربية السعودية لدى جمهورية العراق، وسعادة نائب السفير السعودي، ورئيس اتحاد المصدرين السعوديين لجناحنا خلال معرض بغداد الدولي.",
     date: "Feb 2, 2026",
+    dateFr: "2 févr. 2026",
     dateAr: "2 فبراير 2026",
   },
   {
     image: "/news/new2.png",
     title: "High-Level Saudi Delegation Visits Boyut Al-Kawthar Booth at Baghdad International Fair",
+    titleFr: "Une délégation saoudienne de haut niveau visite le pavillon de Boyut Al-Kawthar",
     titleAr: "وفد سعودي رفيع المستوى يزور جناح بيوت الكوثر في معرض بغداد الدولي",
     desc: "Boyut Al-Kawthar was honored by the visit of the Saudi Deputy Ambassador to Iraq, the embassy delegation, and President of the Saudi Exporters Association to Boyut Al-Kawthar booth during their tour of Baghdad Fair.",
+    descFr:
+      "Boyut Al-Kawthar a eu l'honneur d'accueillir le vice-ambassadeur saoudien en Irak, la délégation de l'ambassade et le président de l'Association des exportateurs saoudiens.",
     descAr:
       "تشرفت بيوت الكوثر بزيارة نائب السفير السعودي لدى العراق ووفد السفارة ورئيس اتحاد المصدرين السعوديين لجناح بيوت الكوثر خلال جولتهم في معرض بغداد.",
     date: "Feb 1, 2026",
+    dateFr: "1er févr. 2026",
     dateAr: "1 فبراير 2026",
   },
   {
     image: "/news/new3.png",
     title: "Visit of H.E. the Minister of Industry and Mineral Resources and H.E. the CEO of the SEDA",
+    titleFr: "Visite du ministre de l'Industrie et du PDG de l'Autorité saoudienne des exportations",
     titleAr: "زيارة معالي وزير الصناعة والثروة المعدنية والرئيس التنفيذي لهيئة تنمية الصادرات السعودية",
     desc: "We were honored by the visit of His Excellency Mr. Bandar Al-Khorayef, Minister of Industry and Mineral Resources, and His Excellency Eng. Abdulrahman Alzukair, CEO of the Saudi Export Development Authority, at our booth.",
+    descFr:
+      "Nous avons eu l'honneur d'accueillir Son Excellence M. Bandar Al-Khorayef, ministre de l'Industrie et des Ressources minérales, ainsi que le PDG de l'Autorité saoudienne des exportations.",
     descAr:
       "تشرفنا بزيارة معالي الأستاذ بندر الخريف، وزير الصناعة والثروة المعدنية، وسعادة المهندس عبدالرحمن الذكير، الرئيس التنفيذي لهيئة تنمية الصادرات السعودية، لجناحنا.",
     date: "Dec 16, 2025",
+    dateFr: "16 déc. 2025",
     dateAr: "16 ديسمبر 2025",
   },
 ];
 
-const BOTTOM_ROW: NewsCard[] = [
+const BLOG_ROW: NewsCard[] = [
   {
-    image: "/news/new4.png",
-    title: "Boyut Al-Kawthar participates in The Made in Saudi Expo 2025, held in Riyadh",
-    titleAr: "مشاركة بيوت الكوثر في معرض صنع في السعودية 2025 المقام في الرياض",
-    desc: "Participation of Boyut Al-Kawthar considered an official and accredited export house recognized by SEDA. As a service provider for international trade and business development to exporters and manufacturers, it offers comprehensive solutions to help them access global markets.",
-    descAr:
-      "شاركت بيوت الكوثر بصفتها بيت تصدير رسمي ومعتمد من هيئة تنمية الصادرات السعودية. وباعتبارها مقدم خدمات للتجارة الدولية وتطوير الأعمال للمصدرين والمصنعين، فإنها تقدم حلولًا متكاملة لمساعدتهم على الوصول إلى الأسواق العالمية.",
-    date: "Dec 15, 2025",
-    dateAr: "15 ديسمبر 2025",
+    image: "/blogs/blog1.png",
+    title: "From Local to Global: How Culture Unlocks Success",
+    titleFr: "Du local au mondial : comment la culture ouvre la voie au succès",
+    titleAr: "من المحلي إلى العالمي: كيف تفتح الثقافة أبواب النجاح",
+    desc: "Understanding cultural nuances is the key to building lasting international partnerships.",
+    descFr: "Comprendre les nuances culturelles est essentiel pour bâtir des partenariats internationaux durables.",
+    descAr: "فهم الفروق الثقافية هو المفتاح لبناء شراكات دولية دائمة.",
+    date: "Nov 25, 2025",
+    dateFr: "25 nov. 2025",
+    dateAr: "25 نوفمبر 2025",
   },
   {
-    image: "/news/new5.png",
-    title: "The Third Business Matching Forum Between Small and Medium Factories and Licensed Export Houses",
-    titleAr: "الملتقى الثالث لمطابقة الأعمال بين المصانع الصغيرة والمتوسطة وبيوت التصدير المرخصة",
-    desc: "Participation of Boyut Al-Kawthar, in the third Business Matching Forum between small and medium factories one of the export houses licensed by the Saudi Export Development Authority.",
-    descAr:
-      "شاركت بيوت الكوثر في الملتقى الثالث لمطابقة الأعمال بين المصانع الصغيرة والمتوسطة، بصفتها أحد بيوت التصدير المرخصة من هيئة تنمية الصادرات السعودية.",
-    date: "Jun 24, 2025",
-    dateAr: "24 يونيو 2025",
+    image: "/blogs/blog2.png",
+    title: "Joint Ventures are Transforming the Future of Saudi Industry!",
+    titleFr: "Les coentreprises transforment l'avenir de l'industrie saoudienne !",
+    titleAr: "المشاريع المشتركة تحوّل مستقبل الصناعة السعودية!",
+    desc: "Strategic joint ventures are reshaping Saudi industry by combining local expertise with global innovation.",
+    descFr: "Les coentreprises stratégiques transforment l'industrie saoudienne en associant expertise locale et innovation mondiale.",
+    descAr: "المشاريع المشتركة الاستراتيجية تعيد تشكيل الصناعة السعودية بالجمع بين الخبرة المحلية والابتكار العالمي.",
+    date: "Aug 21, 2025",
+    dateFr: "21 août 2025",
+    dateAr: "21 أغسطس 2025",
   },
   {
-    image: "/news/new6.png",
-    title: "Strategic Cooperation Between BOYUT AL-KAWTHAR and GIT-ZONE International",
-    titleAr: "تعاون استراتيجي بين بيوت الكوثر وشركة GIT-ZONE International",
-    desc: "In a strategic step to support Saudi exporters and expand the scope of their products in global markets, Boyut Al-Kawthar signed on Sunday, April 6, 2025, a strategic cooperation agreement with GIT-ZONE International.",
-    descAr:
-      "في خطوة استراتيجية لدعم المصدرين السعوديين وتوسيع نطاق منتجاتهم في الأسواق العالمية، وقعت بيوت الكوثر يوم الأحد 6 أبريل 2025 اتفاقية تعاون استراتيجية مع شركة GIT-ZONE International.",
-    date: "Apr 6, 2025",
-    dateAr: "6 أبريل 2025",
+    image: "/blogs/blog3.png",
+    title: "A Golden Opportunity in Tanzania's Booming Construction Market",
+    titleFr: "Une opportunité en or sur le marché de la construction en plein essor en Tanzanie",
+    titleAr: "فرصة ذهبية في سوق البناء المزدهر في تنزانيا",
+    desc: "Tanzania's rapid infrastructure growth opens new doors for Saudi construction exporters.",
+    descFr: "La croissance rapide des infrastructures en Tanzanie ouvre de nouvelles portes aux exportateurs saoudiens du secteur de la construction.",
+    descAr: "النمو السريع للبنية التحتية في تنزانيا يفتح أبوابًا جديدة لمصدّري مواد البناء السعوديين.",
+    date: "Aug 14, 2025",
+    dateFr: "14 août 2025",
+    dateAr: "14 أغسطس 2025",
+  },
+  {
+    image: "/blogs/blog4.png",
+    title: "Africa and Saudi Arabia: A Strategic Alliance in Food Trade",
+    titleFr: "Afrique et Arabie saoudite : une alliance stratégique dans le commerce alimentaire",
+    titleAr: "أفريقيا والسعودية: تحالف استراتيجي في تجارة الغذاء",
+    desc: "Saudi-Africa trade partnerships in agriculture are paving the way for long-term food security.",
+    descFr: "Les partenariats agricoles entre l'Arabie saoudite et l'Afrique ouvrent la voie à une sécurité alimentaire durable.",
+    descAr: "الشراكات التجارية السعودية الأفريقية في الزراعة تمهد الطريق للأمن الغذائي طويل الأمد.",
+    date: "Aug 10, 2025",
+    dateFr: "10 août 2025",
+    dateAr: "10 أغسطس 2025",
+  },
+  {
+    image: "/blogs/blog5.png",
+    title: "Is Pricing Just A Number?",
+    titleFr: "Le prix n'est-il qu'un chiffre ?",
+    titleAr: "هل التسعير مجرد رقم؟",
+    desc: "Pricing is a strategic decision, not just a number. Learn how to price for global markets.",
+    descFr: "La tarification est une décision stratégique, pas seulement un chiffre. Découvrez comment fixer vos prix pour les marchés mondiaux.",
+    descAr: "التسعير قرار استراتيجي، وليس مجرد رقم. تعلّم كيف تسعّر لمنتجاتك عالميًا.",
+    date: "Jul 8, 2025",
+    dateFr: "8 juil. 2025",
+    dateAr: "8 يوليو 2025",
+  },
+  {
+    image: "/blogs/blog6.png",
+    title: "Saudi Exports 2025: A Roadmap to The World",
+    titleFr: "Exportations saoudiennes 2025 : une feuille de route vers le monde",
+    titleAr: "الصادرات السعودية ٢٠٢٥: خارطة طريق إلى العالم",
+    desc: "A comprehensive look at Saudi Arabia's export strategy for 2025 and beyond.",
+    descFr: "Un aperçu complet de la stratégie d'exportation de l'Arabie saoudite pour 2025 et au-delà.",
+    descAr: "نظرة شاملة على استراتيجية التصدير السعودية لعام ٢٠٢٥ وما بعده.",
+    date: "Jun 6, 2025",
+    dateFr: "6 juin 2025",
+    dateAr: "6 يونيو 2025",
   },
 ];
 
 const TEXT = {
   EN: {
-    heading: "Our News",
+    heading: "Our News & Blogs",
     readMore: "Read More",
     showLess: "Show Less",
   },
@@ -108,13 +166,19 @@ const TEXT = {
     readMore: "اقرأ المزيد",
     showLess: "عرض أقل",
   },
+  FR: {
+    heading: "Nos actualités et blogs",
+    readMore: "Lire la suite",
+    showLess: "Afficher moins",
+  },
 } as const;
 
 const CARD_WIDTH = 320;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const storedLang = window.localStorage.getItem(LANG_KEY);
+  return storedLang === "AR" || storedLang === "FR" ? storedLang : "EN";
 }
 
 function CalendarIcon() {
@@ -133,15 +197,21 @@ function CalendarIcon() {
   );
 }
 
-function useSeamlessScrollRow(direction: "left" | "right", speed: number) {
+function useSeamlessScrollRow(direction: "left" | "right", speed: number, itemCount: number) {
   const rowRef = useRef<HTMLDivElement>(null);
-  const halfWidthRef = useRef(0);
+  const loopWidthRef = useRef(0);
 
   useEffect(() => {
     function measure() {
-      if (rowRef.current) {
-        halfWidthRef.current = rowRef.current.scrollWidth / 2;
-      }
+      const row = rowRef.current;
+      if (!row) return;
+
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const cards = Array.from(row.children).slice(0, itemCount);
+      loopWidthRef.current = cards.reduce(
+        (width, card) => width + (card as HTMLElement).offsetWidth,
+        gap * Math.max(cards.length - 1, 0)
+      );
     }
     measure();
 
@@ -151,10 +221,10 @@ function useSeamlessScrollRow(direction: "left" | "right", speed: number) {
 
     let rafId: number;
     function tick() {
-      const halfWidth = halfWidthRef.current;
-      if (rowRef.current && halfWidth > 0) {
-        const offset = (window.scrollY * speed) % halfWidth;
-        const translate = direction === "left" ? -offset : offset - halfWidth;
+      const loopWidth = loopWidthRef.current;
+      if (rowRef.current && loopWidth > 0) {
+        const offset = (window.scrollY * speed) % loopWidth;
+        const translate = direction === "left" ? -offset : offset - loopWidth;
         rowRef.current.style.transform = `translate3d(${translate}px,0,0)`;
       }
       rafId = requestAnimationFrame(tick);
@@ -166,7 +236,7 @@ function useSeamlessScrollRow(direction: "left" | "right", speed: number) {
       resizeObserver.disconnect();
       cancelAnimationFrame(rafId);
     };
-  }, [direction, speed]);
+  }, [direction, itemCount, speed]);
 
   return rowRef;
 }
@@ -179,10 +249,10 @@ export default function ScrollParallaxGallery() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")) {
         setLangCode(e.newValue);
       }
     };
@@ -201,22 +271,24 @@ export default function ScrollParallaxGallery() {
     setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const topRowRef = useSeamlessScrollRow("left", 0.45);
-  const bottomRowRef = useSeamlessScrollRow("right", 0.45);
+  const topRowRef = useSeamlessScrollRow("left", 0.45, TOP_ROW.length);
+  const bottomRowRef = useSeamlessScrollRow("right", 0.45, BLOG_ROW.length);
 
-  const topCards = [...TOP_ROW, ...TOP_ROW];
-  const bottomCards = [...BOTTOM_ROW, ...BOTTOM_ROW];
+  // Three copies keep the top row wide enough to cover the viewport at every
+  // point in its loop, including wide desktop screens.
+  const topCards = [...TOP_ROW, ...TOP_ROW, ...TOP_ROW];
+  const bottomCards = [...BLOG_ROW, ...BLOG_ROW];
 
   const renderCard = (card: NewsCard, i: number, rowKey: string) => {
-    const key = `${rowKey}-${i % (rowKey === "top" ? TOP_ROW.length : BOTTOM_ROW.length)}`;
-    const isOpen = !!expanded[key];
-    const title = isAr ? card.titleAr : card.title;
-    const description = isAr ? card.descAr : card.desc;
-    const date = isAr ? card.dateAr : card.date;
+    const contentKey = `${rowKey}-${i % (rowKey === "top" ? TOP_ROW.length : BLOG_ROW.length)}`;
+    const isOpen = !!expanded[contentKey];
+    const title = langCode === "AR" ? card.titleAr : langCode === "FR" ? card.titleFr : card.title;
+    const description = langCode === "AR" ? card.descAr : langCode === "FR" ? card.descFr : card.desc;
+    const date = langCode === "AR" ? card.dateAr : langCode === "FR" ? card.dateFr : card.date;
 
     return (
       <article
-        key={key}
+        key={`${rowKey}-${i}`}
         className="group/card shrink-0 cursor-pointer overflow-hidden rounded-3xl border border-[#13233F]/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
         style={{ width: `${CARD_WIDTH}px` }}
       >
@@ -259,7 +331,7 @@ export default function ScrollParallaxGallery() {
             </div>
             <button
               type="button"
-              onClick={() => toggleExpand(key)}
+              onClick={() => toggleExpand(contentKey)}
               className="cursor-pointer font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold text-[#F5B301] underline underline-offset-2 transition-colors duration-300 hover:text-[#C0272D] sm:text-[12px]"
             >
               {isOpen ? t.showLess : t.readMore}
@@ -273,7 +345,7 @@ export default function ScrollParallaxGallery() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full overflow-hidden bg-white py-10 md:py-14`}
+      className={`${playfair.variable} ${poppins.variable} w-full overflow-hidden bg-white `}
     >
       {/* Heading */}
       <div className="mb-8 text-center md:mb-10">

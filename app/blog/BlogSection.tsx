@@ -17,20 +17,25 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 type BlogPost = {
   id: number;
   image: string;
   title: string;
+  titleFr: string;
   titleAr: string;
   date: string;
+  dateFr: string;
   dateAr: string;
   category: string;
+  categoryFr: string;
   categoryAr: string;
   excerpt: string;
+  excerptFr: string;
   excerptAr: string;
   fullDesc: string;
+  fullDescFr: string;
   fullDescAr: string;
 };
 
@@ -39,17 +44,22 @@ const BLOG_POSTS: BlogPost[] = [
     id: 1,
     image: "/blogs/blog1.png",
     title: "From Local to Global: How Culture Unlocks Success",
+    titleFr: "Du local au mondial : comment la culture ouvre la voie au succès",
     titleAr: "من المحلي إلى العالمي: كيف تفتح الثقافة أبواب النجاح",
     date: "November 25, 2025",
+    dateFr: "25 nov. 2025",
     dateAr: "٢٥ نوفمبر ٢٠٢٥",
     category: "Culture",
+    categoryFr: "Culture",
     categoryAr: "الثقافة",
     excerpt:
       "Understanding cultural nuances is the key to building lasting international partnerships.",
+    excerptFr: "Comprendre les nuances culturelles est essentiel pour bâtir des partenariats internationaux durables.",
     excerptAr:
       "فهم الفروق الثقافية هو المفتاح لبناء شراكات دولية دائمة.",
     fullDesc:
       "When Saudi businesses step onto the global stage, culture becomes more than just a courtesy — it becomes a strategic advantage. From understanding negotiation styles in East Asia to appreciating relationship-building in Africa, cultural intelligence allows exporters to connect authentically with international buyers. In this article, we explore real examples of Saudi companies that succeeded abroad by adapting their communication, packaging, and branding to local tastes while staying true to their roots.",
+    fullDescFr: "Lorsque les entreprises saoudiennes se lancent sur la scène mondiale, la culture devient un véritable avantage stratégique. Cet article présente comment l'intelligence culturelle aide les exportateurs à créer des liens authentiques avec les acheteurs internationaux.",
     fullDescAr:
       "عندما تخطو الشركات السعودية إلى الساحة العالمية، تصبح الثقافة أكثر من مجرد مجاملة — إنها ميزة استراتيجية. من فهم أساليب التفاوض في شرق آسيا إلى تقدير بناء العلاقات في أفريقيا، تتيح الذكاء الثقافي للمصدّرين التواصل بصدق مع المشترين الدوليين. في هذا المقال، نستعرض أمثلة حقيقية لشركات سعودية نجحت في الخارج من خلال تكييف تواصلها وتغليفها وعلامتها التجارية مع الأذواق المحلية مع الحفاظ على جذورها.",
   },
@@ -57,17 +67,22 @@ const BLOG_POSTS: BlogPost[] = [
     id: 2,
     image: "/blogs/blog2.png",
     title: "Joint Ventures are Transforming the Future of Saudi Industry!",
+    titleFr: "Les coentreprises transforment l'avenir de l'industrie saoudienne !",
     titleAr: "المشاريع المشتركة تحوّل مستقبل الصناعة السعودية!",
     date: "August 21, 2025",
+    dateFr: "21 août 2025",
     dateAr: "٢١ أغسطس ٢٠٢٥",
     category: "Industry",
+    categoryFr: "Industrie",
     categoryAr: "الصناعة",
     excerpt:
       "Strategic joint ventures are reshaping Saudi industry by combining local expertise with global innovation.",
+    excerptFr: "Les coentreprises stratégiques transforment l'industrie saoudienne en associant expertise locale et innovation mondiale.",
     excerptAr:
       "المشاريع المشتركة الاستراتيجية تعيد تشكيل الصناعة السعودية بالجمع بين الخبرة المحلية والابتكار العالمي.",
     fullDesc:
       "Joint ventures between Saudi manufacturers and international companies are creating new opportunities for technology transfer, skill development, and market access. These partnerships allow Saudi businesses to leverage foreign expertise while offering global partners access to the Kingdom's rapidly growing market. We look at how these collaborations are driving Vision 2030 forward and what it means for exporters looking to scale.",
+    fullDescFr: "Les coentreprises entre fabricants saoudiens et entreprises internationales créent de nouvelles opportunités de transfert de technologie, de développement des compétences et d'accès aux marchés.",
     fullDescAr:
       "المشاريع المشتركة بين المصنّعين السعوديين والشركات الدولية تخلق فرصًا جديدة لنقل التكنولوجيا وتطوير المهارات والوصول إلى الأسواق. تتيح هذه الشراكات للشركات السعودية الاستفادة من الخبرة الأجنبية مع تقديم وصول الشركاء العالميين إلى سوق المملكة المتنامي بسرعة.",
   },
@@ -75,17 +90,22 @@ const BLOG_POSTS: BlogPost[] = [
     id: 3,
     image: "/blogs/blog3.png",
     title: "A Golden Opportunity in Tanzania's Booming Construction Market",
+    titleFr: "Une opportunité en or sur le marché de la construction en Tanzanie",
     titleAr: "فرصة ذهبية في سوق البناء المزدهر في تنزانيا",
     date: "August 14, 2025",
+    dateFr: "14 août 2025",
     dateAr: "١٤ أغسطس ٢٠٢٥",
     category: "Markets",
+    categoryFr: "Marchés",
     categoryAr: "الأسواق",
     excerpt:
       "Tanzania's rapid infrastructure growth opens new doors for Saudi construction exporters.",
+    excerptFr: "La croissance rapide des infrastructures en Tanzanie ouvre de nouvelles portes aux exportateurs saoudiens de la construction.",
     excerptAr:
       "النمو السريع للبنية التحتية في تنزانيا يفتح أبوابًا جديدة لمصدّري مواد البناء السعوديين.",
     fullDesc:
       "Tanzania is investing heavily in roads, ports, housing, and energy projects. With demand for construction materials at an all-time high, Saudi exporters of cement, steel, tiles, and building solutions have a unique window of opportunity. This article breaks down the market size, key buyers, import regulations, and practical steps for entering Tanzania successfully.",
+    fullDescFr: "La Tanzanie investit fortement dans les routes, les ports, le logement et l'énergie. Cette analyse présente les acheteurs clés, les règles d'importation et les étapes pratiques pour réussir son entrée sur ce marché.",
     fullDescAr:
       "تستثمر تنزانيا بكثافة في الطرق والموانئ والإسكان والطاقة. مع ارتفاع الطلب على مواد البناء إلى أعلى مستوياته، يمتلك مصدّرو الأسمنت والصلب والبلاط السعوديون نافذة فرصة فريدة.",
   },
@@ -93,17 +113,22 @@ const BLOG_POSTS: BlogPost[] = [
     id: 4,
     image: "/blogs/blog4.png",
     title: "Africa and Saudi Arabia: A Strategic Alliance in Food Trade Leads the Future of Food Security",
+    titleFr: "Afrique et Arabie saoudite : une alliance stratégique pour la sécurité alimentaire",
     titleAr: "أفريقيا والسعودية: تحالف استراتيجي في تجارة الغذاء يقود مستقبل الأمن الغذائي",
     date: "August 10, 2025",
+    dateFr: "10 août 2025",
     dateAr: "١٠ أغسطس ٢٠٢٥",
     category: "Trade",
+    categoryFr: "Commerce",
     categoryAr: "التجارة",
     excerpt:
       "Saudi-Africa trade partnerships in agriculture are paving the way for long-term food security.",
+    excerptFr: "Les partenariats agricoles entre l'Arabie saoudite et l'Afrique ouvrent la voie à une sécurité alimentaire durable.",
     excerptAr:
       "الشراكات التجارية السعودية الأفريقية في الزراعة تمهد الطريق للأمن الغذائي طويل الأمد.",
     fullDesc:
       "Food security is one of the most pressing global challenges, and Saudi Arabia is taking bold steps to address it through strategic partnerships with African nations. From investing in agricultural land to importing high-quality produce, these alliances are creating mutual benefits. We examine the key sectors, government initiatives, and export opportunities that are shaping this new era of food trade.",
+    fullDescFr: "La sécurité alimentaire est un défi mondial majeur. Nous examinons les secteurs clés, les initiatives publiques et les opportunités d'exportation qui façonnent cette nouvelle ère du commerce alimentaire.",
     fullDescAr:
       "الأمن الغذائي أحد أكثر التحديات العالمية إلحاحًا، والمملكة العربية السعودية تخطو خطوات جريئة لمعالجته من خلال شراكات استراتيجية مع الدول الأفريقية.",
   },
@@ -111,17 +136,22 @@ const BLOG_POSTS: BlogPost[] = [
     id: 5,
     image: "/blogs/blog5.png",
     title: "Is Pricing Just A Number?",
+    titleFr: "Le prix n'est-il qu'un chiffre ?",
     titleAr: "هل التسعير مجرد رقم؟",
     date: "July 8, 2025",
+    dateFr: "8 juil. 2025",
     dateAr: "٨ يوليو ٢٠٢٥",
     category: "Strategy",
+    categoryFr: "Stratégie",
     categoryAr: "الاستراتيجية",
     excerpt:
       "Pricing is a strategic decision — not just a number. Learn how to price for global markets.",
+    excerptFr: "La tarification est une décision stratégique, pas seulement un chiffre. Découvrez comment fixer vos prix à l'international.",
     excerptAr:
       "التسعير قرار استراتيجي — وليس مجرد رقم. تعلّم كيف تسعّر لمنتجاتك عالميًا.",
     fullDesc:
       "Setting the right price for a new market is one of the most difficult decisions an exporter faces. Too high and you lose customers; too low and you erode margins and brand value. In this article, we explore the psychological, economic, and cultural factors that affect pricing, and share a practical framework Saudi exporters can use to find the sweet spot in any market.",
+    fullDescFr: "Fixer le bon prix sur un nouveau marché est une décision complexe. Découvrez les facteurs psychologiques, économiques et culturels qui influencent la tarification internationale.",
     fullDescAr:
       "تحديد السعر المناسب لسوق جديد من أصعب القرارات التي يواجهها المصدّر. إذا كان مرتفعًا جدًا ستفقد العملاء، وإذا كان منخفضًا جدًا ستتآكل الهوامش وقيمة العلامة التجارية.",
   },
@@ -129,17 +159,22 @@ const BLOG_POSTS: BlogPost[] = [
     id: 6,
     image: "/blogs/blog6.png",
     title: "Saudi Exports 2025: A Roadmap to The World",
+    titleFr: "Exportations saoudiennes 2025 : une feuille de route vers le monde",
     titleAr: "الصادرات السعودية ٢٠٢٥: خارطة طريق إلى العالم",
     date: "June 6, 2025",
+    dateFr: "6 juin 2025",
     dateAr: "٦ يونيو ٢٠٢٥",
     category: "Exports",
+    categoryFr: "Exportations",
     categoryAr: "الصادرات",
     excerpt:
       "A comprehensive look at Saudi Arabia's export strategy for 2025 and beyond.",
+    excerptFr: "Un aperçu complet de la stratégie d'exportation de l'Arabie saoudite pour 2025 et au-delà.",
     excerptAr:
       "نظرة شاملة على استراتيجية التصدير السعودية لعام ٢٠٢٥ وما بعده.",
     fullDesc:
       "Saudi Arabia is on a mission to diversify its economy and increase non-oil exports. With ambitious targets set under Vision 2030, the Kingdom's export landscape is evolving rapidly. This roadmap covers the key sectors, government support programs, target markets, and emerging opportunities that will define Saudi exports in 2025 and beyond.",
+    fullDescFr: "L'Arabie saoudite diversifie son économie et augmente ses exportations hors pétrole. Cette feuille de route présente les secteurs clés, les marchés cibles et les opportunités émergentes.",
     fullDescAr:
       "المملكة العربية السعودية في مهمة لتنويع اقتصادها وزيادة الصادرات غير النفطية. مع الأهداف الطموحة المحددة في رؤية 2030، يتطور مشهد التصدير في المملكة بسرعة.",
   },
@@ -164,11 +199,21 @@ const TEXT = {
     showLess: "عرض أقل",
     allCategories: "الكل",
   },
+  FR: {
+    heading: "Derniers articles",
+    subheading: "Découvrez les analyses, tendances et histoires du monde des exportations saoudiennes et du commerce mondial.",
+    searchPlaceholder: "Rechercher un article...",
+    noResults: "Aucun article ne correspond à votre recherche.",
+    readMore: "Lire la suite",
+    showLess: "Afficher moins",
+    allCategories: "Toutes",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const storedLang = window.localStorage.getItem(LANG_KEY);
+  return storedLang === "AR" || storedLang === "FR" ? storedLang : "EN";
 }
 
 function SearchIcon() {
@@ -240,10 +285,10 @@ export default function BlogSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")) {
         setLangCode(e.newValue);
       }
     };
@@ -271,8 +316,8 @@ export default function BlogSection() {
   // Filter blog posts
   const filteredPosts = useMemo(() => {
     return BLOG_POSTS.filter((post) => {
-      const title = isAr ? post.titleAr : post.title;
-      const category = isAr ? post.categoryAr : post.category;
+      const title = langCode === "AR" ? post.titleAr : langCode === "FR" ? post.titleFr : post.title;
+      const category = langCode === "AR" ? post.categoryAr : langCode === "FR" ? post.categoryFr : post.category;
 
       if (activeCategory !== "all" && post.category !== activeCategory) {
         return false;
@@ -283,13 +328,13 @@ export default function BlogSection() {
         return (
           title.toLowerCase().includes(query) ||
           category.toLowerCase().includes(query) ||
-          post.date.toLowerCase().includes(query)
+          (langCode === "AR" ? post.dateAr : langCode === "FR" ? post.dateFr : post.date).toLowerCase().includes(query)
         );
       }
 
       return true;
     });
-  }, [searchQuery, activeCategory, isAr]);
+  }, [searchQuery, activeCategory, langCode]);
 
   const toggleExpand = (id: number) => {
     setExpandedId((prev) => (prev === id ? null : id));
@@ -298,9 +343,9 @@ export default function BlogSection() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full bg-white py-12 `}
+      className={`${playfair.variable} ${poppins.variable} min-w-0 w-full overflow-x-clip bg-white py-12`}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="mx-auto min-w-0 max-w-6xl px-4 sm:px-6 md:px-8 lg:px-10">
         {/* Heading — fade up */}
         <div
           ref={headingRef}
@@ -374,8 +419,11 @@ export default function BlogSection() {
               {t.allCategories}
             </button>
             {categories.map((cat) => {
+              const categoryPost = BLOG_POSTS.find((p) => p.category === cat);
               const catLabel = isAr
-                ? BLOG_POSTS.find((p) => p.category === cat)?.categoryAr || cat
+                ? categoryPost?.categoryAr || cat
+                : langCode === "FR"
+                ? categoryPost?.categoryFr || cat
                 : cat;
               return (
                 <button
@@ -403,11 +451,11 @@ export default function BlogSection() {
           >
             {filteredPosts.map((post, index) => {
               const isExpanded = expandedId === post.id;
-              const title = isAr ? post.titleAr : post.title;
-              const category = isAr ? post.categoryAr : post.category;
-              const date = isAr ? post.dateAr : post.date;
-              const excerpt = isAr ? post.excerptAr : post.excerpt;
-              const fullDesc = isAr ? post.fullDescAr : post.fullDesc;
+              const title = langCode === "AR" ? post.titleAr : langCode === "FR" ? post.titleFr : post.title;
+              const category = langCode === "AR" ? post.categoryAr : langCode === "FR" ? post.categoryFr : post.category;
+              const date = langCode === "AR" ? post.dateAr : langCode === "FR" ? post.dateFr : post.date;
+              const excerpt = langCode === "AR" ? post.excerptAr : langCode === "FR" ? post.excerptFr : post.excerpt;
+              const fullDesc = langCode === "AR" ? post.fullDescAr : langCode === "FR" ? post.fullDescFr : post.fullDesc;
 
               return (
                 <article

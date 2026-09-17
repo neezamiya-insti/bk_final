@@ -17,10 +17,9 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 // Same subtle background photo used behind the "Who We Are" section
-// (Haris Illahi / Unsplash — free to use, no attribution required).
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1759272840712-c7e5ea852367?fm=jpg&q=80&w=2400&auto=format&fit=crop";
 
@@ -71,11 +70,36 @@ const TEXT = {
       },
     ],
   },
+  FR: {
+    heading: "Nos valeurs",
+    paragraph:
+      "C'est un fait bien établi qu'un lecteur sera distrait par le contenu lisible d'une page lorsqu'il regarde sa mise en page. L'intérêt d'utiliser ce texte est qu'il présente une répartition plus ou moins normale.",
+    values: [
+      {
+        title: "Intégrité",
+        desc: "Nous opérons avec une honnêteté et une transparence absolues. Nous bâtissons la confiance avec nos partenaires, en veillant à ce que chaque interaction repose sur des principes éthiques.",
+      },
+      {
+        title: "Innovation",
+        desc: "Nous remettons en question le statu quo et stimulons l'innovation. Nous exploitons les technologies de pointe et des stratégies créatives pour améliorer votre expérience d'exportation.",
+      },
+      {
+        title: "Partenariat",
+        desc: "Nous ne servons pas seulement des clients ; nous forgeons des partenariats. Nous collaborons étroitement en offrant un soutien et des conseils personnalisés.",
+      },
+      {
+        title: "Excellence",
+        desc: "Nous recherchons sans relâche l'excellence dans tout ce que nous faisons. Nous nous améliorons et nous nous adaptons continuellement pour répondre à vos besoins évolutifs.",
+      },
+    ],
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 /** Reveals an element once it scrolls into view; fires only the first time. */
@@ -104,44 +128,6 @@ function useInView<T extends HTMLElement>(threshold = 0.2) {
   return [ref, inView] as const;
 }
 
-function IntegrityIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <path d="M12 3l7 3.2v5.3c0 4.6-3 8.4-7 9.5-4-1.1-7-4.9-7-9.5V6.2L12 3Z" />
-      <path d="M9 12.2l2.1 2.1L15.5 10" />
-    </svg>
-  );
-}
-
-function InnovationIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <path d="M9 18h6M10 21h4" />
-      <path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.9V17h5v-1.2c0-.8.4-1.5 1-1.9A6 6 0 0 0 12 3Z" />
-    </svg>
-  );
-}
-
-function PartnershipIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <path d="M8.5 12.5l2 2 5-5" />
-      <circle cx="8" cy="9" r="3" />
-      <circle cx="16" cy="9" r="3" />
-      <path d="M2.5 19c.6-2.6 2.7-4 5.5-4s4.9 1.4 5.5 4" />
-      <path d="M10.5 19c.6-2.6 2.7-4 5.5-4s4.9 1.4 5.5 4" />
-    </svg>
-  );
-}
-
-function ExcellenceIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <path d="M12 2.5l2.9 6.3 6.9.7-5.2 4.6 1.6 6.7L12 17.6 5.8 20.8l1.6-6.7-5.2-4.6 6.9-.7L12 2.5Z" />
-    </svg>
-  );
-}
-
 // Real images from /public/about — v1 for card 1 & 3, v2 for card 2, v3 for card 4
 const VALUE_IMAGES = ["/about/v1.png", "/about/v2.png", "/about/v1.png", "/about/v3.png"];
 
@@ -154,10 +140,13 @@ export default function OurValuesSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };

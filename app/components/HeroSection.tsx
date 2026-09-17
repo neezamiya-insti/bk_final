@@ -20,10 +20,10 @@ const poppins = Poppins({
 const EXPLORE_URL = "https://bk.com.sa/about-boyut-al-kawthar/";
 
 // High-quality free-license background (Unsplash, no attribution required)
-const HERO_IMAGE ='/hero.png'
+const HERO_IMAGE = '/hero.png';
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const TEXT = {
   EN: {
@@ -50,11 +50,25 @@ const TEXT = {
     emailUs: "راسلنا عبر البريد",
     callUs: "اتصل بنا",
   },
+  FR: {
+    eyebrow: "Boyut Al-Kawthar",
+    heading: "La passerelle des exportateurs saoudiens vers",
+    headingHighlight: "les marchés mondiaux",
+    paragraph:
+      "Faites passer vos produits à l'échelle mondiale. Nous nous occupons des détails. Accédez à plus de 55 marchés dans le monde. Nous vous guidons dans votre expansion.",
+    cta: "En savoir plus",
+    ourLocation: "Notre emplacement",
+    address: "Rue Ibrahim Ibn Baz, District Al Sulay, Riyad 14276, Arabie Saoudite.",
+    emailUs: "Écrivez-nous",
+    callUs: "Appelez-nous",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 export default function HeroSection() {
@@ -62,7 +76,7 @@ export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   // Stays in sync with the language chosen in the Navbar (localStorage + a
   // custom "bk-lang-change" event the Navbar dispatches when it changes lang)
-  const [langCode, setLangCode] = useState<LangCode>("EN");
+  const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
 
   useEffect(() => {
     const t = requestAnimationFrame(() => setMounted(true));
@@ -70,14 +84,15 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    setLangCode(readStoredLang());
-
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };
@@ -91,6 +106,7 @@ export default function HeroSection() {
   }, []);
 
   const isAr = langCode === "AR";
+  const isFr = langCode === "FR";
   const t = TEXT[langCode];
 
   const slideClass = (delayClass: string) =>
@@ -148,7 +164,11 @@ export default function HeroSection() {
       </Link>
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-[560px] items-center px-6 py-24 sm:min-h-[620px] sm:px-12 lg:px-16">
+      <div
+        className={`relative z-10 flex min-h-[560px] items-center px-12 py-24 sm:min-h-[620px] sm:px-12 lg:px-12 ${
+          isFr ? "lg:translate-y-8" : ""
+        }`}
+      >
         <div className={`max-w-2xl ${isAr ? "text-right" : "text-left"}`}>
           <span
             className={[
@@ -202,10 +222,11 @@ export default function HeroSection() {
           continuously rotating ring that pauses on hover. */}
       <aside
         className={[
-          "bk-ring-group relative z-10 mx-auto mb-12 h-[min(78vw,320px)] w-[min(78vw,320px)] text-center text-white",
+          "bk-ring-group relative z-10 mx-auto -mt-16 mb-8 h-[min(78vw,320px)] w-[min(78vw,320px)] text-center text-white",
           "sm:h-[360px] sm:w-[360px]",
-          "lg:absolute lg:top-[55%] lg:mx-0 lg:mb-0 lg:-translate-y-1/2",
-          isAr ? "lg:left-[2%]" : "lg:right-[2%]",
+          "lg:absolute lg:mx-0 lg:mb-0 lg:mt-0 lg:-translate-y-1/2",
+          langCode === "EN" ? "lg:top-[calc(48%+2rem)]" : "lg:top-[calc(48%+1rem)]",
+          isAr ? "lg:left-12" : "lg:right-12",
         ].join(" ")}
       >
         <div className="bk-ring-el absolute inset-[14%] rounded-full border-2 border-dashed border-[#F5B301]" />

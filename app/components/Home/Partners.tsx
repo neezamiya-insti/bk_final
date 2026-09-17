@@ -18,7 +18,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -58,11 +58,18 @@ const TEXT = {
     paragraph:
       "نعمل بفخر جنبًا إلى جنب مع شركاء موثوقين يدعمون مهمتنا ويساعدوننا في تقديم تعليم عالي الجودة.",
   },
+  FR: {
+    heading: "Nos Partenaires",
+    paragraph:
+      "Nous travaillons fièrement aux côtés de partenaires de confiance qui soutiennent notre mission et nous aident à offrir une éducation de qualité.",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 export default function Partners() {
@@ -74,10 +81,13 @@ export default function Partners() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };

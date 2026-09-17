@@ -17,7 +17,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 // Online background image (Unsplash — free to use)
 const CTA_BACKGROUND =
@@ -38,11 +38,20 @@ const TEXT = {
     primaryCta: "اتصل بنا",
     secondaryCta: "استكشف الخدمات",
   },
+  FR: {
+    heading: "Prêt à faire passer votre entreprise à l'échelle mondiale ?",
+    paragraph:
+      "Associez-vous à Boyut Al-Kawthar et ouvrez les portes des marchés internationaux.",
+    primaryCta: "Contactez-nous",
+    secondaryCta: "Explorer les services",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 /** Reveals an element once it scrolls into view; fires only the first time. */
@@ -78,10 +87,13 @@ export default function CtaSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };

@@ -18,7 +18,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const LOGO_IMAGE = "/logo-Boyot-1.png";
 
@@ -26,15 +26,7 @@ const TEXT = {
   EN: {
     tagline:
       "Every journey begins with a single step. Take yours with BOYUT AL-KAWTHAR, your trusted partner in global expansion. Together, let\u2019s write a story of unbridled growth, where boundaries fade, and dreams take flight.",
-    aboutUsTitle: "About Us",
-    aboutLinks: [
-      { label: "Home", href: "/" },
-      { label: "About Us", href: "/about-us" },
-      { label: "Our Services", href: "/services" },
-      { label: "Our News", href: "/news" },
-      { label: "Our Blog", href: "/blog" },
-      { label: "Contact Us", href: "/contact" },
-    ],
+    aboutTitle: "About Us",
     mainServicesTitle: "Main Services",
     mainServices: [
       { label: "Market Research", href: "/services" },
@@ -55,15 +47,7 @@ const TEXT = {
   AR: {
     tagline:
       "كل رحلة تبدأ بخطوة واحدة. ابدأ خطوتك مع بيوت الكوثر، شريكك الموثوق في التوسع العالمي. معًا، لنكتب قصة نمو لا حدود لها، حيث تتلاشى الحدود وتنطلق الأحلام.",
-    aboutUsTitle: "من نحن",
-    aboutLinks: [
-      { label: "الرئيسية", href: "/" },
-      { label: "من نحن", href: "/about-us" },
-      { label: "خدماتنا", href: "/services" },
-      { label: "أخبارنا", href: "/news" },
-      { label: "مدونتنا", href: "/blog" },
-      { label: "اتصل بنا", href: "/contact" },
-    ],
+    aboutTitle: "من نحن",
     mainServicesTitle: "الخدمات الرئيسية",
     mainServices: [
       { label: "بحوث السوق", href: "/services" },
@@ -80,6 +64,27 @@ const TEXT = {
     phoneLabel: "اتصل بنا",
     phoneValue: "+966538597719",
     copyright: "© 2025 بيوت الكوثر. جميع الحقوق محفوظة.",
+  },
+  FR: {
+    tagline:
+      "Chaque voyage commence par un premier pas. Faites le vôtre avec BOYUT AL-KAWTHAR, votre partenaire de confiance dans l'expansion mondiale. Ensemble, écrivons une histoire de croissance sans limites, où les frontières s'estompent et les rêves prennent leur envol.",
+    aboutTitle: "À propos",
+    mainServicesTitle: "Services principaux",
+    mainServices: [
+      { label: "Étude de marché", href: "/services" },
+      { label: "Recherche de distributeur", href: "/services" },
+      { label: "Génération de prospects", href: "/services" },
+      { label: "Missions commerciales", href: "/services" },
+      { label: "Stratégie de prix", href: "/services" },
+      { label: "Rapport bancaire", href: "/services" },
+    ],
+    contactAddress:
+      "Rue Ibrahim Ibn Baz, District Al Sulay, Riyad 14276, Arabie Saoudite.",
+    emailLabel: "Écrivez-nous",
+    emailValue: "Info@bk.com.sa",
+    phoneLabel: "Appelez-nous",
+    phoneValue: "+966538597719",
+    copyright: "© 2025 Boyut Al Kawthar. Tous droits réservés.",
   },
 } as const;
 
@@ -119,7 +124,9 @@ const SOCIAL_LINKS = [
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 /** Reveals an element once it scrolls into view; fires only the first time. */
@@ -208,10 +215,13 @@ export default function Footer() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };
@@ -234,66 +244,58 @@ export default function Footer() {
       dir={isAr ? "rtl" : "ltr"}
       className={`${playfair.variable} ${poppins.variable} w-full bg-[#13233F] text-white`}
     >
-      <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-7 md:px-8 lg:px-10 lg:py-8">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 md:px-8 lg:px-10 lg:py-12">
         {/* Top grid */}
         <div
           className={[
-            "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7",
+            "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[300px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-10",
             "transition-all duration-700 ease-out",
             footerInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
           ].join(" ")}
         >
-          {/* Column 1 — Logo + Tagline */}
+          {/* Column 1 — BIG Logo ONLY (nothing below) */}
           <div className="sm:col-span-2 lg:col-span-1">
-            {/* Logo */}
-            <Link href="/" className="inline-block">
-              <div className="relative h-12 w-40 sm:h-14 sm:w-48">
+            <Link href="/" className="block w-full">
+              <div className="relative h-28 w-72 max-w-full sm:h-32 sm:w-80 md:h-36 md:w-96 lg:h-40 lg:w-full lg:max-w-[300px]">
                 <Image
                   src={LOGO_IMAGE}
                   alt="Boyut Al Kawthar"
                   fill
-                  sizes="192px"
+                  sizes="(min-width: 1024px) 320px, (min-width: 768px) 384px, (min-width: 640px) 320px, 288px"
                   className="object-contain object-left rtl:object-right"
                   priority
                 />
               </div>
             </Link>
 
-            <span className="mt-2 block h-1 w-16 rounded-full bg-[#F5B301]" />
-
-            <p className="mt-3 font-[family-name:var(--font-poppins)] text-[13px] font-light leading-relaxed text-white/70 sm:text-[13.5px]">
-              {t.tagline}
-            </p>
-          </div>
-
-          {/* Column 2 — About Us */}
-          <div>
-            <h4 className="font-[family-name:var(--font-playfair)] text-base font-extrabold text-white sm:text-lg">
-              {t.aboutUsTitle}
-            </h4>
-            <span className="mt-2 block h-[3px] w-10 rounded-full bg-[#F5B301]" />
-
-            <ul className="mt-3 space-y-1.5">
-              {t.aboutLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="group/link inline-flex items-center gap-2 font-[family-name:var(--font-poppins)] text-[13px] font-light text-white/70 transition-colors duration-300 hover:text-[#F5B301] sm:text-[13.5px]"
+            <ul className="mt-4 flex flex-wrap items-center gap-2.5 sm:gap-3">
+              {SOCIAL_LINKS.map((social) => (
+                <li key={social.label}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    title={social.label}
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F5B301] hover:text-[#13233F] sm:h-10 sm:w-10"
                   >
-                    <span
-                      className={`text-[#F5B301] transition-transform duration-300 ${
-                        isAr
-                          ? "group-hover/link:-translate-x-1"
-                          : "group-hover/link:translate-x-1"
-                      }`}
-                    >
-                      {isAr ? "←" : "→"}
-                    </span>
-                    {link.label}
-                  </Link>
+                    <SocialIcon type={social.icon} />
+                  </a>
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Column 2 — About (tagline content now here) */}
+          <div className="min-w-0">
+            <h4 className="font-[family-name:var(--font-playfair)] text-base font-extrabold text-white sm:text-lg">
+              {t.aboutTitle}
+            </h4>
+            <span className="mt-2 block h-[3px] w-10 rounded-full bg-[#F5B301]" />
+
+            <p className="mt-3 font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70 sm:text-[13px]">
+              {t.tagline}
+            </p>
           </div>
 
           {/* Column 3 — Main Services */}
@@ -378,38 +380,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar — Social + Copyright */}
-        <div className="mt-6 border-t border-white/15 pt-4 sm:mt-7 sm:pt-4">
-          <div
-            className={[
-              "flex flex-col items-center gap-3 sm:flex-row sm:justify-between",
-              isAr ? "sm:flex-row-reverse" : "",
-            ].join(" ")}
-          >
-            {/* Social links — real URLs + SVG icons */}
-            <ul className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-              {SOCIAL_LINKS.map((social) => (
-                <li key={social.label}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    title={social.label}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F5B301] hover:text-[#13233F] sm:h-10 sm:w-10"
-                  >
-                    <SocialIcon type={social.icon} />
-                  </a>
-                </li>
-              ))}
-            </ul>
-
-            {/* Copyright */}
-            <p className="text-center font-[family-name:var(--font-poppins)] text-[11.5px] font-light text-white/60 sm:text-[12.5px]">
-              {t.copyright}
-            </p>
-          </div>
-        </div>
       </div>
     </footer>
   );

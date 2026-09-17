@@ -20,32 +20,32 @@ const poppins = Poppins({
 const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
 
-const BACKGROUND_IMAGE = "/services/hero.png";
+const BACKGROUND_IMAGE = "/partner/part.png";
 
 const TEXT = {
   EN: {
     brand: "Boyut Al-Kawthar",
     breadcrumbHome: "Home",
-    breadcrumbCurrent: "Our Services",
-    heading: "Boyut Al-Kawthar Services",
+    breadcrumbCurrent: "Become a Partner",
+    heading: "Partner With Us",
     paragraph:
-      "Comprehensive export solutions designed to empower Saudi businesses. From market research to trade missions, we provide end-to-end support to help you conquer global markets with confidence.",
+      "Join hands with Boyut Al-Kawthar and grow your business globally. We connect Saudi manufacturers and exporters with international markets through trusted partnerships.",
   },
   AR: {
     brand: "بيوت الكوثر",
     breadcrumbHome: "الرئيسية",
-    breadcrumbCurrent: "خدماتنا",
-    heading: "خدمات بيوت الكوثر",
+    breadcrumbCurrent: "كن شريكًا",
+    heading: "كن شريكًا معنا",
     paragraph:
-      "حلول تصدير شاملة مصممة لتمكين الشركات السعودية. من أبحاث السوق إلى البعثات التجارية، نقدم دعمًا متكاملًا لمساعدتك على غزو الأسواق العالمية بثقة.",
+      "انضم إلى بيوت الكوثر ووسّع أعمالك عالميًا. نربط المصنّعين والمصدّرين السعوديين بالأسواق الدولية من خلال شراكات موثوقة.",
   },
   FR: {
     brand: "Boyut Al-Kawthar",
     breadcrumbHome: "Accueil",
-    breadcrumbCurrent: "Nos services",
-    heading: "Services de Boyut Al-Kawthar",
+    breadcrumbCurrent: "Devenir partenaire",
+    heading: "Associez-vous à nous",
     paragraph:
-      "Des solutions d'exportation complètes conçues pour autonomiser les entreprises saoudiennes. De l'étude de marché aux missions commerciales, nous offrons un soutien de bout en bout pour vous aider à conquérir les marchés mondiaux en toute confiance.",
+      "Rejoignez Boyut Al-Kawthar et développez votre entreprise à l'international. Nous connectons les fabricants et exportateurs saoudiens aux marchés internationaux grâce à des partenariats de confiance.",
   },
 } as const;
 
@@ -56,7 +56,7 @@ function readStoredLang(): LangCode {
   return "EN";
 }
 
-export default function ServicesHero() {
+export default function BecomePartnerHero() {
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -115,7 +115,7 @@ export default function ServicesHero() {
       dir={isAr ? "rtl" : "ltr"}
       className={`${playfair.variable} ${poppins.variable} relative flex min-h-[460px] w-full items-center justify-center overflow-hidden bg-[#13233F] sm:min-h-[520px] lg:min-h-[580px]`}
     >
-      {/* Background image — image has its own overlay */}
+      {/* Background image — /partner/part.png */}
       <Image
         src={BACKGROUND_IMAGE}
         alt=""

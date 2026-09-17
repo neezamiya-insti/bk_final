@@ -18,7 +18,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 // Same subtle background photo used behind the "Who We Are" section
 // (Haris Illahi / Unsplash — free to use, no attribution required).
@@ -67,11 +67,17 @@ const TEXT = {
     paragraph:
       "نعمل بفخر جنبًا إلى جنب مع شركاء موثوقين يدعمون مهمتنا ويساعدوننا في تقديم تعليم عالي الجودة.",
   },
+  FR: {
+    heading: "Nos partenaires",
+    paragraph:
+      "Nous collaborons fièrement avec des partenaires de confiance qui soutiennent notre mission et nous aident à offrir des solutions de qualité.",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const storedLang = window.localStorage.getItem(LANG_KEY);
+  return storedLang === "AR" || storedLang === "FR" ? storedLang : "EN";
 }
 
 /** Same scroll-linked seamless-loop hook used by the News (ScrollParallaxGallery) section. */
@@ -122,10 +128,10 @@ export default function Partners() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")) {
         setLangCode(e.newValue);
       }
     };
@@ -150,7 +156,7 @@ export default function Partners() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white py-10`}
+      className={`${playfair.variable} ${poppins.variable} relative min-w-0 w-full overflow-x-clip bg-white py-10`}
     >
       {/* Subtle decorative background image — same as WhoWeAreSection */}
       <div className="pointer-events-none absolute inset-0 -z-0">
@@ -187,7 +193,7 @@ export default function Partners() {
       </motion.div>
 
       {/* Scroll-linked partner rows — always LTR so direction never flips in Arabic */}
-      <div dir="ltr" className="relative z-[1] mt-10 overflow-hidden">
+      <div dir="ltr" className="relative z-[1] mt-10 min-w-0 overflow-x-clip">
         <div ref={topRowRef} className="flex w-max gap-8 will-change-transform">
           {topLogos.map((src, idx) => (
             <div
@@ -207,7 +213,7 @@ export default function Partners() {
         </div>
       </div>
 
-      <div dir="ltr" className="relative z-[1] mt-5 overflow-hidden md:mt-6">
+      <div dir="ltr" className="relative z-[1] mt-5 min-w-0 overflow-x-clip md:mt-6">
         <div ref={bottomRowRef} className="flex w-max gap-8 will-change-transform">
           {bottomLogos.map((src, idx) => (
             <div

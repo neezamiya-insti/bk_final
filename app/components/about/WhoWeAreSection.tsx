@@ -20,12 +20,11 @@ const poppins = Poppins({
 const EXPLORE_URL = "https://bk.com.sa/boyut-al-kawthar-services/";
 const ABOUT_IMAGE = "/about/about1.png";
 // Subtle decorative background image behind the whole section.
-// High-quality aerial shipping-port photo (Haris Illahi / Unsplash — free to use, no attribution required).
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1759272840712-c7e5ea852367?fm=jpg&q=80&w=2400&auto=format&fit=crop";
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const TEXT = {
   EN: {
@@ -48,11 +47,27 @@ const TEXT = {
     cta: "استكشف المزيد",
     checklist: ["إرشاد لدخول الأسواق", "دعم مستندات التصدير", "التواصل مع المشترين الدوليين"],
   },
+  FR: {
+    topHeading: "Notre histoire",
+    heading: "Votre partenaire stratégique dans le commerce mondial.",
+    paragraph1:
+      "Nous sommes Bayout Al Kawthar. Une maison d'exportation relevant de l'Autorité saoudienne de développement des exportations, nous sommes spécialisés dans le rapprochement entre les producteurs locaux et les marchés internationaux.",
+    paragraph2:
+      "Notre mission est simple : simplifier votre parcours d'exportation et vous ouvrir l'accès aux marchés les plus prometteurs au monde.",
+    cta: "En savoir plus",
+    checklist: [
+      "Conseils pour l'entrée sur le marché",
+      "Soutien documentaire à l'exportation",
+      "Connexions avec des acheteurs internationaux",
+    ],
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 /** Reveals an element once it scrolls into view; fires only the first time. */
@@ -87,10 +102,13 @@ export default function WhoWeAreSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };
@@ -180,7 +198,9 @@ export default function WhoWeAreSection() {
             >
               <ul
                 className="mt-6 grid grid-cols-1 gap-2.5 sm:mt-7 sm:grid-cols-2 sm:gap-3 md:gap-4"
-                aria-label={isAr ? "خدماتنا" : "Our capabilities"}
+                aria-label={
+                  isAr ? "خدماتنا" : langCode === "FR" ? "Nos capacités" : "Our capabilities"
+                }
               >
                 {t.checklist.map((item) => (
                   <li

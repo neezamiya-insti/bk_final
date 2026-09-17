@@ -16,7 +16,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const PHILOSOPHY_BACKGROUNDS = [
   "/philosophy/p1.png",
@@ -72,11 +72,35 @@ const TEXT = {
       },
     ],
   },
+  FR: {
+    topHeading: "Notre philosophie",
+    paragraph:
+      "Nous croyons en une croissance durable fondée sur des partenariats stratégiques et un engagement constant. Notre philosophie vise à permettre aux exportateurs saoudiens d'évoluer avec confiance sur les marchés mondiaux.",
+    cards: [
+      {
+        title: "Partenariats stratégiques",
+        desc: "Nous construisons des relations solides et collaboratives. Nous sommes votre partenaire de confiance et vous accompagnons à chaque étape de votre expansion internationale.",
+      },
+      {
+        title: "Solutions sur mesure",
+        desc: "Nous adaptons les stratégies et les services d'exportation à vos besoins. Nous comprenons votre activité et proposons des solutions qui répondent précisément à vos marchés.",
+      },
+      {
+        title: "Croissance durable",
+        desc: "Nous favorisons une réussite durable. Nous défendons des pratiques responsables et éthiques pour assurer la croissance de votre entreprise et des exportations saoudiennes.",
+      },
+      {
+        title: "Connexions mondiales",
+        desc: "Nous mettons votre entreprise en relation avec des acheteurs et des partenaires fiables. Nous ouvrons des voies vers de nouveaux marchés pour développer vos relations avec confiance.",
+      },
+    ],
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const storedLang = window.localStorage.getItem(LANG_KEY);
+  return storedLang === "AR" || storedLang === "FR" ? storedLang : "EN";
 }
 
 /** Reveals an element once it scrolls into view; fires only the first time. */
@@ -112,10 +136,10 @@ export default function OurPhilosophySection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")) {
         setLangCode(e.newValue);
       }
     };
@@ -137,7 +161,7 @@ export default function OurPhilosophySection() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full bg-white py-10 sm:py-12`}
+      className={`${playfair.variable} ${poppins.variable} w-full bg-white pb-4 pt-10 sm:pb-6 sm:pt-12`}
     >
       {/* Top heading — centered */}
       <div className="flex flex-col items-center text-center">
@@ -179,7 +203,7 @@ export default function OurPhilosophySection() {
       {/* Cards grid */}
       <div
         ref={cardsRef}
-        className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-5 px-4 pb-28 sm:mt-10 sm:gap-6 sm:px-6 sm:pb-32 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-5 lg:px-10 lg:pb-36"
+        className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-5 px-4 pb-6 sm:mt-10 sm:gap-6 sm:px-6 sm:pb-8 md:grid-cols-2 md:px-8 md:pb-10 lg:grid-cols-4 lg:gap-5 lg:px-10 lg:pb-12"
       >
         {t.cards.map((card, i) => (
           <article
@@ -196,7 +220,7 @@ export default function OurPhilosophySection() {
             }}
             style={{ transitionDelay: `${i * 120}ms` }}
             className={[
-              "group/card relative flex h-[300px] cursor-pointer flex-col overflow-visible rounded-[1.25rem] border border-[#13233F]/10 bg-white p-5 shadow-sm sm:h-[320px] sm:rounded-[1.5rem] sm:p-6",
+              "group/card relative flex h-[360px] cursor-pointer flex-col overflow-hidden rounded-[1.25rem] border border-[#13233F]/10 bg-white p-5 shadow-sm sm:h-[380px] sm:rounded-[1.5rem] sm:p-6",
               "w-full justify-self-center sm:w-[96%] lg:w-[92%]",
               "transition-all duration-700 ease-out",
               "hover:-translate-y-1 hover:border-[#F5B301]/60 hover:shadow-lg",
@@ -208,15 +232,15 @@ export default function OurPhilosophySection() {
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 -z-0 rounded-[1.25rem] bg-cover bg-center opacity-100 sm:rounded-[1.5rem]"
               style={{
-                backgroundImage: `linear-gradient(rgba(19, 35, 63, 0.16), rgba(19, 35, 63, 0.16)), url(${PHILOSOPHY_BACKGROUNDS[i]})`,
+                backgroundImage: `linear-gradient(rgba(19, 35, 63, 0.62), rgba(19, 35, 63, 0.78)), url(${PHILOSOPHY_BACKGROUNDS[i]})`,
               }}
             />
             <div
               className={[
-                "relative z-10 min-h-[190px] text-center transition-transform duration-700 ease-out sm:min-h-[205px]",
+                "relative z-10 min-h-[190px] text-start transition-transform duration-700 ease-out sm:min-h-[205px]",
                 activeCard === i
                   ? "translate-y-0"
-                  : "translate-y-1/2 group-hover/card:translate-y-0",
+                  : "translate-y-8 group-hover/card:translate-y-0",
               ].join(" ")}
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#13233F] font-[family-name:var(--font-playfair)] text-sm font-extrabold text-[#F5B301] sm:h-11 sm:w-11 sm:text-base">

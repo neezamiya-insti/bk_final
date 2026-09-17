@@ -18,7 +18,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const BACKGROUND_IMAGE = "/about/back2.png";
 
@@ -39,11 +39,21 @@ const TEXT = {
     paragraph:
       "مستشاروك الموثوقون في نجاح الأعمال. نمكّن المصدرين السعوديين من التنقل بثقة في الأسواق العالمية، ونسد الفجوة بين المنتجين المحليين والفرص الدولية.",
   },
+  FR: {
+    brand: "Boyut Al-Kawthar",
+    breadcrumbHome: "Accueil",
+    breadcrumbCurrent: "À propos",
+    heading: "À propos de Boyut Al-Kawthar",
+    paragraph:
+      "Vos conseillers de confiance pour la réussite de votre entreprise. Nous permettons aux exportateurs saoudiens de naviguer en toute confiance sur le marché mondial, en comblant le fossé entre les producteurs locaux et les opportunités internationales.",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 export default function AboutHero() {
@@ -55,10 +65,13 @@ export default function AboutHero() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };

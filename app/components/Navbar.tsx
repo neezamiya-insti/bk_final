@@ -16,11 +16,12 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 interface DropdownLink {
   label: string;
   labelAr: string;
+  labelFr: string;
   href: string;
   highlight?: boolean;
 }
@@ -28,6 +29,7 @@ interface DropdownLink {
 interface NavItem {
   label: string;
   labelAr: string;
+  labelFr: string;
   href: string;
   dropdown?: DropdownLink[];
 }
@@ -38,45 +40,53 @@ interface Language {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Home", labelAr: "الرئيسية", href: "/" },
+  { label: "Home", labelAr: "الرئيسية", labelFr: "Accueil", href: "/" },
   {
     label: "About Us",
     labelAr: "من نحن",
+    labelFr: "À propos",
     href: "/about-us",
   },
   {
     label: "Services",
     labelAr: "الخدمات",
+    labelFr: "Services",
     href: "/services",
     dropdown: [
-      { label: "All Services", labelAr: "جميع الخدمات", href: "/services", highlight: true },
-      { label: "Pricing Strategy", labelAr: "استراتيجية التسعير", href: "/services" },
-      { label: "Market Research", labelAr: "أبحاث السوق", href: "/services" },
-      { label: "Shipping & Logistics", labelAr: "الشحن والخدمات اللوجستية", href: "/services" },
-      { label: "Distributor Finder", labelAr: "البحث عن موزع", href: "/services" },
-      { label: "Banking Support", labelAr: "الدعم المصرفي", href: "/services" },
-      { label: "Lead Generation", labelAr: "توليد العملاء المحتملين", href: "/services" },
-      { label: "Certification Support", labelAr: "دعم الشهادات", href: "/services" },
-      { label: "Trade Missions", labelAr: "البعثات التجارية", href: "/services" },
+      { label: "All Services", labelAr: "جميع الخدمات", labelFr: "Tous les services", href: "/services", highlight: true },
+      { label: "Pricing Strategy", labelAr: "استراتيجية التسعير", labelFr: "Stratégie de prix", href: "/services" },
+      { label: "Market Research", labelAr: "أبحاث السوق", labelFr: "Étude de marché", href: "/services" },
+      { label: "Shipping & Logistics", labelAr: "الشحن والخدمات اللوجستية", labelFr: "Expédition et logistique", href: "/services" },
+      { label: "Distributor Finder", labelAr: "البحث عن موزع", labelFr: "Recherche de distributeur", href: "/services" },
+      { label: "Banking Support", labelAr: "الدعم المصرفي", labelFr: "Support bancaire", href: "/services" },
+      { label: "Lead Generation", labelAr: "توليد العملاء المحتملين", labelFr: "Génération de prospects", href: "/services" },
+      { label: "Certification Support", labelAr: "دعم الشهادات", labelFr: "Support de certification", href: "/services" },
+      { label: "Trade Missions", labelAr: "البعثات التجارية", labelFr: "Missions commerciales", href: "/services" },
     ],
   },
-  { label: "News", labelAr: "الأخبار", href: "/news" },
-  { label: "Blog", labelAr: "المدونة", href: "/blog" },
-  { label: "Contact Us", labelAr: "اتصل بنا", href: "/contact" },
+  { label: "News", labelAr: "الأخبار", labelFr: "Actualités", href: "/news" },
+  { label: "Blog", labelAr: "المدونة", labelFr: "Blog", href: "/blog" },
+  { label: "Contact Us", labelAr: "اتصل بنا", labelFr: "Contactez-nous", href: "/contact" },
 ];
 
 const LANGUAGES: Language[] = [
   { code: "EN", label: "English" },
   { code: "AR", label: "العربية" },
+  { code: "FR", label: "Français" },
 ];
 
 const UI_TEXT = {
-  contactUs: { EN: "Contact Us", AR: "اتصل بنا" },
-  openMenu: { EN: "Open menu", AR: "فتح القائمة" },
-  closeMenu: { EN: "Close menu", AR: "إغلاق القائمة" },
+  becomePartner: {
+    EN: "Become a Partner",
+    AR: "كن شريكًا",
+    FR: "Devenir partenaire",
+  },
+  openMenu: { EN: "Open menu", AR: "فتح القائمة", FR: "Ouvrir le menu" },
+  closeMenu: { EN: "Close menu", AR: "إغلاق القائمة", FR: "Fermer le menu" },
 };
 
 const LANG_STORAGE_KEY = "bk-lang";
+const PARTNER_HREF = "/become-a-partner";
 
 function GlobeIcon() {
   return (
@@ -106,14 +116,20 @@ function ChevronIcon({ open }: { open: boolean }) {
   );
 }
 
+/** Returns the correct label based on current language */
+function getLabel(item: { label: string; labelAr: string; labelFr: string }, code: LangCode) {
+  if (code === "AR") return item.labelAr;
+  if (code === "FR") return item.labelFr;
+  return item.label;
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [lang, setLang] = useState<Language>(() => {
-    // ✅ Read from localStorage in initializer (avoids setState-in-effect warning)
     if (typeof window === "undefined") return LANGUAGES[0];
     const saved = window.localStorage.getItem(LANG_STORAGE_KEY) as LangCode | null;
-    if (saved === "AR" || saved === "EN") {
+    if (saved === "AR" || saved === "EN" || saved === "FR") {
       return LANGUAGES.find((l) => l.code === saved) || LANGUAGES[0];
     }
     return LANGUAGES[0];
@@ -122,13 +138,17 @@ export default function Navbar() {
   const [activePath, setActivePath] = useState("/");
 
   const isAr = lang.code === "AR";
+  const isFr = lang.code === "FR";
+
+  // RTL only for Arabic
+  const isRtl = isAr;
 
   useEffect(() => {
-    document.documentElement.dir = lang.code === "AR" ? "rtl" : "ltr";
-    document.documentElement.lang = lang.code === "AR" ? "ar" : "en";
+    document.documentElement.dir = isRtl ? "rtl" : "ltr";
+    document.documentElement.lang = lang.code.toLowerCase();
     window.localStorage.setItem(LANG_STORAGE_KEY, lang.code);
     window.dispatchEvent(new CustomEvent("bk-lang-change", { detail: lang.code }));
-  }, [lang]);
+  }, [lang, isRtl]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -139,6 +159,13 @@ export default function Navbar() {
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
   }, [mobileOpen]);
+
+  /** Cycle through languages: EN → AR → FR → EN */
+  const cycleLanguage = () => {
+    const currentIndex = LANGUAGES.findIndex((l) => l.code === lang.code);
+    const nextIndex = (currentIndex + 1) % LANGUAGES.length;
+    setLang(LANGUAGES[nextIndex]);
+  };
 
   return (
     <div className={`${playfair.variable} ${poppins.variable} fixed inset-x-0 top-0 z-50`}>
@@ -159,7 +186,11 @@ export default function Navbar() {
                 BOYUT AL-KAWTHAR
               </span>
               <span className="font-[family-name:var(--font-poppins)] text-[8.5px] font-light tracking-wide text-neutral-500 sm:text-[9px]">
-                {isAr ? "تجارة عالمية . خبرة محلية" : "Global Trade . Local Expertise."}
+                {isAr
+                  ? "تجارة عالمية . خبرة محلية"
+                  : isFr
+                  ? "Commerce mondial . Expertise locale."
+                  : "Global Trade . Local Expertise."}
               </span>
             </span>
           </Link>
@@ -178,7 +209,7 @@ export default function Navbar() {
                       isActive ? "text-[#F5B301]" : "text-[#13233F] hover:text-[#C0272D]",
                     ].join(" ")}
                   >
-                    {isAr ? item.labelAr : item.label}
+                    {getLabel(item, lang.code)}
                   </Link>
 
                   {item.dropdown && (
@@ -208,7 +239,7 @@ export default function Navbar() {
                                 : "text-[#13233F] hover:bg-[#13233F]/5 hover:text-[#C0272D]",
                             ].join(" ")}
                           >
-                            {isAr ? link.labelAr : link.label}
+                            {getLabel(link, lang.code)}
                           </Link>
                         ))}
                       </div>
@@ -241,34 +272,35 @@ export default function Navbar() {
                   "group-hover:visible group-hover:translate-y-1 group-hover:opacity-100",
                 ].join(" ")}
               >
-                <div className="w-36 rounded-2xl border border-black/5 bg-white p-2 shadow-xl shadow-[#13233F]/10">
+                <div className="w-40 rounded-2xl border border-black/5 bg-white p-2 shadow-xl shadow-[#13233F]/10">
                   {LANGUAGES.map((l) => (
                     <button
                       key={l.code}
                       type="button"
                       onClick={() => setLang(l)}
                       className={[
-                        "block w-full rounded-full px-3 py-2 text-left font-[family-name:var(--font-poppins)] text-[13.5px] transition-colors cursor-pointer",
+                        "flex w-full items-center justify-between rounded-full px-3 py-2 text-left font-[family-name:var(--font-poppins)] text-[13.5px] transition-colors cursor-pointer",
                         l.code === lang.code
                           ? "bg-[#13233F]/5 font-semibold text-[#13233F]"
                           : "text-[#13233F] hover:bg-[#13233F]/5 hover:text-[#C0272D]",
                       ].join(" ")}
                     >
-                      {l.label}
+                      <span>{l.label}</span>
+                      <span className="text-[11px] font-bold text-[#5C5C5C]">{l.code}</span>
                     </button>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* CTA — Contact Us */}
+            {/* CTA — Become a Partner (redirects to /become-a-partner) */}
             <Link
-              href="/contact"
+              href={PARTNER_HREF}
               className="group inline-flex items-center gap-2 rounded-full bg-[#13233F] px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white transition-colors hover:bg-[#C0272D] cursor-pointer"
             >
-              {isAr ? UI_TEXT.contactUs.AR : UI_TEXT.contactUs.EN}
+              {UI_TEXT.becomePartner[lang.code]}
               <span className="transition-transform group-hover:translate-x-1">
-                {isAr ? "←" : "→"}
+                {isRtl ? "←" : "→"}
               </span>
             </Link>
           </div>
@@ -277,7 +309,7 @@ export default function Navbar() {
           <div className="flex items-center gap-1.5 lg:hidden">
             <button
               type="button"
-              onClick={() => setLang(lang.code === "EN" ? LANGUAGES[1] : LANGUAGES[0])}
+              onClick={cycleLanguage}
               className="flex items-center gap-1 rounded-full border border-black/10 px-2.5 py-1.5 font-[family-name:var(--font-poppins)] text-[11.5px] font-medium text-[#13233F] transition-colors hover:bg-[#13233F]/5 cursor-pointer"
             >
               <GlobeIcon />
@@ -286,7 +318,7 @@ export default function Navbar() {
 
             <button
               type="button"
-              aria-label={isAr ? UI_TEXT.openMenu.AR : UI_TEXT.openMenu.EN}
+              aria-label={UI_TEXT.openMenu[lang.code]}
               onClick={() => setMobileOpen(true)}
               className="flex flex-col gap-1.5 rounded-full p-2 cursor-pointer"
             >
@@ -312,10 +344,10 @@ export default function Navbar() {
         className={[
           "fixed top-0 z-[70] flex h-full w-[290px] flex-col rounded-l-[28px]",
           "bg-white p-6 shadow-2xl transition-transform duration-300 lg:hidden",
-          isAr ? "left-0 rounded-r-[28px] rounded-l-none" : "right-0",
+          isRtl ? "left-0 rounded-r-[28px] rounded-l-none" : "right-0",
           mobileOpen
             ? "translate-x-0"
-            : isAr
+            : isRtl
             ? "-translate-x-full"
             : "translate-x-full",
         ].join(" ")}
@@ -326,7 +358,7 @@ export default function Navbar() {
           </span>
           <button
             type="button"
-            aria-label={isAr ? UI_TEXT.closeMenu.AR : UI_TEXT.closeMenu.EN}
+            aria-label={UI_TEXT.closeMenu[lang.code]}
             onClick={() => setMobileOpen(false)}
             className="flex h-8 w-8 items-center justify-center rounded-full text-[#13233F] hover:bg-[#13233F]/5 cursor-pointer"
           >
@@ -350,7 +382,7 @@ export default function Navbar() {
                     : "text-[#13233F] hover:bg-[#13233F]/5",
                 ].join(" ")}
               >
-                {isAr ? item.labelAr : item.label}
+                {getLabel(item, lang.code)}
               </Link>
 
               {item.dropdown && (
@@ -365,7 +397,7 @@ export default function Navbar() {
                         }}
                         className="block rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[12.5px] text-[#5C5C5C] transition-colors hover:bg-[#13233F]/5 hover:text-[#C0272D] cursor-pointer"
                       >
-                        {isAr ? sub.labelAr : sub.label}
+                        {getLabel(sub, lang.code)}
                       </Link>
                     </li>
                   ))}
@@ -376,12 +408,33 @@ export default function Navbar() {
         </ul>
 
         <div className="mt-auto flex flex-col gap-3">
+          {/* Mobile language switcher — all 3 options */}
+          <div className="flex gap-1.5">
+            {LANGUAGES.map((l) => (
+              <button
+                key={l.code}
+                type="button"
+                onClick={() => setLang(l)}
+                className={[
+                  "flex flex-1 items-center justify-center gap-1 rounded-full border px-2 py-2.5 font-[family-name:var(--font-poppins)] text-[12px] font-medium transition-colors cursor-pointer",
+                  l.code === lang.code
+                    ? "border-[#13233F] bg-[#13233F] text-white"
+                    : "border-black/10 text-[#13233F] hover:bg-[#13233F]/5",
+                ].join(" ")}
+              >
+                {l.code}
+              </button>
+            ))}
+          </div>
+
+          {/* CTA — Become a Partner (mobile) */}
           <Link
-            href="/contact"
+            href={PARTNER_HREF}
+            onClick={() => setMobileOpen(false)}
             className="flex items-center justify-center gap-2 rounded-full bg-[#13233F] px-6 py-3 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white transition-colors hover:bg-[#C0272D] cursor-pointer"
           >
-            {isAr ? UI_TEXT.contactUs.AR : UI_TEXT.contactUs.EN}
-            <span>{isAr ? "←" : "→"}</span>
+            {UI_TEXT.becomePartner[lang.code]}
+            <span>{isRtl ? "←" : "→"}</span>
           </Link>
         </div>
       </aside>

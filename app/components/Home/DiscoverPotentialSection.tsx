@@ -17,7 +17,7 @@ const poppins = Poppins({
 });
 
 const LANG_KEY = "bk-lang";
-type LangCode = "EN" | "AR";
+type LangCode = "EN" | "AR" | "FR";
 
 const CONTAINER_WIDTH = 1081;
 const CONTAINER_HEIGHT = 721;
@@ -68,11 +68,35 @@ const TEXT = {
     paragraph:
       "تخيل علامتك التجارية حول العالم! نحن في بيوت الكوثر لا نقدم الخبرة والاتصالات فحسب، بل نفتح الأبواب. كن شريكًا لنا، وسنبني لك خارطة طريق مخصصة لفتح أسواق جديدة.",
   },
+  FR: {
+    badge: "Découvrez votre potentiel avec nous",
+    heading: "VOTRE PARTENAIRE MONDIAL D'EXPORTATION",
+    stat1Value: "$1 107 B",
+    stat1Label: "PIB SAOUDIEN",
+    stat1Year: "2022",
+    stat1Desc: "L'une des plus grandes économies du Moyen-Orient, moteur du commerce mondial.",
+    stat2Value: "$3 516 B",
+    stat2Label: "IDE SAOUDIEN",
+    stat2Year: "Déc 2023",
+    stat2Desc: "Investissement direct étranger reflétant la confiance mondiale dans les marchés saoudiens.",
+    stat3Value: "$25 318 B",
+    stat3Label: "EXPORTATION SAOUDIENNE",
+    stat3Year: "2024",
+    stat3Desc: "Les exportations saoudiennes atteignent chaque coin du monde avec des produits de qualité.",
+    stat4Value: "$111 203 B",
+    stat4Label: "BALANCE COMMERCIALE",
+    stat4Year: "2023",
+    stat4Desc: "Un excédent commercial solide qui alimente la croissance économique du Royaume.",
+    paragraph:
+      "Imaginez votre marque à l'échelle mondiale ! Nous ouvrons des portes et construisons pour vous une feuille de route personnalisée pour conquérir de nouveaux marchés.",
+  },
 } as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
-  return window.localStorage.getItem(LANG_KEY) === "AR" ? "AR" : "EN";
+  const saved = window.localStorage.getItem(LANG_KEY);
+  if (saved === "AR" || saved === "EN" || saved === "FR") return saved;
+  return "EN";
 }
 
 export default function DiscoverPotentialSection() {
@@ -86,10 +110,13 @@ export default function DiscoverPotentialSection() {
   useEffect(() => {
     const handleLangChange = (e: Event) => {
       const detail = (e as CustomEvent<string>).detail;
-      if (detail === "AR" || detail === "EN") setLangCode(detail);
+      if (detail === "AR" || detail === "EN" || detail === "FR") setLangCode(detail);
     };
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === LANG_KEY && (e.newValue === "AR" || e.newValue === "EN")) {
+      if (
+        e.key === LANG_KEY &&
+        (e.newValue === "AR" || e.newValue === "EN" || e.newValue === "FR")
+      ) {
         setLangCode(e.newValue);
       }
     };
@@ -195,14 +222,14 @@ export default function DiscoverPotentialSection() {
               style={{
                 transform: `scale(${textScale})`,
                 transformOrigin: "top center",
-                fontSize: isMobile ? "10px" : "13px",
+                fontSize: isMobile ? "9px" : "13px",
               }}
             >
               {t.badge}
             </p>
           </div>
 
-          {/* Heading — WHITE */}
+          {/* Heading — WHITE — mobile pe font size kam */}
           <div
             className={`absolute left-0 right-0 top-[100px] text-center transition-all duration-1000 ease-out md:top-[65px] ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-[400px]"
@@ -210,11 +237,11 @@ export default function DiscoverPotentialSection() {
             style={{ transitionDelay: "150ms" }}
           >
             <h1
-              className="text-center font-[family-name:var(--font-playfair)] text-[28px] font-extrabold leading-[1.28] text-white md:text-[39px]"
+              className="text-center font-[family-name:var(--font-playfair)] font-extrabold leading-[1.28] text-white"
               style={{
                 transform: `scale(${textScale})`,
                 transformOrigin: "top center",
-                fontSize: isMobile ? "22px" : "28px",
+                fontSize: isMobile ? "18px" : "28px",
               }}
             >
               {t.heading}
