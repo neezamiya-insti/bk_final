@@ -213,7 +213,7 @@ export default function ContactPage() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full bg-white px-4 py-8 sm:px-6 sm:py-8 md:px-8 lg:px-10`}
+      className={`${playfair.variable} ${poppins.variable} w-full bg-white px-4 py-8 sm:px-6 sm:py-12 md:px-8 lg:px-10`}
     >
       <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] bg-[#13233F]">
         <div

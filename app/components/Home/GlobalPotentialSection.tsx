@@ -32,35 +32,34 @@ const TEXT = {
     heading: "Unlock Your Global",
     headingAccent: "Potential!",
     paragraph:
-      "Let us amplify your success, turn your dreams into global victories! Join us, and let's make your growth unstoppable!",
+      "Turn your dreams into global victories. Join us and make your growth unstoppable.",
     bullets: [
-      "Full export documentation & compliance handled end-to-end",
-      "Verified buyer matching across GCC, Asia & Europe",
-      "Logistics, packaging and shipping arranged on your behalf",
-      "Dedicated account manager from first order to repeat orders",
+      "End-to-end export documentation & compliance",
+      "Verified buyer matching across 3 continents",
+      "Logistics & shipping arranged on your behalf",
+      "Dedicated account manager for every order",
     ],
     edgeTag: "EDGE",
     edgeTitle: "Proprietary trade network",
     edgeDescStrong: "Direct buyer access",
-    edgeDesc:
-      " in 40+ markets — sourcing and closing deals at unmatched speed.",
+    edgeDesc: " in 40+ markets — closing deals at unmatched speed.",
     panelLabel: "THE GLOBAL GROWTH LADDER",
-    panelSub: "We move you up every level — from first export to global brand.",
+    panelSub: "From first export to global brand.",
     cards: [
       {
         stat: "01",
         title: "Dominate, Don't Dream!",
-        desc: "Stop dreaming of global markets and start conquering them! We propel you onto the world stage.",
+        desc: "Stop dreaming of global markets — start conquering them.",
       },
       {
         stat: "02",
         title: "Export Effortlessly!",
-        desc: "Don't let trade complexities hold you back! We simplify your export journey with tailored solutions.",
+        desc: "We simplify your export journey with tailored solutions.",
       },
       {
         stat: "03",
         title: "Build Your Legacy!",
-        desc: "We empower you to not just enter markets, but to thrive — success built for generations to come.",
+        desc: "Not just enter markets — thrive for generations.",
       },
     ],
   },
@@ -69,34 +68,34 @@ const TEXT = {
     heading: "أطلق إمكاناتك",
     headingAccent: "العالمية!",
     paragraph:
-      "دعنا نضاعف نجاحك ونحوّل أحلامك إلى انتصارات عالمية! انضم إلينا، ولنجعل نموك لا يتوقف!",
+      "حوّل أحلامك إلى انتصارات عالمية. انضم إلينا واجعل نموك لا يتوقف.",
     bullets: [
-      "إدارة كاملة لمستندات التصدير والامتثال من البداية للنهاية",
-      "ربطك بمشترين موثوقين في الخليج وآسيا وأوروبا",
-      "ترتيب الخدمات اللوجستية والتغليف والشحن نيابةً عنك",
-      "مدير حساب مخصص من أول طلب حتى الطلبات المتكررة",
+      "إدارة كاملة لمستندات التصدير والامتثال",
+      "ربطك بمشترين موثوقين في ٣ قارات",
+      "ترتيب اللوجستيات والشحن نيابةً عنك",
+      "مدير حساب مخصص لكل طلب",
     ],
     edgeTag: "تميّز",
     edgeTitle: "شبكة تجارية خاصة بنا",
     edgeDescStrong: "وصول مباشر للمشترين",
-    edgeDesc: " في أكثر من 40 سوقًا — إتمام الصفقات بسرعة لا تُضاهى.",
+    edgeDesc: " في أكثر من 40 سوقًا — بسرعة لا تُضاهى.",
     panelLabel: "سلّم النمو العالمي",
-    panelSub: "ننقلك إلى كل مستوى — من أول تصدير إلى علامة عالمية.",
+    panelSub: "من أول تصدير إلى علامة عالمية.",
     cards: [
       {
         stat: "٠١",
         title: "سيطر، لا تحلم فقط!",
-        desc: "توقف عن الحلم بالأسواق العالمية وابدأ في غزوها! نحن ندفعك إلى المسرح العالمي.",
+        desc: "توقف عن الحلم — ابدأ بغزو الأسواق العالمية.",
       },
       {
         stat: "٠٢",
         title: "صدّر بسهولة!",
-        desc: "لا تدع تعقيدات التجارة تعيقك! نبسّط رحلة التصدير الخاصة بك بحلول مخصصة.",
+        desc: "نبسّط رحلة التصدير بحلول مخصصة.",
       },
       {
         stat: "٠٣",
         title: "ابنِ إرثك!",
-        desc: "نمكنك ليس فقط من دخول الأسواق، بل من الازدهار فيها — نجاح يمتد للأجيال القادمة.",
+        desc: "لا تدخل الأسواق فقط — بل ازدهر فيها.",
       },
     ],
   },
@@ -105,36 +104,34 @@ const TEXT = {
     heading: "Libérez votre potentiel",
     headingAccent: "mondial !",
     paragraph:
-      "Laissez-nous amplifier votre succès et transformer vos rêves en victoires mondiales ! Rejoignez-nous et rendons votre croissance imparable !",
+      "Transformez vos rêves en victoires mondiales. Rejoignez-nous et rendez votre croissance imparable.",
     bullets: [
-      "Gestion complète des documents d'exportation et de la conformité de bout en bout",
-      "Mise en relation avec des acheteurs vérifiés dans le CCG, en Asie et en Europe",
-      "Logistique, emballage et expédition organisés en votre nom",
-      "Gestionnaire de compte dédié de la première commande aux commandes répétées",
+      "Gestion complète des documents d'exportation",
+      "Acheteurs vérifiés sur 3 continents",
+      "Logistique et expédition organisées pour vous",
+      "Gestionnaire de compte dédié",
     ],
     edgeTag: "ATOUT",
     edgeTitle: "Réseau commercial exclusif",
     edgeDescStrong: "Accès direct aux acheteurs",
-    edgeDesc:
-      " dans plus de 40 marchés — sourcing et conclusion de transactions à une vitesse inégalée.",
+    edgeDesc: " dans plus de 40 marchés — à une vitesse inégalée.",
     panelLabel: "L'ÉCHELLE DE CROISSANCE MONDIALE",
-    panelSub:
-      "Nous vous faisons monter à chaque niveau — du premier export à une marque mondiale.",
+    panelSub: "Du premier export à une marque mondiale.",
     cards: [
       {
         stat: "01",
         title: "Dominez, ne rêvez pas !",
-        desc: "Arrêtez de rêver aux marchés mondiaux et commencez à les conquérir ! Nous vous propulsons sur la scène mondiale.",
+        desc: "Arrêtez de rêver — commencez à conquérir.",
       },
       {
         stat: "02",
         title: "Exportez sans effort !",
-        desc: "Ne laissez pas les complexités du commerce vous freiner ! Nous simplifions votre parcours d'exportation avec des solutions sur mesure.",
+        desc: "Nous simplifions votre parcours avec des solutions sur mesure.",
       },
       {
         stat: "03",
         title: "Bâtissez votre héritage !",
-        desc: "Nous vous permettons non seulement d'entrer sur les marchés, mais aussi de prospérer — un succès bâti pour les générations à venir.",
+        desc: "Pas seulement entrer — prospérer pour les générations.",
       },
     ],
   },
@@ -211,8 +208,7 @@ export default function GlobalPotentialSection() {
       dir={isAr ? "rtl" : "ltr"}
       className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white`}
     >
-      {/* ✅ Top gap = 3rem (pt-12), bottom responsive */}
-      <div className="mx-auto w-full max-w-7xl px-4 pt-12 pb-12 sm:px-5 sm:pb-14 lg:pb-20">
+      <div className="mx-auto w-full max-w-7xl px-4 pt-16 pb-12 sm:px-5 sm:pb-14 lg:pb-20">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* ================= LEFT COLUMN ================= */}
           <motion.div
@@ -239,7 +235,6 @@ export default function GlobalPotentialSection() {
               {t.badge}
             </motion.div>
 
-            {/* ✅ Heading max = text-4xl (36px) on any device */}
             <motion.h2
               variants={fadeInUp}
               className="font-[family-name:var(--font-playfair)] text-[20px] font-extrabold leading-[1.2] text-[#13233F] sm:text-[24px] md:text-[28px] lg:text-4xl"
@@ -335,6 +330,7 @@ export default function GlobalPotentialSection() {
               </p>
             </motion.div>
 
+            {/* Pyramid cards — width % works on ALL screens now */}
             <div className="mt-5 flex flex-col items-center gap-2.5 sm:mt-6 sm:gap-3">
               {t.cards.map((card, index) => (
                 <motion.div
@@ -378,13 +374,7 @@ export default function GlobalPotentialSection() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 640px) {
-          .global-pyramid-card {
-            width: 82% !important;
-          }
-        }
-      `}</style>
+      {/* Removed the mobile-only override — pyramid % widths now apply on all screens */}
     </section>
   );
 }

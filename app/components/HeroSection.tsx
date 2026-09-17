@@ -163,16 +163,16 @@ export default function HeroSection() {
         />
       </Link>
 
-      {/* Content */}
+      {/* Content — zyada left/right breathing room diya (px-6 → px-20+ as screen grows) */}
       <div
-        className={`relative z-10 flex min-h-[560px] items-center px-12 py-24 sm:min-h-[620px] sm:px-12 lg:px-12 ${
-          isFr ? "lg:translate-y-8" : ""
+        className={`relative z-10 flex min-h-[560px] items-center px-8 py-24 sm:min-h-[620px] sm:px-12 md:px-20 lg:px-24 xl:px-32 ${
+          isFr ? "lg:translate-y-8" : isAr ? "lg:-translate-y-6" : "lg:translate-y-2"
         }`}
       >
-        <div className={`max-w-2xl ${isAr ? "text-right" : "text-left"}`}>
+        <div className={`max-w-xl lg:max-w-lg xl:max-w-xl ${isAr ? "text-right" : "text-left"}`}>
           <span
             className={[
-              "inline-block font-[family-name:var(--font-poppins)] text-[12px] font-semibold uppercase tracking-[0.2em] text-[#F5B301] sm:text-[13px]",
+              "inline-block translate-y-4 font-[family-name:var(--font-poppins)] text-[12px] font-semibold uppercase tracking-[0.2em] text-[#F5B301] sm:text-[13px]",
               slideClass(""),
             ].join(" ")}
           >
@@ -181,7 +181,7 @@ export default function HeroSection() {
 
           <h1
             className={[
-              "mt-4 font-[family-name:var(--font-playfair)] text-3xl font-extrabold leading-[1.2] text-white sm:text-4xl lg:text-[3.2rem]",
+              "mt-4 font-[family-name:var(--font-playfair)] text-3xl font-extrabold leading-[1.2] text-white sm:text-4xl lg:text-[3rem] xl:text-[3.2rem]",
               slideClass("delay-150"),
             ].join(" ")}
           >
@@ -219,14 +219,15 @@ export default function HeroSection() {
 
       {/* Badge cluster — back to the original position (fixed to the side on
           desktop, stacked below the text on mobile), slightly smaller, with a
-          continuously rotating ring that pauses on hover. */}
+          continuously rotating ring that pauses on hover. Side offset matches
+          the wider content padding above so it doesn't hug the screen edge. */}
       <aside
         className={[
           "bk-ring-group relative z-10 mx-auto -mt-16 mb-8 h-[min(78vw,320px)] w-[min(78vw,320px)] text-center text-white",
           "sm:h-[360px] sm:w-[360px]",
           "lg:absolute lg:mx-0 lg:mb-0 lg:mt-0 lg:-translate-y-1/2",
           langCode === "EN" ? "lg:top-[calc(48%+2rem)]" : "lg:top-[calc(48%+1rem)]",
-          isAr ? "lg:left-12" : "lg:right-12",
+          isAr ? "lg:left-16 xl:left-24" : "lg:right-16 xl:right-24",
         ].join(" ")}
       >
         <div className="bk-ring-el absolute inset-[14%] rounded-full border-2 border-dashed border-[#F5B301]" />

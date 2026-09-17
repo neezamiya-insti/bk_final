@@ -188,6 +188,8 @@ function readStoredLang(): LangCode {
   return "EN";
 }
 
+const AUTO_ROTATE_MS = 6000; // auto-switch every 6 seconds
+
 export default function AspirationServicesSection() {
   const [activeTab, setActiveTab] = useState<TabKey>("aspiration");
   const [phase, setPhase] = useState<Phase>("idle");
@@ -195,6 +197,8 @@ export default function AspirationServicesSection() {
   const pendingTab = useRef<TabKey | null>(null);
   const rafRef = useRef<number | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const autoRotateRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const userInteractedRef = useRef(false);
 
   // Language change listener
   useEffect(() => {
@@ -221,16 +225,32 @@ export default function AspirationServicesSection() {
   const isAr = langCode === "AR";
   const t = TEXT[langCode];
 
-  const TABS = [
-    { key: "aspiration" as TabKey, label: t.tabs.aspiration, text: t.tabTexts.aspiration },
-    { key: "whatWeDo" as TabKey, label: t.tabs.whatWeDo, text: t.tabTexts.whatWeDo },
-  ];
-
-  const goToTab = (tab: TabKey) => {
+  const goToTab = (tab: TabKey, fromUser = false) => {
     if (tab === activeTab || phase !== "idle") return;
+    if (fromUser) userInteractedRef.current = true;
     pendingTab.current = tab;
     setPhase("exit");
   };
+
+  // ✅ Auto-rotate logic — switches tab automatically every 6s
+  useEffect(() => {
+    autoRotateRef.current = setInterval(() => {
+      if (userInteractedRef.current) return;
+
+      const currentIndex = ORDER.indexOf(activeTab);
+      const nextIndex = (currentIndex + 1) % ORDER.length;
+      const nextTab = ORDER[nextIndex];
+
+      if (nextTab !== activeTab && phase === "idle") {
+        pendingTab.current = nextTab;
+        setPhase("exit");
+      }
+    }, AUTO_ROTATE_MS);
+
+    return () => {
+      if (autoRotateRef.current) clearInterval(autoRotateRef.current);
+    };
+  }, [activeTab, phase]);
 
   useEffect(() => {
     if (phase === "exit") {
@@ -257,7 +277,16 @@ export default function AspirationServicesSection() {
     };
   }, [phase]);
 
-  const activeText = TABS.find((tab) => tab.key === activeTab)!;
+  const activeText = {
+    aspiration: t.tabTexts.aspiration,
+    whatWeDo: t.tabTexts.whatWeDo,
+  }[activeTab];
+
+  const activeLabel = {
+    aspiration: t.tabs.aspiration,
+    whatWeDo: t.tabs.whatWeDo,
+  }[activeTab];
+
   const services = t.services[activeTab];
 
   const animClasses =
@@ -273,32 +302,21 @@ export default function AspirationServicesSection() {
       className={`${playfair.variable} ${poppins.variable} w-full overflow-x-hidden bg-white px-4 py-14 md:px-8`}
     >
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[320px_1fr] md:gap-10">
-        {/* Left card: tabs + text */}
+        {/* Left card: single centered heading + text */}
         <div className="h-fit rounded-3xl bg-[#13233F] p-7">
-          <div className="flex gap-6 border-b border-white/15 pb-3">
-            {TABS.map((tab) => (
-              <button
-                key={tab.key}
-                type="button"
-                onClick={() => goToTab(tab.key)}
-                className={`relative cursor-pointer pb-2 font-[family-name:var(--font-playfair)] text-[15px] font-extrabold transition-colors ${
-                  activeTab === tab.key ? "text-[#F5B301]" : "text-white/50 hover:text-white/80"
-                }`}
-              >
-                {tab.label}
-                {activeTab === tab.key && (
-                  <span className="absolute -bottom-[13px] left-0 h-[2px] w-full bg-[#F5B301]" />
-                )}
-              </button>
-            ))}
+          {/* ✅ Single heading — CENTERED, NO underline */}
+          <div className="pb-1 text-center">
+            <span className="inline-block font-[family-name:var(--font-playfair)] text-[15px] font-extrabold text-[#F5B301] transition-colors duration-500">
+              {activeLabel}
+            </span>
           </div>
 
           <div className="overflow-hidden">
             <p
-              className={`mt-6 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-white/80 sm:text-[14px] ${animClasses}`}
+              className={`mt-5 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-white/80 sm:text-[14px] ${animClasses}`}
               dir={isAr ? "rtl" : "ltr"}
             >
-              {activeText.text}
+              {activeText}
             </p>
           </div>
         </div>
@@ -343,14 +361,14 @@ export default function AspirationServicesSection() {
         </div>
       </div>
 
-      {/* Dots */}
+      {/* Dots — click to switch manually */}
       <div className="mt-8 flex items-center justify-center gap-2">
         {ORDER.map((tab) => (
           <button
             key={tab}
             type="button"
             aria-label={`Show ${tab}`}
-            onClick={() => goToTab(tab)}
+            onClick={() => goToTab(tab, true)}
             className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 ${
               activeTab === tab ? "w-6 bg-[#F5B301]" : "w-2.5 bg-[#D8D8D0] hover:bg-[#c3c1b8]"
             }`}

@@ -345,7 +345,7 @@ export default function ScrollParallaxGallery() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full overflow-hidden bg-white `}
+      className={`${playfair.variable} ${poppins.variable} w-full overflow-hidden py-10 bg-white `}
     >
       {/* Heading */}
       <div className="mb-8 text-center md:mb-10">

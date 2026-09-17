@@ -133,7 +133,7 @@ export default function Partners() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white py-10`}
+      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white py-10 sm:py-16`}
     >
       {/* Heading with Description */}
       <motion.div

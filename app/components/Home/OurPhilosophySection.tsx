@@ -30,6 +30,7 @@ const TEXT = {
     topHeading: "Our Philosophy",
     paragraph:
       "We believe in fostering sustainable growth through strategic partnerships and unwavering dedication. Our philosophy is rooted in empowering Saudi exporters to confidently navigate the global marketplace.",
+    tapHint: "Tap to read",
     cards: [
       {
         title: "Strategic Partnerships",
@@ -53,6 +54,7 @@ const TEXT = {
     topHeading: "فلسفتنا",
     paragraph:
       "نؤمن بتعزيز النمو المستدام من خلال الشراكات الاستراتيجية والتفاني الراسخ. تتجذر فلسفتنا في تمكين المصدرين السعوديين من التنقل بثقة في الأسواق العالمية.",
+    tapHint: "اضغط للقراءة",
     cards: [
       {
         title: "الشراكات الاستراتيجية",
@@ -76,6 +78,7 @@ const TEXT = {
     topHeading: "Notre philosophie",
     paragraph:
       "Nous croyons en une croissance durable fondée sur des partenariats stratégiques et un engagement constant. Notre philosophie vise à permettre aux exportateurs saoudiens d'évoluer avec confiance sur les marchés mondiaux.",
+    tapHint: "Appuyez pour lire",
     cards: [
       {
         title: "Partenariats stratégiques",
@@ -161,7 +164,7 @@ export default function OurPhilosophySection() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full bg-white pb-4 pt-10 sm:pb-6 sm:pt-12`}
+      className={`${playfair.variable} ${poppins.variable} w-full bg-white pb-4 pt-10 sm:pb-16 sm:pt-18`}
     >
       {/* Top heading — centered */}
       <div className="flex flex-col items-center text-center">
@@ -190,7 +193,7 @@ export default function OurPhilosophySection() {
       <div
         ref={introRef}
         className={[
-          "mx-auto mt-5 max-w-3xl text-center sm:mt-6",
+          "mx-auto mt-5 max-w-3xl px-4 text-center sm:mt-6",
           "transition-all duration-700 ease-out",
           introBlockInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
         ].join(" ")}
@@ -200,62 +203,108 @@ export default function OurPhilosophySection() {
         </p>
       </div>
 
-      {/* Cards grid */}
+      {/* Cards grid — content ab har screen par card ke andar rehta hai,
+          isliye pehle wali bari bottom padding ki zaroorat nahi */}
       <div
         ref={cardsRef}
-        className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-5 px-4 pb-6 sm:mt-10 sm:gap-6 sm:px-6 sm:pb-8 md:grid-cols-2 md:px-8 md:pb-10 lg:grid-cols-4 lg:gap-5 lg:px-10 lg:pb-12"
+        className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-5 px-4 pb-10 sm:mt-10 sm:gap-6 sm:px-6 sm:pb-14 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-5 lg:px-10 lg:pb-16"
       >
-        {t.cards.map((card, i) => (
-          <article
-            key={card.title}
-            role="button"
-            tabIndex={0}
-            aria-expanded={activeCard === i}
-            onClick={() => setActiveCard(activeCard === i ? null : i)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                setActiveCard(activeCard === i ? null : i);
-              }
-            }}
-            style={{ transitionDelay: `${i * 120}ms` }}
-            className={[
-              "group/card relative flex h-[360px] cursor-pointer flex-col overflow-hidden rounded-[1.25rem] border border-[#13233F]/10 bg-white p-5 shadow-sm sm:h-[380px] sm:rounded-[1.5rem] sm:p-6",
-              "w-full justify-self-center sm:w-[96%] lg:w-[92%]",
-              "transition-all duration-700 ease-out",
-              "hover:-translate-y-1 hover:border-[#F5B301]/60 hover:shadow-lg",
-              activeCard === i ? "border-[#F5B301]/60 shadow-lg" : "",
-              cardsInView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
-            ].join(" ")}
-          >
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 -z-0 rounded-[1.25rem] bg-cover bg-center opacity-100 sm:rounded-[1.5rem]"
-              style={{
-                backgroundImage: `linear-gradient(rgba(19, 35, 63, 0.62), rgba(19, 35, 63, 0.78)), url(${PHILOSOPHY_BACKGROUNDS[i]})`,
+        {t.cards.map((card, i) => {
+          const isOpen = activeCard === i;
+
+          return (
+            <article
+              key={card.title}
+              role="button"
+              tabIndex={0}
+              aria-expanded={isOpen}
+              onClick={() => setActiveCard(isOpen ? null : i)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setActiveCard(isOpen ? null : i);
+                }
               }}
-            />
-            <div
+              style={{ transitionDelay: `${i * 120}ms` }}
               className={[
-                "relative z-10 min-h-[190px] text-start transition-transform duration-700 ease-out sm:min-h-[205px]",
-                activeCard === i
-                  ? "translate-y-0"
-                  : "translate-y-8 group-hover/card:translate-y-0",
+                "group/card relative h-[300px] cursor-pointer sm:h-[340px] lg:h-[380px]",
+                "w-full justify-self-center sm:w-[96%] lg:w-[92%]",
+                "transition-all duration-700 ease-out",
+                cardsInView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
               ].join(" ")}
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#13233F] font-[family-name:var(--font-playfair)] text-sm font-extrabold text-[#F5B301] sm:h-11 sm:w-11 sm:text-base">
-                {String(i + 1).padStart(2, "0")}
+              {/* Image block */}
+              <div
+                className={[
+                  "absolute inset-0 overflow-hidden rounded-[1.25rem] border shadow-sm transition-all duration-700 ease-out sm:rounded-[1.5rem]",
+                  isOpen ? "border-[#F5B301]/60 shadow-lg" : "border-[#13233F]/10",
+                  "md:group-hover/card:-translate-y-1 md:group-hover/card:border-[#F5B301]/60 md:group-hover/card:shadow-lg",
+                ].join(" ")}
+              >
+                {/* Background image + base overlay */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(19, 35, 63, 0.35), rgba(19, 35, 63, 0.55)), url(${PHILOSOPHY_BACKGROUNDS[i]})`,
+                  }}
+                />
+
+                {/* Extra dark layer — open / hover par fade in, taake paragraph readable rahe */}
+                <div
+                  aria-hidden="true"
+                  className={[
+                    "pointer-events-none absolute inset-0 z-[1] bg-[#13233F]/45 transition-opacity duration-500 ease-out",
+                    isOpen ? "opacity-100" : "opacity-0 md:group-hover/card:opacity-100",
+                  ].join(" ")}
+                />
               </div>
 
-              <h4 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold leading-snug text-[#F5B301] opacity-100 sm:text-xl">
-                {card.title}
-              </h4>
-              <p className="mt-3 font-[family-name:var(--font-poppins)] text-[13px] font-medium leading-relaxed text-white drop-shadow-[0_1px_3px_rgba(19,35,63,0.95)] sm:text-[13.5px] md:text-[14px]">
-                {card.desc}
-              </p>
-            </div>
-          </article>
-        ))}
+              {/* Content — har breakpoint par card ke BEECH me */}
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center sm:px-7 lg:px-8">
+                {/* Title */}
+                <h4 className="font-[family-name:var(--font-playfair)] text-xl font-extrabold leading-snug text-[#F5B301] drop-shadow-[0_2px_4px_rgba(19,35,63,0.9)] lg:text-[22px]">
+                  {card.title}
+                </h4>
+
+                {/* Divider */}
+                <div
+                  className={[
+                    "mt-3 h-[2px] rounded-full bg-[#F5B301] transition-all duration-500 ease-out",
+                    isOpen ? "w-14" : "w-10 md:group-hover/card:w-14",
+                  ].join(" ")}
+                />
+
+                {/* Description — ek paragraph, center me expand hota hua */}
+                <div
+                  className={[
+                    "grid w-full transition-all duration-500 ease-out",
+                    isOpen
+                      ? "mt-4 grid-rows-[1fr] opacity-100"
+                      : "mt-0 grid-rows-[0fr] opacity-0 md:group-hover/card:mt-4 md:group-hover/card:grid-rows-[1fr] md:group-hover/card:opacity-100",
+                  ].join(" ")}
+                >
+                  <div className={`w-full overflow-hidden ${isAr ? "text-right" : "text-left"}`}>
+                    <p className="font-[family-name:var(--font-poppins)] text-[13px] font-medium leading-relaxed text-white drop-shadow-[0_2px_4px_rgba(19,35,63,0.95)] sm:text-[13.5px] lg:text-[14px]">
+                      {card.desc}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Hint — sirf mobile par, band halat me */}
+                <span
+                  className={[
+                    "mt-4 font-[family-name:var(--font-poppins)] text-[10px] font-medium uppercase tracking-[2px] text-white/75",
+                    "transition-opacity duration-300 md:hidden",
+                    isOpen ? "opacity-0" : "opacity-100",
+                  ].join(" ")}
+                >
+                  {t.tapHint}
+                </span>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

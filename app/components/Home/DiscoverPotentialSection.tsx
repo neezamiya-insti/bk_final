@@ -23,6 +23,9 @@ const CONTAINER_WIDTH = 1081;
 const CONTAINER_HEIGHT = 721;
 const BACKGROUND_IMAGE = "/about/back2.png";
 
+// md breakpoint (768px) / 1081 => niche wala scale mobile mana jayega
+const MOBILE_SCALE_BREAKPOINT = 768 / CONTAINER_WIDTH;
+
 const TEXT = {
   EN: {
     badge: "Discover Your Potential With Us",
@@ -177,7 +180,19 @@ export default function DiscoverPotentialSection() {
   const t = TEXT[langCode];
 
   const textScale = scale > 0 ? 1 / scale : 1;
-  const isMobile = scale < 0.6;
+  const isMobile = scale < MOBILE_SCALE_BREAKPOINT;
+
+  // Mobile pe graphic ke niche se khali jagah cut kar dete hain
+  const wrapperHeight = isMobile
+    ? 645 * scale
+    : (CONTAINER_HEIGHT + 30) * scale;
+
+  const mobileStats = [
+    { value: t.stat1Value, label: t.stat1Label, year: t.stat1Year, desc: t.stat1Desc },
+    { value: t.stat2Value, label: t.stat2Label, year: t.stat2Year, desc: t.stat2Desc },
+    { value: t.stat3Value, label: t.stat3Label, year: t.stat3Year, desc: t.stat3Desc },
+    { value: t.stat4Value, label: t.stat4Label, year: t.stat4Year, desc: t.stat4Desc },
+  ];
 
   return (
     <section
@@ -199,7 +214,7 @@ export default function DiscoverPotentialSection() {
       <div
         ref={wrapperRef}
         className="relative z-10 mx-auto w-full max-w-[1081px] overflow-hidden"
-        style={{ height: `${(CONTAINER_HEIGHT + 30) * scale}px` }}
+        style={{ height: `${wrapperHeight}px` }}
       >
         <div
           className="absolute left-0 top-0"
@@ -210,7 +225,7 @@ export default function DiscoverPotentialSection() {
             transformOrigin: "top left",
           }}
         >
-          {/* Badge — gold */}
+          {/* Badge — gold (mobile pe chhota) */}
           <div
             className={`absolute left-0 right-0 top-[34px] text-center transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-[300px]"
@@ -218,11 +233,12 @@ export default function DiscoverPotentialSection() {
             style={{ transitionDelay: "0ms" }}
           >
             <p
-              className="text-center font-[family-name:var(--font-poppins)] text-[13px] font-bold tracking-[7px] text-[#F5B301]"
+              className="text-center font-[family-name:var(--font-poppins)] font-bold text-[#F5B301]"
               style={{
                 transform: `scale(${textScale})`,
                 transformOrigin: "top center",
-                fontSize: isMobile ? "9px" : "13px",
+                fontSize: isMobile ? "8px" : "13px",
+                letterSpacing: isMobile ? "2.5px" : "7px",
               }}
             >
               {t.badge}
@@ -231,44 +247,50 @@ export default function DiscoverPotentialSection() {
 
           {/* Heading — WHITE — mobile pe font size kam */}
           <div
-            className={`absolute left-0 right-0 top-[100px] text-center transition-all duration-1000 ease-out md:top-[65px] ${
+            className={`absolute left-0 right-0 text-center transition-all duration-1000 ease-out ${
+              isMobile ? "top-[85px]" : "top-[65px]"
+            } ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-[400px]"
             }`}
             style={{ transitionDelay: "150ms" }}
           >
             <h1
-              className="text-center font-[family-name:var(--font-playfair)] font-extrabold leading-[1.28] text-white"
+              className="mx-auto max-w-[95%] text-center font-[family-name:var(--font-playfair)] font-extrabold leading-[1.25] text-white"
               style={{
                 transform: `scale(${textScale})`,
                 transformOrigin: "top center",
-                fontSize: isMobile ? "18px" : "28px",
+                fontSize: isMobile ? "15px" : "28px",
               }}
             >
               {t.heading}
             </h1>
           </div>
 
-          {/* Underline — gold */}
-          <div
-            className={`absolute left-1/2 top-[130px] h-[2px] w-[150px] -translate-x-1/2 bg-[#F5B301] transition-all duration-1000 ease-out ${
-              isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
-            } hidden md:block`}
-            style={{ transitionDelay: "250ms" }}
-          />
+          {/* Underline — gold (desktop only) */}
+          {!isMobile && (
+            <div
+              className={`absolute left-1/2 top-[130px] h-[2px] w-[150px] -translate-x-1/2 bg-[#F5B301] transition-all duration-1000 ease-out ${
+                isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+              }`}
+              style={{ transitionDelay: "250ms" }}
+            />
+          )}
 
-          {/* Description paragraph — WHITE */}
-          <div
-            className={`absolute left-1/2 top-[150px] -translate-x-1/2 text-center transition-all duration-1000 ease-out hidden md:block ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[100px]"
-            }`}
-            style={{ transitionDelay: "300ms" }}
-          >
-            <div style={{ transform: `scale(${textScale})`, transformOrigin: "top center" }}>
-              <p className="mx-auto max-w-[600px] font-[family-name:var(--font-poppins)] text-[13px] font-light leading-relaxed text-white md:text-[14px]">
-                {t.paragraph}
-              </p>
+          {/* Description paragraph — WHITE (desktop only, mobile version niche flow me hai) */}
+          {!isMobile && (
+            <div
+              className={`absolute left-1/2 top-[150px] -translate-x-1/2 text-center transition-all duration-1000 ease-out ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[100px]"
+              }`}
+              style={{ transitionDelay: "300ms" }}
+            >
+              <div style={{ transform: `scale(${textScale})`, transformOrigin: "top center" }}>
+                <p className="mx-auto max-w-[600px] font-[family-name:var(--font-poppins)] text-[14px] font-light leading-relaxed text-white">
+                  {t.paragraph}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Arc connectors — gold */}
           <svg
@@ -391,144 +413,102 @@ export default function DiscoverPotentialSection() {
             </svg>
           </div>
 
-          {/* Stat 1: Saudi GDP */}
-          <div
-            className={`absolute left-[20px] top-[290px] w-[210px] text-right transition-all duration-1000 ease-out hidden md:block ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
-            }`}
-            style={{ transitionDelay: "350ms" }}
-          >
-            <div style={{ transform: `scale(${textScale})`, transformOrigin: "top right" }}>
-              <div className="font-[family-name:var(--font-playfair)] text-[22px] font-extrabold leading-none text-[#F5B301] md:text-[29px]">
-                {t.stat1Value}
+          {/* ===== DESKTOP STATS (mobile pe render hi nahi hote) ===== */}
+          {!isMobile && (
+            <>
+              {/* Stat 1: Saudi GDP */}
+              <div
+                className={`absolute left-[20px] top-[290px] w-[210px] text-right transition-all duration-1000 ease-out ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
+                }`}
+                style={{ transitionDelay: "350ms" }}
+              >
+                <div style={{ transform: `scale(${textScale})`, transformOrigin: "top right" }}>
+                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#F5B301]">
+                    {t.stat1Value}
+                  </div>
+                  <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[14.5px] font-bold leading-tight tracking-wide text-white">
+                    {t.stat1Label}
+                    <br />
+                    <span className="text-[12px] font-medium text-[#F5B301]">{t.stat1Year}</span>
+                  </div>
+                </div>
+                <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#F5B301]" />
+                <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70">
+                  {t.stat1Desc}
+                </p>
               </div>
-              <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[13px] font-bold leading-tight tracking-wide text-white md:text-[14.5px]">
-                {t.stat1Label}
-                <br />
-                <span className="text-[11px] font-medium text-[#F5B301] md:text-[12px]">
-                  {t.stat1Year}
-                </span>
-              </div>
-            </div>
-            <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#F5B301]" />
-            <p className="hidden font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70 md:block">
-              {t.stat1Desc}
-            </p>
-          </div>
 
-          {/* Stat 1 mobile */}
-          <div
-            className={`absolute left-[20px] top-[290px] w-[210px] text-right transition-all duration-1000 ease-out md:hidden ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
-            }`}
-            style={{ transitionDelay: "350ms" }}
-          >
-            <div style={{ transform: `scale(${textScale})`, transformOrigin: "top right" }}>
-              <div className="font-[family-name:var(--font-playfair)] text-[22px] font-extrabold leading-none text-[#F5B301]">
-                {t.stat1Value}
+              {/* Stat 2: Saudi FDI */}
+              <div
+                className={`absolute left-[840px] top-[290px] w-[210px] text-left transition-all duration-1000 ease-out ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
+                }`}
+                style={{ transitionDelay: "400ms" }}
+              >
+                <div style={{ transform: `scale(${textScale})`, transformOrigin: "top left" }}>
+                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#F5B301]">
+                    {t.stat2Value}
+                  </div>
+                  <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[14.5px] font-bold leading-tight tracking-wide text-white">
+                    {t.stat2Label}
+                    <br />
+                    <span className="text-[12px] font-medium text-[#F5B301]">{t.stat2Year}</span>
+                  </div>
+                </div>
+                <div className="my-2.5 h-[2px] w-[34px] bg-[#F5B301]" />
+                <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70">
+                  {t.stat2Desc}
+                </p>
               </div>
-              <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[10px] font-bold leading-tight tracking-wide text-white">
-                {t.stat1Label}
-              </div>
-            </div>
-            <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#F5B301]" />
-          </div>
 
-          {/* Stat 2: Saudi FDI */}
-          <div
-            className={`absolute left-[840px] top-[290px] w-[210px] text-left transition-all duration-1000 ease-out ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
-            }`}
-            style={{ transitionDelay: "400ms" }}
-          >
-            <div style={{ transform: `scale(${textScale})`, transformOrigin: "top left" }}>
-              <div className="font-[family-name:var(--font-playfair)] text-[22px] font-extrabold leading-none text-[#F5B301] md:text-[29px]">
-                {t.stat2Value}
+              {/* Stat 3: Saudi Export */}
+              <div
+                className={`absolute left-[880px] top-[470px] w-[210px] text-left transition-all duration-1000 ease-out ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
+                }`}
+                style={{ transitionDelay: "550ms" }}
+              >
+                <div style={{ transform: `scale(${textScale})`, transformOrigin: "top left" }}>
+                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#F5B301]">
+                    {t.stat3Value}
+                  </div>
+                  <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[14.5px] font-bold leading-tight tracking-wide text-white">
+                    {t.stat3Label}
+                    <br />
+                    <span className="text-[12px] font-medium text-[#F5B301]">{t.stat3Year}</span>
+                  </div>
+                </div>
+                <div className="my-2.5 h-[2px] w-[34px] bg-[#F5B301]" />
+                <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70">
+                  {t.stat3Desc}
+                </p>
               </div>
-              <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[10px] font-bold leading-tight tracking-wide text-white md:text-[14.5px]">
-                {t.stat2Label}
-                <br />
-                <span className="text-[9px] font-medium text-[#F5B301] md:text-[12px]">
-                  {t.stat2Year}
-                </span>
-              </div>
-            </div>
-            <div className="my-2.5 h-[2px] w-[34px] bg-[#F5B301]" />
-            <p className="hidden font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70 md:block">
-              {t.stat2Desc}
-            </p>
-          </div>
 
-          {/* Stat 3: Saudi Export - desktop */}
-          <div
-            className={`absolute left-[880px] top-[470px] w-[210px] text-left transition-all duration-1000 ease-out hidden md:block ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
-            }`}
-            style={{ transitionDelay: "550ms" }}
-          >
-            <div style={{ transform: `scale(${textScale})`, transformOrigin: "top left" }}>
-              <div className="font-[family-name:var(--font-playfair)] text-[22px] font-extrabold leading-none text-[#F5B301] md:text-[29px]">
-                {t.stat3Value}
+              {/* Stat 4: Trade Balance */}
+              <div
+                className={`absolute left-[20px] top-[490px] w-[210px] text-right transition-all duration-1000 ease-out ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
+                }`}
+                style={{ transitionDelay: "500ms" }}
+              >
+                <div style={{ transform: `scale(${textScale})`, transformOrigin: "top right" }}>
+                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#F5B301]">
+                    {t.stat4Value}
+                  </div>
+                  <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[14.5px] font-bold leading-tight tracking-wide text-white">
+                    {t.stat4Label}
+                    <br />
+                    <span className="text-[12px] font-medium text-[#F5B301]">{t.stat4Year}</span>
+                  </div>
+                </div>
+                <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#F5B301]" />
+                <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70">
+                  {t.stat4Desc}
+                </p>
               </div>
-              <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[10px] font-bold leading-tight tracking-wide text-white md:text-[14.5px]">
-                {t.stat3Label}
-                <br />
-                <span className="text-[9px] font-medium text-[#F5B301] md:text-[12px]">
-                  {t.stat3Year}
-                </span>
-              </div>
-            </div>
-            <div className="my-2.5 h-[2px] w-[34px] bg-[#F5B301]" />
-            <p className="hidden font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70 md:block">
-              {t.stat3Desc}
-            </p>
-          </div>
-
-          {/* Stat 3: Saudi Export - mobile */}
-          <div
-            className={`absolute left-1/2 top-[650px] w-[210px] -translate-x-1/2 text-center transition-all duration-1000 ease-out md:hidden ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
-            }`}
-            style={{ transitionDelay: "550ms" }}
-          >
-            <div
-              className="flex items-center justify-center gap-2"
-              style={{ transform: `scale(${textScale})`, transformOrigin: "top center" }}
-            >
-              <div className="font-[family-name:var(--font-playfair)] text-[22px] font-extrabold leading-none text-[#F5B301]">
-                {t.stat3Value}
-              </div>
-              <div className="font-[family-name:var(--font-poppins)] text-[10px] font-bold leading-tight tracking-wide text-white">
-                {t.stat3Label}
-              </div>
-            </div>
-            <div className="mx-auto my-2.5 h-[2px] w-[34px] bg-[#F5B301]" />
-          </div>
-
-          {/* Stat 4: Trade Balance */}
-          <div
-            className={`absolute left-[20px] top-[490px] w-[210px] text-right transition-all duration-1000 ease-out hidden md:block ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
-            }`}
-            style={{ transitionDelay: "500ms" }}
-          >
-            <div style={{ transform: `scale(${textScale})`, transformOrigin: "top right" }}>
-              <div className="font-[family-name:var(--font-playfair)] text-[22px] font-extrabold leading-none text-[#F5B301] md:text-[29px]">
-                {t.stat4Value}
-              </div>
-              <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[10px] font-bold leading-tight tracking-wide text-white md:text-[14.5px]">
-                {t.stat4Label}
-                <br />
-                <span className="text-[9px] font-medium text-[#F5B301] md:text-[12px]">
-                  {t.stat4Year}
-                </span>
-              </div>
-            </div>
-            <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#F5B301]" />
-            <p className="hidden font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70 md:block">
-              {t.stat4Desc}
-            </p>
-          </div>
+            </>
+          )}
 
           {/* Center dome with logo — HOVER: cursor-pointer + scale */}
           <div
@@ -549,6 +529,48 @@ export default function DiscoverPotentialSection() {
           </div>
         </div>
       </div>
+
+      {/* ===== MOBILE: paragraph + stats normal flow me (no scaling, no overlap) ===== */}
+      {isMobile && (
+        <div className="relative z-10 mx-auto w-full max-w-[1081px] px-5 pb-12 pt-4">
+          <p
+            className={`mx-auto mb-7 max-w-[520px] text-center font-[family-name:var(--font-poppins)] text-[12px] font-light leading-relaxed text-white/85 transition-all duration-1000 ease-out ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[40px]"
+            }`}
+            style={{ transitionDelay: "300ms" }}
+          >
+            {t.paragraph}
+          </p>
+
+          <div className="grid grid-cols-2 gap-x-5 gap-y-7">
+            {mobileStats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`${isAr ? "text-right" : "text-left"} transition-all duration-1000 ease-out ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[40px]"
+                }`}
+                style={{ transitionDelay: `${350 + i * 100}ms` }}
+              >
+                <div className="font-[family-name:var(--font-playfair)] text-[19px] font-extrabold leading-none text-[#F5B301]">
+                  {s.value}
+                </div>
+                <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-bold leading-tight tracking-wide text-white">
+                  {s.label}
+                </div>
+                <div className="mt-0.5 font-[family-name:var(--font-poppins)] text-[9.5px] font-medium text-[#F5B301]">
+                  {s.year}
+                </div>
+                <div
+                  className={`my-2 h-[2px] w-[28px] bg-[#F5B301] ${isAr ? "ml-auto" : ""}`}
+                />
+                <p className="font-[family-name:var(--font-poppins)] text-[10.5px] font-light leading-relaxed text-white/70">
+                  {s.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
