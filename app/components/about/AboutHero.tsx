@@ -20,7 +20,7 @@ const poppins = Poppins({
 const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
 
-const BACKGROUND_IMAGE = "/about/back2.png";
+const BACKGROUND_IMAGE = "/about/hero.png";
 
 const TEXT = {
   EN: {
@@ -113,9 +113,9 @@ export default function AboutHero() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative flex min-h-[500px] w-full items-center justify-center overflow-hidden bg-[#13233F] sm:min-h-[560px] lg:min-h-[620px]`}
+      className={`${playfair.variable} ${poppins.variable} relative flex min-h-[500px] w-full items-center justify-center overflow-hidden bg-[#0F3327] sm:min-h-[560px] lg:min-h-[620px]`}
     >
-      {/* Background image — back2.png (image has its own overlay) */}
+      {/* Background image — about/hero.png (no overlay) */}
       <Image
         src={BACKGROUND_IMAGE}
         alt=""
@@ -136,7 +136,7 @@ export default function AboutHero() {
           ].join(" ")}
           style={{ transitionDelay: "0ms" }}
         >
-          <p className="font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold uppercase tracking-[6px] text-[#F5B301] sm:text-[12.5px] sm:tracking-[8px]">
+          <p className="font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold uppercase tracking-[6px] text-[#3EA96E] sm:text-[12.5px] sm:tracking-[8px]">
             {t.brand}
           </p>
         </div>
@@ -157,10 +157,10 @@ export default function AboutHero() {
           {t.heading}
         </h1>
 
-        {/* Gold accent bar */}
+        {/* Green accent bar */}
         <span
           className={[
-            "mt-4 block h-1 w-16 rounded-full bg-[#F5B301] transition-all duration-1000 ease-out sm:mt-5 sm:w-20",
+            "mt-4 block h-1 w-16 rounded-full bg-[#3EA96E] transition-all duration-1000 ease-out sm:mt-5 sm:w-20",
             isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
           ].join(" ")}
           style={{ transitionDelay: "350ms" }}
@@ -194,12 +194,12 @@ export default function AboutHero() {
         >
           <Link
             href="/"
-            className="cursor-pointer text-white/70 transition-colors duration-300 hover:text-[#F5B301]"
+            className="cursor-pointer text-white/70 transition-colors duration-300 hover:text-[#3EA96E]"
           >
             {t.breadcrumbHome}
           </Link>
-          <span className="text-[#F5B301]">{isAr ? "←" : "→"}</span>
-          <span className="text-[#F5B301]">{t.breadcrumbCurrent}</span>
+          <span className="text-[#3EA96E]">{isAr ? "←" : "→"}</span>
+          <span className="text-[#3EA96E]">{t.breadcrumbCurrent}</span>
         </nav>
       </div>
     </section>

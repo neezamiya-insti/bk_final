@@ -171,7 +171,7 @@ export default function OurPhilosophySection() {
         <h2
           ref={topHeadingRef}
           className={[
-            "font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#13233F] sm:text-4xl ",
+            "font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-4xl ",
             "transition-all duration-700 ease-out",
             topHeadingInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           ].join(" ")}
@@ -179,10 +179,10 @@ export default function OurPhilosophySection() {
           {t.topHeading}
         </h2>
 
-        {/* Gold accent bar */}
+        {/* Accent bar */}
         <span
           className={[
-            "mt-3 h-1 w-16 rounded-full bg-[#F5B301] sm:mt-4 sm:w-20",
+            "mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:mt-4 sm:w-20",
             "transition-all duration-700 ease-out delay-150",
             topHeadingInView ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
           ].join(" ")}
@@ -237,8 +237,8 @@ export default function OurPhilosophySection() {
               <div
                 className={[
                   "absolute inset-0 overflow-hidden rounded-[1.25rem] border shadow-sm transition-all duration-700 ease-out sm:rounded-[1.5rem]",
-                  isOpen ? "border-[#F5B301]/60 shadow-lg" : "border-[#13233F]/10",
-                  "md:group-hover/card:-translate-y-1 md:group-hover/card:border-[#F5B301]/60 md:group-hover/card:shadow-lg",
+                  isOpen ? "border-[#3EA96E]/60 shadow-lg" : "border-[#1B4D3E]/10",
+                  "md:group-hover/card:-translate-y-1 md:group-hover/card:border-[#3EA96E]/60 md:group-hover/card:shadow-lg",
                 ].join(" ")}
               >
                 {/* Background image + base overlay */}
@@ -246,7 +246,7 @@ export default function OurPhilosophySection() {
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center"
                   style={{
-                    backgroundImage: `linear-gradient(rgba(19, 35, 63, 0.35), rgba(19, 35, 63, 0.55)), url(${PHILOSOPHY_BACKGROUNDS[i]})`,
+                    backgroundImage: `linear-gradient(rgba(27, 77, 62, 0.35), rgba(27, 77, 62, 0.55)), url(${PHILOSOPHY_BACKGROUNDS[i]})`,
                   }}
                 />
 
@@ -254,7 +254,7 @@ export default function OurPhilosophySection() {
                 <div
                   aria-hidden="true"
                   className={[
-                    "pointer-events-none absolute inset-0 z-[1] bg-[#13233F]/45 transition-opacity duration-500 ease-out",
+                    "pointer-events-none absolute inset-0 z-[1] bg-[#1B4D3E]/45 transition-opacity duration-500 ease-out",
                     isOpen ? "opacity-100" : "opacity-0 md:group-hover/card:opacity-100",
                   ].join(" ")}
                 />
@@ -263,14 +263,14 @@ export default function OurPhilosophySection() {
               {/* Content — har breakpoint par card ke BEECH me */}
               <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center sm:px-7 lg:px-8">
                 {/* Title */}
-                <h4 className="font-[family-name:var(--font-playfair)] text-xl font-extrabold leading-snug text-[#F5B301] drop-shadow-[0_2px_4px_rgba(19,35,63,0.9)] lg:text-[22px]">
+                <h4 className="font-[family-name:var(--font-playfair)] text-xl font-extrabold leading-snug text-[#3EA96E] drop-shadow-[0_2px_4px_rgba(27,77,62,0.9)] lg:text-[22px]">
                   {card.title}
                 </h4>
 
                 {/* Divider */}
                 <div
                   className={[
-                    "mt-3 h-[2px] rounded-full bg-[#F5B301] transition-all duration-500 ease-out",
+                    "mt-3 h-[2px] rounded-full bg-[#3EA96E] transition-all duration-500 ease-out",
                     isOpen ? "w-14" : "w-10 md:group-hover/card:w-14",
                   ].join(" ")}
                 />
@@ -285,7 +285,7 @@ export default function OurPhilosophySection() {
                   ].join(" ")}
                 >
                   <div className={`w-full overflow-hidden ${isAr ? "text-right" : "text-left"}`}>
-                    <p className="font-[family-name:var(--font-poppins)] text-[13px] font-medium leading-relaxed text-white drop-shadow-[0_2px_4px_rgba(19,35,63,0.95)] sm:text-[13.5px] lg:text-[14px]">
+                    <p className="font-[family-name:var(--font-poppins)] text-[13px] font-medium leading-relaxed text-white drop-shadow-[0_2px_4px_rgba(27,77,62,0.95)] sm:text-[13.5px] lg:text-[14px]">
                       {card.desc}
                     </p>
                   </div>

@@ -368,10 +368,10 @@ export default function ContactSection() {
   const [contentRef, contentInView] = useInView<HTMLDivElement>(0.1);
 
   const inputBase =
-    "w-full cursor-pointer rounded-xl border border-[#13233F]/15 bg-white px-4 py-3 font-[family-name:var(--font-poppins)] text-[13px] font-light text-[#13233F] placeholder:text-[#5C5C5C]/50 outline-none transition-all duration-300 focus:border-[#F5B301] focus:ring-2 focus:ring-[#F5B301]/30 sm:text-[13.5px]";
+    "w-full cursor-pointer rounded-xl border border-[#1B4D3E]/15 bg-white px-4 py-3 font-[family-name:var(--font-poppins)] text-[13px] font-light text-[#1A1A1A] placeholder:text-[#6B6B6B]/50 outline-none transition-all duration-300 focus:border-[#3EA96E] focus:ring-2 focus:ring-[#3EA96E]/30 sm:text-[13.5px]";
 
   const labelBase =
-    "mb-1.5 block font-[family-name:var(--font-poppins)] text-[12px] font-semibold text-[#13233F] sm:text-[12.5px]";
+    "mb-1.5 block font-[family-name:var(--font-poppins)] text-[12px] font-semibold text-[#1B4D3E] sm:text-[12.5px]";
 
   return (
     <section
@@ -391,7 +391,7 @@ export default function ContactSection() {
 
       {/* Content wrapper */}
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 md:px-8 lg:px-10">
-        {/* Heading */}
+        {/* Heading — BRIGHT GREEN */}
         <div
           ref={headingRef}
           className={[
@@ -399,11 +399,11 @@ export default function ContactSection() {
             headingInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
           ].join(" ")}
         >
-          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#13233F] sm:text-3xl md:text-4xl">
+          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-3xl md:text-4xl">
             {t.heading}
           </h2>
-          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#F5B301] sm:w-20" />
-          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-poppins)] text-[13px] font-light leading-relaxed text-[#5C5C5C] sm:text-[14px] md:text-[15px]">
+          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:w-20" />
+          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-poppins)] text-[13px] font-light leading-relaxed text-[#6B6B6B] sm:text-[14px] md:text-[15px]">
             {t.subheading}
           </p>
         </div>
@@ -431,8 +431,8 @@ export default function ContactSection() {
                   className={[
                     "group/icon flex w-full cursor-pointer items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-all duration-300",
                     isActive
-                      ? "border-[#F5B301] bg-[#13233F] text-white shadow-lg"
-                      : "border-[#13233F]/10 bg-white text-[#13233F] hover:border-[#F5B301]/50 hover:bg-[#F5B301]/5",
+                      ? "border-[#3EA96E] bg-[#1B4D3E] text-white shadow-lg"
+                      : "border-[#1B4D3E]/10 bg-white text-[#1B4D3E] hover:border-[#3EA96E]/50 hover:bg-[#3EA96E]/5",
                     isAr ? "flex-row-reverse text-right" : "",
                   ].join(" ")}
                 >
@@ -440,8 +440,8 @@ export default function ContactSection() {
                     className={[
                       "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors duration-300",
                       isActive
-                        ? "bg-[#F5B301] text-[#13233F]"
-                        : "bg-[#13233F]/5 text-[#13233F] group-hover/icon:bg-[#F5B301]/20",
+                        ? "bg-[#3EA96E] text-white"
+                        : "bg-[#1B4D3E]/5 text-[#1B4D3E] group-hover/icon:bg-[#3EA96E]/20",
                     ].join(" ")}
                   >
                     <ContactIcon type={item.icon} />
@@ -449,7 +449,7 @@ export default function ContactSection() {
                   <span
                     className={[
                       "font-[family-name:var(--font-poppins)] text-[13px] font-semibold transition-colors duration-300 sm:text-[13.5px]",
-                      isActive ? "text-white" : "text-[#13233F]",
+                      isActive ? "text-white" : "text-[#1B4D3E]",
                     ].join(" ")}
                   >
                     {title}
@@ -466,19 +466,19 @@ export default function ContactSection() {
               key={active.id}
               className="animate-[fadeIn_0.5s_ease-out] rounded-3xl bg-white p-5 shadow-sm sm:p-6 md:p-7"
             >
-              <h3 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#13233F] sm:text-xl">
+              <h3 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#1B4D3E] sm:text-xl">
                 {pickField(active, "title", langCode)}
               </h3>
-              <div className="my-3 h-[2px] w-12 rounded-full bg-[#F5B301]" />
+              <div className="my-3 h-[2px] w-12 rounded-full bg-[#3EA96E]" />
 
               <p
-                className="font-[family-name:var(--font-poppins)] text-[13.5px] font-medium leading-relaxed text-[#13233F] sm:text-[14.5px]"
+                className="font-[family-name:var(--font-poppins)] text-[13.5px] font-medium leading-relaxed text-[#1A1A1A] sm:text-[14.5px]"
                 dir={active.id === "phone" ? "ltr" : isAr ? "rtl" : "ltr"}
               >
                 {pickField(active, "value", langCode)}
               </p>
 
-              <p className="mt-3 font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-[#5C5C5C] sm:text-[13px]">
+              <p className="mt-3 font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-[#6B6B6B] sm:text-[13px]">
                 {pickField(active, "desc", langCode)}
               </p>
 
@@ -486,7 +486,7 @@ export default function ContactSection() {
                 href={active.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/link mt-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#13233F] px-5 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-white transition-colors duration-300 hover:bg-[#C0272D] sm:text-[13px]"
+                className="group/link mt-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#2E7D5B] px-5 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-white transition-colors duration-300 hover:bg-[#255F47] sm:text-[13px]"
               >
                 {t.openLink}
                 <span
@@ -503,17 +503,17 @@ export default function ContactSection() {
 
             {/* Form card */}
             <div className="rounded-3xl bg-white p-5 shadow-sm sm:p-7 md:p-8">
-              <h3 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#13233F] sm:text-xl">
+              <h3 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#1B4D3E] sm:text-xl">
                 {t.formTitle}
               </h3>
-              <div className="my-3 h-1 w-14 rounded-full bg-[#F5B301]" />
+              <div className="my-3 h-1 w-14 rounded-full bg-[#3EA96E]" />
 
               {submitted ? (
-                <div className="mt-6 rounded-2xl border border-[#F5B301]/40 bg-[#F5B301]/10 p-8 text-center">
-                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#F5B301] text-[24px] font-bold text-[#13233F]">
+                <div className="mt-6 rounded-2xl border border-[#3EA96E]/40 bg-[#3EA96E]/10 p-8 text-center">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#3EA96E] text-[24px] font-bold text-white">
                     ✓
                   </div>
-                  <p className="font-[family-name:var(--font-playfair)] text-base font-extrabold text-[#13233F] sm:text-lg">
+                  <p className="font-[family-name:var(--font-playfair)] text-base font-extrabold text-[#1B4D3E] sm:text-lg">
                     {t.formSuccess}
                   </p>
                 </div>
@@ -522,7 +522,7 @@ export default function ContactSection() {
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <label htmlFor="name" className={labelBase}>
-                        {t.formName} <span className="text-[#C0272D]">*</span>
+                        {t.formName} <span className="text-[#3EA96E]">*</span>
                       </label>
                       <input
                         id="name"
@@ -537,7 +537,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <label htmlFor="email" className={labelBase}>
-                        {t.formEmail} <span className="text-[#C0272D]">*</span>
+                        {t.formEmail} <span className="text-[#3EA96E]">*</span>
                       </label>
                       <input
                         id="email"
@@ -571,7 +571,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <label htmlFor="subject" className={labelBase}>
-                        {t.formSubject} <span className="text-[#C0272D]">*</span>
+                        {t.formSubject} <span className="text-[#3EA96E]">*</span>
                       </label>
                       <input
                         id="subject"
@@ -588,7 +588,7 @@ export default function ContactSection() {
 
                   <div>
                     <label htmlFor="message" className={labelBase}>
-                      {t.formMessage} <span className="text-[#C0272D]">*</span>
+                      {t.formMessage} <span className="text-[#3EA96E]">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -602,9 +602,10 @@ export default function ContactSection() {
                     />
                   </div>
 
+                  {/* Submit button — FULL ROUNDED */}
                   <button
                     type="submit"
-                    className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#13233F] px-6 py-3.5 font-[family-name:var(--font-poppins)] text-[13px] font-bold text-white transition-colors duration-300 hover:bg-[#C0272D] sm:w-auto sm:text-[13.5px]"
+                    className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#2E7D5B] px-6 py-3.5 font-[family-name:var(--font-poppins)] text-[13px] font-bold text-white transition-colors duration-300 hover:bg-[#255F47] sm:w-auto sm:text-[13.5px]"
                   >
                     {t.formSubmit}
                     <span

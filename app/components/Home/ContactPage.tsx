@@ -205,7 +205,7 @@ export default function ContactPage() {
   const [rightRef, rightInView] = useInView<HTMLDivElement>(0.15);
 
   const inputBase =
-    "w-full cursor-pointer rounded-xl border border-white/20 bg-white/95 px-4 py-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-[#13233F] placeholder:text-[#5C5C5C]/60 outline-none transition-all duration-300 focus:border-[#F5B301] focus:ring-2 focus:ring-[#F5B301]/30 sm:text-[14px]";
+    "w-full cursor-pointer rounded-xl border border-white/20 bg-white/95 px-4 py-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-[#0F3327] placeholder:text-[#5C5C5C]/60 outline-none transition-all duration-300 focus:border-[#3EA96E] focus:ring-2 focus:ring-[#3EA96E]/30 sm:text-[14px]";
 
   const labelBase =
     "mb-1.5 block font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-white sm:text-[13px]";
@@ -215,14 +215,14 @@ export default function ContactPage() {
       dir={isAr ? "rtl" : "ltr"}
       className={`${playfair.variable} ${poppins.variable} w-full bg-white px-4 py-8 sm:px-6 sm:py-12 md:px-8 lg:px-10`}
     >
-      <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] bg-[#13233F]">
+      <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] bg-[#0F3327]">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
             backgroundImage: `url(${CONTACT_IMAGE})`,
           }}
         />
-        <div className="absolute inset-0 bg-[#13233F]/75" />
+        <div className="absolute inset-0 bg-[#0F3327]/75" />
         <div
           ref={rightRef}
           className={[
@@ -234,14 +234,14 @@ export default function ContactPage() {
           <h3 className="font-[family-name:var(--font-playfair)] text-xl font-extrabold leading-snug text-white sm:text-2xl">
             {t.formTitle}
           </h3>
-          <span className="mt-3 block h-1 w-16 rounded-full bg-[#F5B301]" />
+          <span className="mt-3 block h-1 w-16 rounded-full bg-[#3EA96E]" />
 
           {submitted ? (
-            <div className="mt-5 rounded-2xl border border-[#F5B301]/40 bg-[#F5B301]/10 p-5 text-center">
-              <p className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#13233F]">
+            <div className="mt-5 rounded-2xl border border-[#3EA96E]/40 bg-[#3EA96E]/10 p-5 text-center">
+              <p className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-white">
                 {t.thankYou}
               </p>
-              <p className="mt-2 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-[#5C5C5C]">
+              <p className="mt-2 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-white/75">
                 {t.thankYouMsg}
               </p>
             </div>
@@ -250,7 +250,7 @@ export default function ContactPage() {
               {/* Name */}
               <div>
                 <label htmlFor="name" className={labelBase}>
-                  {t.name} <span className="text-[#F5B301]">*</span>
+                  {t.name} <span className="text-[#3EA96E]">*</span>
                 </label>
                 <input
                   id="name"
@@ -299,7 +299,7 @@ export default function ContactPage() {
               {/* Email */}
               <div>
                 <label htmlFor="email" className={labelBase}>
-                  {t.email} <span className="text-[#C0272D]">*</span>
+                  {t.email} <span className="text-[#3EA96E]">*</span>
                 </label>
                 <input
                   id="email"
@@ -317,7 +317,7 @@ export default function ContactPage() {
               {/* Services dropdown */}
               <div>
                 <label htmlFor="service" className={labelBase}>
-                  {t.services} <span className="text-[#C0272D]">*</span>
+                  {t.services} <span className="text-[#3EA96E]">*</span>
                 </label>
                 <select
                   id="service"
@@ -325,7 +325,7 @@ export default function ContactPage() {
                   required
                   value={form.service}
                   onChange={handleChange}
-                  className={`${inputBase} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2313233F%22 stroke-width=%222%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-10 rtl:bg-[left_1rem_center] rtl:pr-4 rtl:pl-10`}
+                  className={`${inputBase} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230F3327%22 stroke-width=%222%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-10 rtl:bg-[left_1rem_center] rtl:pr-4 rtl:pl-10`}
                 >
                   <option value="" disabled>
                     {t.selectService}
@@ -341,7 +341,7 @@ export default function ContactPage() {
               {/* Subject */}
               <div>
                 <label htmlFor="subject" className={labelBase}>
-                  {t.subject} <span className="text-[#C0272D]">*</span>
+                  {t.subject} <span className="text-[#3EA96E]">*</span>
                 </label>
                 <input
                   id="subject"
@@ -358,7 +358,7 @@ export default function ContactPage() {
               {/* Message */}
               <div>
                 <label htmlFor="message" className={labelBase}>
-                  {t.message} <span className="text-[#C0272D]">*</span>
+                  {t.message} <span className="text-[#3EA96E]">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -375,7 +375,7 @@ export default function ContactPage() {
               {/* Submit */}
               <button
                 type="submit"
-                className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#F5B301] px-6 py-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-semibold text-[#13233F] transition-colors duration-300 hover:bg-[#C0272D] hover:text-white sm:w-auto sm:text-[14px]"
+                className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#3EA96E] px-6 py-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-semibold text-[#0F3327] transition-colors duration-300 hover:bg-white hover:text-[#0F3327] sm:w-auto sm:text-[14px]"
               >
                 {t.submit}
                 <span

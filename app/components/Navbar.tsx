@@ -176,13 +176,13 @@ export default function Navbar() {
             "mx-auto flex max-w-6xl items-center justify-between",
             "rounded-full border border-black/5 bg-white/95 px-4 py-2.5 backdrop-blur-md sm:px-6 sm:py-3",
             "transition-shadow duration-300",
-            scrolled ? "shadow-lg shadow-[#13233F]/10" : "shadow-sm",
+            scrolled ? "shadow-lg shadow-[#1B4D3E]/10" : "shadow-sm",
           ].join(" ")}
         >
           {/* Logo */}
           <Link href="/" className="flex shrink-0 items-center gap-2.5 cursor-pointer">
             <span className="flex flex-col leading-tight">
-              <span className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold tracking-wide text-[#13233F] sm:text-[16px]">
+              <span className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold tracking-wide text-[#1B4D3E] sm:text-[16px]">
                 BOYUT AL-KAWTHAR
               </span>
               <span className="font-[family-name:var(--font-poppins)] text-[8.5px] font-light tracking-wide text-neutral-500 sm:text-[9px]">
@@ -206,7 +206,7 @@ export default function Navbar() {
                     onClick={() => setActivePath(item.href)}
                     className={[
                       "font-[family-name:var(--font-playfair)] text-[14.5px] font-bold transition-colors cursor-pointer",
-                      isActive ? "text-[#F5B301]" : "text-[#13233F] hover:text-[#C0272D]",
+                      isActive ? "text-[#3EA96E]" : "text-[#1B4D3E] hover:text-[#C0272D]",
                     ].join(" ")}
                   >
                     {getLabel(item, lang.code)}
@@ -222,7 +222,7 @@ export default function Navbar() {
                     >
                       <div
                         className={[
-                          "rounded-3xl border border-black/5 bg-white p-5 shadow-xl shadow-[#13233F]/10",
+                          "rounded-3xl border border-black/5 bg-white p-5 shadow-xl shadow-[#1B4D3E]/10",
                           item.dropdown.length > 4
                             ? "grid w-[420px] grid-cols-2 gap-x-8 gap-y-1"
                             : "flex w-52 flex-col gap-1",
@@ -236,7 +236,7 @@ export default function Navbar() {
                               "whitespace-nowrap rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[13.5px] transition-colors cursor-pointer",
                               link.highlight
                                 ? "font-bold text-[#C0272D] hover:bg-[#C0272D]/5"
-                                : "text-[#13233F] hover:bg-[#13233F]/5 hover:text-[#C0272D]",
+                                : "text-[#1B4D3E] hover:bg-[#1B4D3E]/5 hover:text-[#C0272D]",
                             ].join(" ")}
                           >
                             {getLabel(link, lang.code)}
@@ -259,7 +259,7 @@ export default function Navbar() {
             >
               <button
                 type="button"
-                className="flex items-center gap-1.5 rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[14px] font-medium text-[#13233F] transition-colors hover:bg-[#13233F]/5 cursor-pointer"
+                className="flex items-center gap-1.5 rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[14px] font-medium text-[#1B4D3E] transition-colors hover:bg-[#1B4D3E]/5 cursor-pointer"
               >
                 <GlobeIcon />
                 {lang.code}
@@ -272,7 +272,7 @@ export default function Navbar() {
                   "group-hover:visible group-hover:translate-y-1 group-hover:opacity-100",
                 ].join(" ")}
               >
-                <div className="w-40 rounded-2xl border border-black/5 bg-white p-2 shadow-xl shadow-[#13233F]/10">
+                <div className="w-40 rounded-2xl border border-black/5 bg-white p-2 shadow-xl shadow-[#1B4D3E]/10">
                   {LANGUAGES.map((l) => (
                     <button
                       key={l.code}
@@ -281,8 +281,8 @@ export default function Navbar() {
                       className={[
                         "flex w-full items-center justify-between rounded-full px-3 py-2 text-left font-[family-name:var(--font-poppins)] text-[13.5px] transition-colors cursor-pointer",
                         l.code === lang.code
-                          ? "bg-[#13233F]/5 font-semibold text-[#13233F]"
-                          : "text-[#13233F] hover:bg-[#13233F]/5 hover:text-[#C0272D]",
+                          ? "bg-[#1B4D3E]/5 font-semibold text-[#1B4D3E]"
+                          : "text-[#1B4D3E] hover:bg-[#1B4D3E]/5 hover:text-[#C0272D]",
                       ].join(" ")}
                     >
                       <span>{l.label}</span>
@@ -296,7 +296,7 @@ export default function Navbar() {
             {/* CTA — Become a Partner (redirects to /become-a-partner) */}
             <Link
               href={PARTNER_HREF}
-              className="group inline-flex items-center gap-2 rounded-full bg-[#13233F] px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white transition-colors hover:bg-[#C0272D] cursor-pointer"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#1B4D3E] px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white transition-colors hover:bg-[#C0272D] cursor-pointer"
             >
               {UI_TEXT.becomePartner[lang.code]}
               <span className="transition-transform group-hover:translate-x-1">
@@ -310,7 +310,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={cycleLanguage}
-              className="flex items-center gap-1 rounded-full border border-black/10 px-2.5 py-1.5 font-[family-name:var(--font-poppins)] text-[11.5px] font-medium text-[#13233F] transition-colors hover:bg-[#13233F]/5 cursor-pointer"
+              className="flex items-center gap-1 rounded-full border border-black/10 px-2.5 py-1.5 font-[family-name:var(--font-poppins)] text-[11.5px] font-medium text-[#1B4D3E] transition-colors hover:bg-[#1B4D3E]/5 cursor-pointer"
             >
               <GlobeIcon />
               {lang.code}
@@ -322,9 +322,9 @@ export default function Navbar() {
               onClick={() => setMobileOpen(true)}
               className="flex flex-col gap-1.5 rounded-full p-2 cursor-pointer"
             >
-              <span className="h-0.5 w-5 rounded-full bg-[#13233F]" />
-              <span className="h-0.5 w-5 rounded-full bg-[#13233F]" />
-              <span className="h-0.5 w-5 rounded-full bg-[#13233F]" />
+              <span className="h-0.5 w-5 rounded-full bg-[#1B4D3E]" />
+              <span className="h-0.5 w-5 rounded-full bg-[#1B4D3E]" />
+              <span className="h-0.5 w-5 rounded-full bg-[#1B4D3E]" />
             </button>
           </div>
         </nav>
@@ -334,7 +334,7 @@ export default function Navbar() {
       <div
         onClick={() => setMobileOpen(false)}
         className={[
-          "fixed inset-0 z-[60] bg-[#13233F]/40 transition-opacity duration-300 lg:hidden cursor-pointer",
+          "fixed inset-0 z-[60] bg-[#1B4D3E]/40 transition-opacity duration-300 lg:hidden cursor-pointer",
           mobileOpen ? "visible opacity-100" : "invisible opacity-0",
         ].join(" ")}
       />
@@ -353,14 +353,14 @@ export default function Navbar() {
         ].join(" ")}
       >
         <div className="mb-6 flex items-center justify-between">
-          <span className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold text-[#13233F]">
+          <span className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold text-[#1B4D3E]">
             BOYUT AL-KAWTHAR
           </span>
           <button
             type="button"
             aria-label={UI_TEXT.closeMenu[lang.code]}
             onClick={() => setMobileOpen(false)}
-            className="flex h-8 w-8 items-center justify-center rounded-full text-[#13233F] hover:bg-[#13233F]/5 cursor-pointer"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-[#1B4D3E] hover:bg-[#1B4D3E]/5 cursor-pointer"
           >
             ✕
           </button>
@@ -378,15 +378,15 @@ export default function Navbar() {
                 className={[
                   "flex items-center justify-between rounded-full px-4 py-3 font-[family-name:var(--font-playfair)] text-[14.5px] font-bold transition-colors cursor-pointer",
                   activePath === item.href
-                    ? "bg-[#F5B301]/10 text-[#F5B301]"
-                    : "text-[#13233F] hover:bg-[#13233F]/5",
+                    ? "bg-[#3EA96E]/10 text-[#3EA96E]"
+                    : "text-[#1B4D3E] hover:bg-[#1B4D3E]/5",
                 ].join(" ")}
               >
                 {getLabel(item, lang.code)}
               </Link>
 
               {item.dropdown && (
-                <ul className="ml-3 mt-1 flex flex-col gap-0.5 border-l border-[#13233F]/10 pl-3 rtl:ml-0 rtl:mr-3 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-3">
+                <ul className="ml-3 mt-1 flex flex-col gap-0.5 border-l border-[#1B4D3E]/10 pl-3 rtl:ml-0 rtl:mr-3 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-3">
                   {item.dropdown.map((sub) => (
                     <li key={sub.label}>
                       <Link
@@ -395,7 +395,7 @@ export default function Navbar() {
                           setActivePath(sub.href);
                           setMobileOpen(false);
                         }}
-                        className="block rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[12.5px] text-[#5C5C5C] transition-colors hover:bg-[#13233F]/5 hover:text-[#C0272D] cursor-pointer"
+                        className="block rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[12.5px] text-[#5C5C5C] transition-colors hover:bg-[#1B4D3E]/5 hover:text-[#C0272D] cursor-pointer"
                       >
                         {getLabel(sub, lang.code)}
                       </Link>
@@ -418,8 +418,8 @@ export default function Navbar() {
                 className={[
                   "flex flex-1 items-center justify-center gap-1 rounded-full border px-2 py-2.5 font-[family-name:var(--font-poppins)] text-[12px] font-medium transition-colors cursor-pointer",
                   l.code === lang.code
-                    ? "border-[#13233F] bg-[#13233F] text-white"
-                    : "border-black/10 text-[#13233F] hover:bg-[#13233F]/5",
+                    ? "border-[#1B4D3E] bg-[#1B4D3E] text-white"
+                    : "border-black/10 text-[#1B4D3E] hover:bg-[#1B4D3E]/5",
                 ].join(" ")}
               >
                 {l.code}
@@ -431,7 +431,7 @@ export default function Navbar() {
           <Link
             href={PARTNER_HREF}
             onClick={() => setMobileOpen(false)}
-            className="flex items-center justify-center gap-2 rounded-full bg-[#13233F] px-6 py-3 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white transition-colors hover:bg-[#C0272D] cursor-pointer"
+            className="flex items-center justify-center gap-2 rounded-full bg-[#1B4D3E] px-6 py-3 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white transition-colors hover:bg-[#C0272D] cursor-pointer"
           >
             {UI_TEXT.becomePartner[lang.code]}
             <span>{isRtl ? "←" : "→"}</span>

@@ -219,7 +219,7 @@ export default function GlobalPotentialSection() {
           >
             <motion.div
               variants={fadeInUp}
-              className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#13233F]/10 px-3 py-1.5 font-[family-name:var(--font-poppins)] text-[10px] font-semibold text-[#13233F] shadow-sm sm:px-4 sm:text-[11.5px]"
+              className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0F3327]/10 px-3 py-1.5 font-[family-name:var(--font-poppins)] text-[10px] font-semibold text-[#0F3327] shadow-sm sm:px-4 sm:text-[11.5px]"
             >
               <svg
                 className="h-3 w-3 sm:h-3.5 sm:w-3.5"
@@ -237,26 +237,26 @@ export default function GlobalPotentialSection() {
 
             <motion.h2
               variants={fadeInUp}
-              className="font-[family-name:var(--font-playfair)] text-[20px] font-extrabold leading-[1.2] text-[#13233F] sm:text-[24px] md:text-[28px] lg:text-4xl"
+              className="font-[family-name:var(--font-playfair)] text-[20px] font-extrabold leading-[1.2] text-[#0F3327] sm:text-[24px] md:text-[28px] lg:text-4xl"
             >
               {t.heading}{" "}
-              <span className="text-[#F5B301]">{t.headingAccent}</span>
+              <span className="text-[#3EA96E]">{t.headingAccent}</span>
             </motion.h2>
 
             <motion.div
               variants={fadeInUp}
-              className={`mt-3.5 flex items-center gap-1.5 ${
+              className={`mt-4 flex items-center gap-1.5 ${
                 isAr ? "justify-end" : "justify-start"
               }`}
             >
-              <div className="h-1 w-[34px] rounded-full bg-[#F5B301]" />
-              <div className="h-[4px] w-[4px] rounded-full bg-[#F5B301] opacity-55" />
-              <div className="h-[4px] w-[4px] rounded-full bg-[#F5B301] opacity-30" />
+              <div className="h-1 w-[34px] rounded-full bg-[#3EA96E]" />
+              <div className="h-[4px] w-[4px] rounded-full bg-[#3EA96E] opacity-55" />
+              <div className="h-[4px] w-[4px] rounded-full bg-[#3EA96E] opacity-30" />
             </motion.div>
 
             <motion.p
               variants={fadeInUp}
-              className="mt-4 max-w-xl font-[family-name:var(--font-poppins)] text-[12px] font-light leading-[1.8] text-[#5C5C5C] sm:text-[13px] md:text-[13.5px] lg:text-[14px]"
+              className="mt-5 max-w-xl font-[family-name:var(--font-poppins)] text-[12px] font-light leading-[1.8] text-[#5C5C5C] sm:text-[13px] md:text-[13.5px] lg:text-[14px]"
             >
               {t.paragraph}
             </motion.p>
@@ -264,7 +264,7 @@ export default function GlobalPotentialSection() {
             {/* Checklist */}
             <motion.ul
               variants={staggerContainer}
-              className="mt-6 space-y-2.5 sm:mt-7 sm:space-y-3"
+              className="mt-7 space-y-3 sm:mt-8 sm:space-y-3.5"
             >
               {t.bullets.map((b) => (
                 <motion.li
@@ -272,7 +272,7 @@ export default function GlobalPotentialSection() {
                   variants={fadeInUp}
                   className="flex items-start gap-2.5 sm:gap-3"
                 >
-                  <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F5B301]/15 text-[#F5B301] sm:h-[22px] sm:w-[22px]">
+                  <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3EA96E]/15 text-[#3EA96E] sm:h-[22px] sm:w-[22px]">
                     <svg
                       className="h-2.5 w-2.5 sm:h-3 sm:w-3"
                       viewBox="0 0 24 24"
@@ -295,9 +295,9 @@ export default function GlobalPotentialSection() {
             {/* EDGE CARD */}
             <motion.div
               variants={fadeInUp}
-              className="mt-5 flex max-w-md items-start gap-2.5 rounded-xl bg-[#13233F] px-3.5 py-3 shadow-[0_14px_30px_rgba(19,35,63,0.22)] sm:mt-6 sm:max-w-lg sm:gap-3 sm:rounded-2xl sm:px-4 sm:py-3.5"
+              className="mt-7 flex max-w-md items-start gap-2.5 rounded-xl bg-[#0F3327] px-3.5 py-3 shadow-[0_14px_30px_rgba(15,51,39,0.22)] sm:mt-8 sm:max-w-lg sm:gap-3 sm:rounded-2xl sm:px-4 sm:py-3.5"
             >
-              <span className="mt-[2px] inline-flex shrink-0 items-center gap-1 rounded-md bg-[#F5B301] px-1.5 py-0.5 font-[family-name:var(--font-poppins)] text-[8.5px] font-bold tracking-wide text-[#13233F] sm:px-2 sm:py-0.5 sm:text-[9.5px]">
+              <span className="mt-[2px] inline-flex shrink-0 items-center gap-1 rounded-md bg-[#3EA96E] px-1.5 py-0.5 font-[family-name:var(--font-poppins)] text-[8.5px] font-bold tracking-wide text-[#0F3327] sm:px-2 sm:py-0.5 sm:text-[9.5px]">
                 ★ {t.edgeTag}
               </span>
               <div>
@@ -305,7 +305,7 @@ export default function GlobalPotentialSection() {
                   {t.edgeTitle}
                 </div>
                 <p className="mt-0.5 font-[family-name:var(--font-poppins)] text-[9.5px] font-light leading-[1.6] text-white/75 sm:mt-1 sm:text-[10px] md:text-[10.5px]">
-                  <span className="font-semibold text-[#F5B301]">
+                  <span className="font-semibold text-[#3EA96E]">
                     {t.edgeDescStrong}
                   </span>
                   {t.edgeDesc}
@@ -319,10 +319,10 @@ export default function GlobalPotentialSection() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={staggerContainer}
-            className="relative rounded-[22px] border border-[#13233F]/8 bg-gradient-to-b from-[#F7F9FC] to-white p-4 shadow-[0_24px_60px_rgba(19,35,63,0.10)] sm:rounded-[24px] sm:p-5 md:p-6"
+            className="relative rounded-[22px] border border-[#0F3327]/8 bg-gradient-to-b from-[#F4FAF7] to-white p-4 shadow-[0_24px_60px_rgba(15,51,39,0.10)] sm:rounded-[24px] sm:p-5 md:p-6"
           >
             <motion.div variants={fadeInUp} className="text-center">
-              <div className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold tracking-[0.18em] text-[#13233F]/45 sm:text-[10.5px]">
+              <div className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold tracking-[0.18em] text-[#0F3327]/45 sm:text-[10.5px]">
                 {t.panelLabel}
               </div>
               <p className="mx-auto mt-1.5 max-w-sm font-[family-name:var(--font-poppins)] text-[11px] font-light leading-relaxed text-[#5C5C5C] sm:text-[11.5px]">
@@ -330,15 +330,15 @@ export default function GlobalPotentialSection() {
               </p>
             </motion.div>
 
-            {/* Pyramid cards — width % works on ALL screens now */}
-            <div className="mt-5 flex flex-col items-center gap-2.5 sm:mt-6 sm:gap-3">
+            {/* Pyramid cards — width % works on ALL screens now, extra 0.5rem gap between them */}
+            <div className="mt-5 flex flex-col items-center gap-[1.125rem] sm:mt-6 sm:gap-[1.25rem]">
               {t.cards.map((card, index) => (
                 <motion.div
                   key={card.title}
                   variants={slideInRight}
                   whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
                   style={{ width: PYRAMID_WIDTH[index] }}
-                  className="global-pyramid-card group/card relative overflow-hidden rounded-xl bg-gradient-to-br from-[#13233F] to-[#1E3763] px-3.5 py-3 text-center shadow-[0_10px_26px_rgba(19,35,63,0.18)] sm:rounded-2xl sm:px-4 sm:py-3.5"
+                  className="global-pyramid-card group/card relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0F3327] to-[#1B4D3E] px-3.5 py-3 text-center shadow-[0_10px_26px_rgba(15,51,39,0.18)] sm:rounded-2xl sm:px-4 sm:py-3.5"
                 >
                   {/* watermark number */}
                   <div className="pointer-events-none absolute inset-y-0 left-2.5 flex items-center font-[family-name:var(--font-playfair)] text-[38px] font-black leading-none text-white opacity-[0.05] sm:left-3 sm:text-[46px]">
@@ -357,12 +357,12 @@ export default function GlobalPotentialSection() {
                         />
                       </div>
                     </div>
-                    <div className="font-[family-name:var(--font-playfair)] text-[12.5px] font-extrabold leading-tight text-[#F5B301] sm:text-[13.5px] md:text-[14.5px] lg:text-[15.5px]">
+                    <div className="font-[family-name:var(--font-playfair)] text-[12.5px] font-extrabold leading-tight text-[#3EA96E] sm:text-[13.5px] md:text-[14.5px] lg:text-[15.5px]">
                       {card.title}
                     </div>
                   </div>
 
-                  <div className="relative z-10 mx-auto mt-1.5 h-[2px] w-7 rounded-full bg-[#F5B301]/70 sm:mt-2 sm:w-8" />
+                  <div className="relative z-10 mx-auto mt-1.5 h-[2px] w-7 rounded-full bg-[#3EA96E]/70 sm:mt-2 sm:w-8" />
 
                   <p className="relative z-10 mx-auto mt-1.5 max-w-[280px] font-[family-name:var(--font-poppins)] text-[9.5px] font-light leading-[1.6] text-white/75 sm:mt-2 sm:text-[10px] md:text-[10.5px]">
                     {card.desc}

@@ -23,6 +23,10 @@ type LangCode = "EN" | "AR" | "FR";
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1759272840712-c7e5ea852367?fm=jpg&q=80&w=2400&auto=format&fit=crop";
 
+// 🌍 Google Maps embed — Riyadh, Saudi Arabia
+const MAP_EMBED_URL =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.9959845682197!2d46.67529531500199!3d24.7135517841221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s";
+
 type ServiceItem = {
   title: string;
   desc: string;
@@ -32,11 +36,22 @@ type ServiceItem = {
 
 const TEXT: Record<
   LangCode,
-  { heading: string; detailsLabel: string; services: ServiceItem[] }
+  {
+    heading: string;
+    detailsLabel: string;
+    mapLabel: string;
+    mapHeading: string;
+    mapParagraph: string;
+    services: ServiceItem[];
+  }
 > = {
   EN: {
     heading: "Our Services",
     detailsLabel: "Service Details",
+    mapLabel: "Find Us",
+    mapHeading: "Visit Our Office",
+    mapParagraph:
+      "4329 Ibrahim Ibn Baz St., Al Sulay District, Riyadh 14276, Saudi Arabia.",
     services: [
       {
         title: "Market Research",
@@ -109,6 +124,10 @@ const TEXT: Record<
   AR: {
     heading: "خدماتنا",
     detailsLabel: "تفاصيل الخدمة",
+    mapLabel: "موقعنا",
+    mapHeading: "زيارة مكتبنا",
+    mapParagraph:
+      "٤٣٢٩ شارع إبراهيم بن باز، حي السلي، الرياض ١٤٢٧٦، المملكة العربية السعودية.",
     services: [
       {
         title: "أبحاث السوق",
@@ -181,6 +200,10 @@ const TEXT: Record<
   FR: {
     heading: "Nos services",
     detailsLabel: "Détails du service",
+    mapLabel: "Nous trouver",
+    mapHeading: "Visitez notre bureau",
+    mapParagraph:
+      "Rue Ibrahim Ibn Baz, District Al Sulay, Riyad 14276, Arabie Saoudite.",
     services: [
       {
         title: "Étude de marché",
@@ -291,7 +314,7 @@ function ArrowIcon({ active }: { active: boolean }) {
       viewBox="0 0 24 24"
       className="h-4 w-4"
       fill="none"
-      stroke={active ? "#13233F" : "currentColor"}
+      stroke={active ? "#FFFFFF" : "currentColor"}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -306,6 +329,7 @@ export default function ServicesShowcaseSection() {
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [mapRef, mapInView] = useInView<HTMLDivElement>(0.2);
   const sectionRef = useRef<HTMLElement>(null);
 
   // Language change listener
@@ -400,7 +424,7 @@ export default function ServicesShowcaseSection() {
           ))}
 
           {/* Description overlay card */}
-          <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-[#13233F]/85 p-3.5 backdrop-blur-sm sm:inset-x-4 sm:bottom-4 sm:p-4 md:inset-x-5 md:bottom-5 md:p-5 lg:inset-x-6 lg:bottom-6 lg:p-6">
+          <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-[#0F3327]/85 p-3.5 backdrop-blur-sm sm:inset-x-4 sm:bottom-4 sm:p-4 md:inset-x-5 md:bottom-5 md:p-5 lg:inset-x-6 lg:bottom-6 lg:p-6">
             <p
               key={activeIndex}
               className="animate-[fadeIn_0.5s_ease-out] font-[family-name:var(--font-poppins)] text-[11.5px] font-light leading-relaxed text-white sm:text-[12.5px] md:text-[13px] lg:text-[13.5px]"
@@ -410,10 +434,10 @@ export default function ServicesShowcaseSection() {
           </div>
         </div>
 
-        {/* Right: numbered services list */}
+        {/* Right: numbered services list — switches only on click */}
         <div
           className={[
-            "border-t-2 border-[#F5B301]/40",
+            "border-t-2 border-[#3EA96E]/40",
             "transition-all duration-1000 ease-out",
             isVisible
               ? "translate-x-0 opacity-100"
@@ -429,10 +453,9 @@ export default function ServicesShowcaseSection() {
               <button
                 key={service.title}
                 type="button"
-                onMouseEnter={() => setActiveIndex(i)}
                 onClick={() => setActiveIndex(i)}
                 className={[
-                  "group flex w-full cursor-pointer items-center justify-between gap-2 border-b border-[#13233F]/10 py-3.5 text-left transition-colors duration-300 sm:gap-3 sm:py-4 md:gap-4 md:py-5 lg:py-6",
+                  "group flex w-full cursor-pointer items-center justify-between gap-2 border-b border-[#0F3327]/10 py-3.5 text-left transition-colors duration-300 sm:gap-3 sm:py-4 md:gap-4 md:py-5 lg:py-6",
                   isAr ? "text-right" : "text-left",
                 ].join(" ")}
               >
@@ -440,7 +463,7 @@ export default function ServicesShowcaseSection() {
                   <span
                     className={[
                       "shrink-0 pt-0.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold transition-colors duration-300 sm:pt-0 sm:text-[11.5px] md:text-xs lg:text-sm",
-                      isActive ? "text-[#F5B301]" : "text-[#13233F]/40",
+                      isActive ? "text-[#3EA96E]" : "text-[#0F3327]/40",
                     ].join(" ")}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -448,7 +471,7 @@ export default function ServicesShowcaseSection() {
                   <h3
                     className={[
                       "font-[family-name:var(--font-playfair)] text-[14.5px] font-extrabold leading-snug transition-colors duration-300 sm:text-base md:text-lg lg:text-2xl",
-                      isActive ? "text-[#F5B301]" : "text-[#13233F]",
+                      isActive ? "text-[#3EA96E]" : "text-[#0F3327]",
                     ].join(" ")}
                   >
                     {service.title}
@@ -457,10 +480,10 @@ export default function ServicesShowcaseSection() {
 
                 <span
                   className={[
-                    "flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-300 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-10 lg:w-10",
+                    "flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-full transition-all duration-300 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-10 lg:w-10",
                     isActive
-                      ? "bg-[#F5B301] text-[#13233F]"
-                      : "bg-transparent text-[#13233F]/50 group-hover:text-[#F5B301]",
+                      ? "bg-[#3EA96E] text-white"
+                      : "bg-transparent text-[#0F3327]/50 group-hover:text-[#3EA96E]",
                   ].join(" ")}
                 >
                   <ArrowIcon active={isActive} />
@@ -471,11 +494,11 @@ export default function ServicesShowcaseSection() {
         </div>
       </div>
 
-      {/* ✅ NEW: Full width detail card (full-width, rounded, responsive) */}
+      {/* Full width detail card (full-width, rounded, responsive) */}
       <div className="relative mx-auto mt-10 max-w-6xl sm:mt-12 lg:mt-14">
         <div
           key={activeIndex}
-          className="animate-[fadeInUp_0.5s_ease-out] overflow-hidden rounded-[1.5rem] bg-[#13233F] shadow-[0_20px_50px_rgba(19,35,63,0.25)] sm:rounded-[2rem]"
+          className="animate-[fadeInUp_0.5s_ease-out] overflow-hidden rounded-[1.5rem] bg-[#0F3327] shadow-[0_20px_50px_rgba(15,51,39,0.25)] sm:rounded-[2rem]"
         >
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_1.4fr]">
             {/* Left: service image */}
@@ -487,14 +510,14 @@ export default function ServicesShowcaseSection() {
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover object-center transition-transform duration-700 ease-out hover:scale-105"
               />
-              {/* Navy fade on the right */}
-              <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-l from-[#13233F] to-transparent lg:block" />
+              {/* Green fade on the right */}
+              <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-l from-[#0F3327] to-transparent lg:block" />
             </div>
 
             {/* Right: details */}
             <div className="relative flex flex-col p-5 sm:p-7 lg:p-9">
               {/* Label */}
-              <span className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[#F5B301] sm:text-[11.5px]">
+              <span className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[#3EA96E] sm:text-[11.5px]">
                 {t.detailsLabel}
               </span>
 
@@ -503,8 +526,8 @@ export default function ServicesShowcaseSection() {
                 {active.title}
               </h3>
 
-              {/* Gold bar */}
-              <span className="mt-3 block h-1 w-14 rounded-full bg-[#F5B301]" />
+              {/* Green bar */}
+              <span className="mt-3 block h-1 w-14 rounded-full bg-[#3EA96E]" />
 
               {/* Description */}
               <p className="mt-4 font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/80 sm:text-[13.5px] md:text-[14px]">
@@ -514,12 +537,9 @@ export default function ServicesShowcaseSection() {
               {/* Bullet list */}
               <ul className="mt-5 grid grid-cols-1 gap-2.5 sm:gap-3">
                 {active.details.map((item, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-start gap-2.5 sm:gap-3"
-                  >
-                    {/* Gold check icon */}
-                    <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[#13233F] sm:h-[22px] sm:w-[22px]">
+                  <li key={idx} className="flex items-start gap-2.5 sm:gap-3">
+                    {/* Green check icon */}
+                    <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3EA96E] text-white sm:h-[22px] sm:w-[22px]">
                       <svg
                         viewBox="0 0 24 24"
                         className="h-3 w-3 sm:h-3.5 sm:w-3.5"
@@ -541,6 +561,43 @@ export default function ServicesShowcaseSection() {
               </ul>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* ═══════════════ FULL WIDTH GOOGLE MAP ═══════════════ */}
+      <div
+        ref={mapRef}
+        className={[
+          "relative mt-12 w-full sm:mt-16 lg:mt-20",
+          "transition-all duration-1000 ease-out",
+          mapInView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
+        ].join(" ")}
+      >
+        {/* Heading above map */}
+        <div className="mx-auto mb-6 max-w-6xl px-0 text-center sm:mb-8">
+          <span className="inline-flex items-center gap-2 rounded-full bg-[#1B4D3E]/10 px-4 py-1.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#1B4D3E] sm:text-[11.5px]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#3EA96E]" />
+            {t.mapLabel}
+          </span>
+          <h2 className="mt-3 font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#1B4D3E] sm:text-3xl md:text-4xl">
+            {t.mapHeading}
+          </h2>
+          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:w-20" />
+          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-[#6B6B6B] sm:text-[13.5px] md:text-[14px]">
+            {t.mapParagraph}
+          </p>
+        </div>
+
+        {/* Full-width map iframe — breaks out of section padding */}
+        <div className="relative h-[320px] w-full overflow-hidden sm:h-[400px] md:h-[450px] lg:h-[500px]">
+          <iframe
+            title="Boyut Al-Kawthar Office Location"
+            src={MAP_EMBED_URL}
+            className="absolute inset-0 h-full w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
         </div>
       </div>
 

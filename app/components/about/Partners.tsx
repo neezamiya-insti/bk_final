@@ -173,15 +173,15 @@ export default function Partners() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#13233F] sm:text-4xl"
+          className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#1B4D3E] sm:text-4xl"
         >
           {t.heading}
         </motion.h2>
 
-        {/* Gold accent bar */}
+        {/* Accent bar */}
         <motion.span
           variants={fadeInUp}
-          className="mx-auto mt-3 block h-1 w-16 rounded-full bg-[#F5B301] sm:mt-4 sm:w-20"
+          className="mx-auto mt-3 block h-1 w-16 rounded-full bg-[#3EA96E] sm:mt-4 sm:w-20"
         />
 
         <motion.p
@@ -199,7 +199,7 @@ export default function Partners() {
             <div
               key={`top-${idx}`}
               aria-hidden={idx >= TOP_ROW.length}
-              className="flex h-24 w-44 shrink-0 items-center justify-center rounded-[18px] border border-[#13233F]/10 bg-white/80 px-5 py-4 shadow-sm shadow-[#13233F]/5"
+              className="flex h-24 w-44 shrink-0 items-center justify-center rounded-[18px] border border-[#1B4D3E]/10 bg-white/80 px-5 py-4 shadow-sm shadow-[#1B4D3E]/5"
             >
               <Image
                 src={src}
@@ -219,7 +219,7 @@ export default function Partners() {
             <div
               key={`bottom-${idx}`}
               aria-hidden={idx >= BOTTOM_ROW.length}
-              className="flex h-24 w-44 shrink-0 items-center justify-center rounded-[18px] border border-[#13233F]/10 bg-white/80 px-5 py-4 shadow-sm shadow-[#13233F]/5"
+              className="flex h-24 w-44 shrink-0 items-center justify-center rounded-[18px] border border-[#1B4D3E]/10 bg-white/80 px-5 py-4 shadow-sm shadow-[#1B4D3E]/5"
             >
               <Image
                 src={src}

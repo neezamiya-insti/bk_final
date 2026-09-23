@@ -20,7 +20,7 @@ const poppins = Poppins({
 const EXPLORE_URL = "https://bk.com.sa/about-boyut-al-kawthar/";
 
 // High-quality free-license background (Unsplash, no attribution required)
-const HERO_IMAGE = '/hero.png';
+const HERO_IMAGE = '/hero1.png';
 
 const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
@@ -106,7 +106,6 @@ export default function HeroSection() {
   }, []);
 
   const isAr = langCode === "AR";
-  const isFr = langCode === "FR";
   const t = TEXT[langCode];
 
   const slideClass = (delayClass: string) =>
@@ -151,28 +150,27 @@ export default function HeroSection() {
           priority
           sizes="100vw"
           quality={85}
-          className="object-cover transition-transform duration-700 ease-out will-change-transform group-hover:scale-110"
-        />
-        {/* Gradient overlay for text legibility — mirrors direction in Arabic */}
-        <div
-          className={
-            isAr
-              ? "absolute inset-0 bg-gradient-to-l from-[#13233F]/95 via-[#13233F]/70 to-[#13233F]/30"
-              : "absolute inset-0 bg-gradient-to-r from-[#13233F]/95 via-[#13233F]/70 to-[#13233F]/30"
-          }
+          className="scale-110 object-cover transition-transform duration-700 ease-out will-change-transform group-hover:scale-125"
         />
       </Link>
 
-      {/* Content — zyada left/right breathing room diya (px-6 → px-20+ as screen grows) */}
+      {/* Content row — text + badge cluster share ONE flex container so they are
+          always vertically centered against each other, on every screen size.
+          Mobile: stacked (flex-col). Desktop (lg+): side-by-side (flex-row),
+          reversed for Arabic so the badge sits on the left like before. */}
       <div
-        className={`relative z-10 flex min-h-[560px] items-center px-8 py-24 sm:min-h-[620px] sm:px-12 md:px-20 lg:px-24 xl:px-32 ${
-          isFr ? "lg:translate-y-8" : isAr ? "lg:-translate-y-6" : "lg:translate-y-2"
-        }`}
+        className={[
+          "relative z-10 flex min-h-screen flex-col items-center gap-12 px-8 pb-24 pt-28",
+          "sm:px-12 sm:pb-28 sm:pt-32 md:px-20",
+          "lg:flex-row lg:items-start lg:justify-between lg:gap-10 lg:px-24 lg:pb-0 lg:pt-36",
+          "xl:px-32 xl:pt-40",
+          isAr ? "lg:flex-row-reverse" : "",
+        ].join(" ")}
       >
-        <div className={`max-w-xl lg:max-w-lg xl:max-w-xl ${isAr ? "text-right" : "text-left"}`}>
+        <div className={`max-w-xl shrink-0 lg:max-w-lg xl:max-w-xl ${isAr ? "text-right" : "text-left"}`}>
           <span
             className={[
-              "inline-block translate-y-4 font-[family-name:var(--font-poppins)] text-[12px] font-semibold uppercase tracking-[0.2em] text-[#F5B301] sm:text-[13px]",
+              "inline-block translate-y-4 font-[family-name:var(--font-poppins)] text-[12px] font-semibold uppercase tracking-[0.2em] text-[#3EA96E] sm:text-[13px]",
               slideClass(""),
             ].join(" ")}
           >
@@ -185,7 +183,7 @@ export default function HeroSection() {
               slideClass("delay-150"),
             ].join(" ")}
           >
-            {t.heading} <span className="text-[#F5B301]">{t.headingHighlight}</span>
+            {t.heading} <span className="text-[#3EA96E]">{t.headingHighlight}</span>
           </h1>
 
           <p
@@ -199,10 +197,8 @@ export default function HeroSection() {
 
           <div className={["mt-8 sm:mt-9", slideClass("delay-500")].join(" ")}>
             <Link
-              href={EXPLORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/btn relative z-20 inline-flex items-center gap-2 rounded-full bg-[#F5B301] px-6 py-3 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-[#13233F] shadow-lg shadow-black/10 transition-colors duration-300 hover:bg-[#C0272D] hover:text-white cursor-pointer sm:px-7 sm:py-3.5 sm:text-[14.5px]"
+              href="/about-us"
+              className="group/btn relative z-20 inline-flex items-center gap-2 rounded-full bg-[#3EA96E] px-6 py-3 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white shadow-lg shadow-black/10 transition-colors duration-300 hover:bg-[#C0272D] hover:text-white cursor-pointer sm:px-7 sm:py-3.5 sm:text-[14.5px]"
             >
               {t.cta}
               <span
@@ -215,68 +211,66 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
+
+        {/* Badge cluster — now a normal flex child, so it's always centered
+            against the text block regardless of screen height/ratio. The
+            dashed ring is slightly larger, and the top "Our Location" badge
+            is pulled further out so it no longer touches the center circle
+            (matching the gap the bottom two badges already had). */}
+        <aside
+          className={[
+            "bk-ring-group relative z-10 h-[min(78vw,320px)] w-[min(78vw,320px)] shrink-0 text-center text-white",
+            "sm:h-[360px] sm:w-[360px]",
+          ].join(" ")}
+        >
+          <div className="bk-ring-el absolute inset-[9%] rounded-full border-2 border-dashed border-[#3EA96E]" />
+
+          <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#3EA96E] bg-[#1B4D3E] p-4 shadow-2xl sm:h-36 sm:w-36 sm:p-5">
+            <Image
+              src="/logo-Boyot-1.png"
+              alt="Boyut Al-Kawthar logo"
+              width={96}
+              height={96}
+              className="h-full w-full object-contain"
+            />
+          </div>
+
+          <div className="absolute left-1/2 -top-6 flex h-28 w-28 -translate-x-1/2 flex-col items-center justify-center rounded-full border-2 border-[#3EA96E] bg-[#1B4D3E]/90 px-3 shadow-xl sm:-top-8 sm:h-32 sm:w-32">
+            <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
+              {t.ourLocation}
+            </span>
+            <span className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] leading-snug text-white/85 sm:mt-2 sm:text-[10px]">
+              {t.address}
+            </span>
+          </div>
+
+          <div className="absolute bottom-0 left-0 flex h-28 w-28 flex-col items-center justify-center rounded-full border-2 border-[#3EA96E] bg-[#1B4D3E]/90 px-2.5 shadow-xl sm:h-32 sm:w-32">
+            <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
+              {t.emailUs}
+            </span>
+            <a
+              className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#3EA96E] sm:mt-2 sm:text-[10px]"
+              href="mailto:Info@bk.com.sa"
+              dir="ltr"
+            >
+              Info@bk.com.sa
+            </a>
+          </div>
+
+          <div className="absolute bottom-0 right-0 flex h-28 w-28 flex-col items-center justify-center rounded-full border-2 border-[#3EA96E] bg-[#1B4D3E]/90 px-2.5 shadow-xl sm:h-32 sm:w-32">
+            <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
+              {t.callUs}
+            </span>
+            <a
+              className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#3EA96E] sm:mt-2 sm:text-[10px]"
+              href="tel:+966538597719"
+              dir="ltr"
+            >
+              +966 53 859 7719
+            </a>
+          </div>
+        </aside>
       </div>
-
-      {/* Badge cluster — back to the original position (fixed to the side on
-          desktop, stacked below the text on mobile), slightly smaller, with a
-          continuously rotating ring that pauses on hover. Side offset matches
-          the wider content padding above so it doesn't hug the screen edge. */}
-      <aside
-        className={[
-          "bk-ring-group relative z-10 mx-auto -mt-16 mb-8 h-[min(78vw,320px)] w-[min(78vw,320px)] text-center text-white",
-          "sm:h-[360px] sm:w-[360px]",
-          "lg:absolute lg:mx-0 lg:mb-0 lg:mt-0 lg:-translate-y-1/2",
-          langCode === "EN" ? "lg:top-[calc(48%+2rem)]" : "lg:top-[calc(48%+1rem)]",
-          isAr ? "lg:left-16 xl:left-24" : "lg:right-16 xl:right-24",
-        ].join(" ")}
-      >
-        <div className="bk-ring-el absolute inset-[14%] rounded-full border-2 border-dashed border-[#F5B301]" />
-
-        <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#F5B301] bg-[#13233F] p-4 shadow-2xl sm:h-36 sm:w-36 sm:p-5">
-          <Image
-            src="/logo-Boyot-1.png"
-            alt="Boyut Al-Kawthar logo"
-            width={96}
-            height={96}
-            className="h-full w-full object-contain"
-          />
-        </div>
-
-        <div className="absolute left-1/2 top-0 flex h-28 w-28 -translate-x-1/2 flex-col items-center justify-center rounded-full border-2 border-[#F5B301] bg-[#13233F]/90 px-3 shadow-xl sm:h-32 sm:w-32">
-          <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
-            {t.ourLocation}
-          </span>
-          <span className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] leading-snug text-white/85 sm:mt-2 sm:text-[10px]">
-            {t.address}
-          </span>
-        </div>
-
-        <div className="absolute bottom-0 left-0 flex h-28 w-28 flex-col items-center justify-center rounded-full border-2 border-[#F5B301] bg-[#13233F]/90 px-2.5 shadow-xl sm:h-32 sm:w-32">
-          <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
-            {t.emailUs}
-          </span>
-          <a
-            className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#F5B301] sm:mt-2 sm:text-[10px]"
-            href="mailto:Info@bk.com.sa"
-            dir="ltr"
-          >
-            Info@bk.com.sa
-          </a>
-        </div>
-
-        <div className="absolute bottom-0 right-0 flex h-28 w-28 flex-col items-center justify-center rounded-full border-2 border-[#F5B301] bg-[#13233F]/90 px-2.5 shadow-xl sm:h-32 sm:w-32">
-          <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
-            {t.callUs}
-          </span>
-          <a
-            className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#F5B301] sm:mt-2 sm:text-[10px]"
-            href="tel:+966538597719"
-            dir="ltr"
-          >
-            +966 53 859 7719
-          </a>
-        </div>
-      </aside>
     </section>
   );
 }

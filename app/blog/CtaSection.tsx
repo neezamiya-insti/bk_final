@@ -122,7 +122,7 @@ export default function CtaSection() {
           ref={cardRef}
           className={[
             "group/cta relative overflow-hidden rounded-[1.75rem] sm:rounded-[2rem]",
-            "shadow-xl shadow-[#13233F]/15 transition-all duration-1000 ease-out",
+            "shadow-xl shadow-[#0F3327]/15 transition-all duration-1000 ease-out",
             cardInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
           ].join(" ")}
         >
@@ -132,12 +132,12 @@ export default function CtaSection() {
             style={{ backgroundImage: `url(${CTA_BACKGROUND})` }}
           />
 
-          {/* Navy overlay */}
-          <div className="absolute inset-0 bg-[#13233F]/85" />
+          {/* Green overlay */}
+          <div className="absolute inset-0 bg-[#0F3327]/85" />
 
-          {/* Subtle gold glow */}
-          <div className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full bg-[#F5B301]/20 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-[#F5B301]/15 blur-3xl" />
+          {/* Subtle green glow */}
+          <div className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full bg-[#3EA96E]/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-[#3EA96E]/15 blur-3xl" />
 
           {/* Content */}
           <div
@@ -161,10 +161,10 @@ export default function CtaSection() {
                 {t.heading}
               </h2>
 
-              {/* Gold bar */}
+              {/* Green bar */}
               <span
                 className={[
-                  "mt-3 block h-[3px] w-14 rounded-full bg-[#F5B301] transition-all duration-1000 ease-out",
+                  "mt-3 block h-[3px] w-14 rounded-full bg-[#3EA96E] transition-all duration-1000 ease-out",
                   contentInView ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
                 ].join(" ")}
                 style={{ transitionDelay: "200ms" }}
@@ -202,7 +202,7 @@ export default function CtaSection() {
               {/* Primary CTA — Contact Us */}
               <Link
                 href="/contact"
-                className="group/btn inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-[#F5B301] px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-bold text-[#13233F] shadow-md shadow-[#F5B301]/30 transition-all duration-300 hover:scale-105 hover:bg-white sm:text-[13px]"
+                className="group/btn inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-[#3EA96E] px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-bold text-[#0F3327] shadow-md shadow-[#3EA96E]/30 transition-all duration-300 hover:scale-105 hover:bg-white sm:text-[13px]"
               >
                 {t.primaryCta}
                 <span
@@ -219,7 +219,7 @@ export default function CtaSection() {
               {/* Secondary CTA */}
               <Link
                 href="/services"
-                className="group/btn2 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-white/25 bg-white/5 px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-bold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#F5B301] hover:bg-[#F5B301]/10 sm:text-[13px]"
+                className="group/btn2 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-white/25 bg-white/5 px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-bold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#3EA96E] hover:bg-[#3EA96E]/10 sm:text-[13px]"
               >
                 {t.secondaryCta}
                 <span

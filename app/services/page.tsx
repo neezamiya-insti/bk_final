@@ -8,7 +8,7 @@ function page() {
     <div>
       <ServicesHero/>
       <ServicesShowcaseSection/>
-      <CtaSection/>
+     
     </div>
   )
 }

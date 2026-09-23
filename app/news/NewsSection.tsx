@@ -199,7 +199,7 @@ function CalendarIcon() {
       viewBox="0 0 24 24"
       className="h-3.5 w-3.5 shrink-0"
       fill="none"
-      stroke="#F5B301"
+      stroke="#3EA96E"
       strokeWidth="1.8"
     >
       <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -293,8 +293,8 @@ function NewsRow({
           priority={index < 2}
         />
 
-        {/* Gold corner accent */}
-        <span className="absolute top-0 h-1 w-20 rounded-br-full bg-[#F5B301] ltr:left-0 rtl:right-0" />
+        {/* Green corner accent */}
+        <span className="absolute top-0 h-1 w-20 rounded-br-full bg-[#3EA96E] ltr:left-0 rtl:right-0" />
       </div>
 
       {/* Content */}
@@ -313,13 +313,13 @@ function NewsRow({
         </div>
 
         {/* Title */}
-        <h3 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold leading-snug text-[#13233F] transition-colors duration-300 group-hover/row:text-[#C0272D] sm:text-xl md:text-2xl">
+        <h3 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold leading-snug text-[#0F3327] transition-colors duration-300 group-hover/row:text-[#3EA96E] sm:text-xl md:text-2xl">
           {title}
         </h3>
 
-        {/* Gold divider */}
+        {/* Green divider */}
         <div
-          className={`my-3 h-[2px] w-12 rounded-full bg-[#F5B301] transition-all duration-500 group-hover/row:w-20 ${
+          className={`my-3 h-[2px] w-12 rounded-full bg-[#3EA96E] transition-all duration-500 group-hover/row:w-20 ${
             isAr ? "ml-auto mr-0" : "ml-0 mr-auto"
           }`}
         />
@@ -338,7 +338,7 @@ function NewsRow({
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
           className={[
-            "mt-4 inline-flex cursor-pointer items-center gap-1.5 font-[family-name:var(--font-poppins)] text-[12px] font-semibold text-[#F5B301] transition-colors duration-300 hover:text-[#C0272D] sm:text-[12.5px]",
+            "mt-4 inline-flex cursor-pointer items-center gap-1.5 font-[family-name:var(--font-poppins)] text-[12px] font-semibold text-[#3EA96E] transition-colors duration-300 hover:text-[#0F3327] sm:text-[12.5px]",
             isAr ? "self-end flex-row-reverse" : "self-start",
           ].join(" ")}
         >
@@ -416,10 +416,10 @@ export default function NewsSection() {
             headingInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
           ].join(" ")}
         >
-          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#13233F] sm:text-3xl md:text-4xl">
+          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-3xl md:text-4xl">
             {t.heading}
           </h2>
-          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#F5B301] sm:w-20" />
+          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:w-20" />
           <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-poppins)] text-[13px] font-light leading-relaxed text-[#5C5C5C] sm:text-[14px] md:text-[15px]">
             {t.subheading}
           </p>
@@ -449,7 +449,7 @@ export default function NewsSection() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t.searchPlaceholder}
-            className={`w-full cursor-text rounded-full border border-[#13233F]/15 bg-white py-3.5 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-[#13233F] placeholder:text-[#5C5C5C]/60 shadow-sm outline-none transition-all duration-300 focus:border-[#F5B301] focus:ring-2 focus:ring-[#F5B301]/30 focus:shadow-md sm:text-[14px] ${
+            className={`w-full cursor-text rounded-full border border-[#0F3327]/15 bg-white py-3.5 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-[#0F3327] placeholder:text-[#5C5C5C]/60 shadow-sm outline-none transition-all duration-300 focus:border-[#3EA96E] focus:ring-2 focus:ring-[#3EA96E]/30 focus:shadow-md sm:text-[14px] ${
               isAr ? "pr-11 pl-4" : "pl-11 pr-4"
             }`}
           />
@@ -470,7 +470,7 @@ export default function NewsSection() {
             ))}
           </div>
         ) : (
-          <div className="rounded-3xl border border-[#13233F]/10 bg-[#F5F7FA] py-16 text-center">
+          <div className="rounded-3xl border border-[#0F3327]/10 bg-[#F4FAF7] py-16 text-center">
             <p className="font-[family-name:var(--font-poppins)] text-[14px] font-light text-[#5C5C5C] sm:text-[15px]">
               {t.noResults}
             </p>

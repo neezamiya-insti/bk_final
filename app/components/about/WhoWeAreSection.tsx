@@ -18,8 +18,7 @@ const poppins = Poppins({
 });
 
 const EXPLORE_URL = "https://bk.com.sa/boyut-al-kawthar-services/";
-const ABOUT_IMAGE = "/about/about1.png";
-// Subtle decorative background image behind the whole section.
+const ABOUT_IMAGE = "/about/why1.png";
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1759272840712-c7e5ea852367?fm=jpg&q=80&w=2400&auto=format&fit=crop";
 
@@ -70,7 +69,6 @@ function readStoredLang(): LangCode {
   return "EN";
 }
 
-/** Reveals an element once it scrolls into view; fires only the first time. */
 function useInView<T extends HTMLElement>(threshold = 0.25) {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
@@ -148,7 +146,7 @@ export default function WhoWeAreSection() {
         {/* Two-column content */}
         <div
           dir="ltr"
-          className="grid translate-y-4 grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-[1.18fr_0.82fr] lg:gap-12"
+          className="grid translate-y-4 grid-cols-1 items-center gap-12 sm:gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20"
         >
           {/* Text column */}
           <div
@@ -163,21 +161,22 @@ export default function WhoWeAreSection() {
             <div
               ref={badgeRef}
               className={[
-                "inline-flex items-center gap-2 rounded-full bg-[#13233F]/5 px-3.5 py-1.5",
+                "inline-flex items-center gap-2 rounded-full bg-[#1B4D3E]/8 px-3.5 py-1.5",
                 "transition-all duration-700 ease-out",
                 badgeInView ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
               ].join(" ")}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#F5B301]" />
-              <span className="font-[family-name:var(--font-poppins)] text-[11px] font-semibold uppercase tracking-wide text-[#13233F] sm:text-[12px]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#3EA96E]" />
+              <span className="font-[family-name:var(--font-poppins)] text-[11px] font-semibold uppercase tracking-wide text-[#1B4D3E] sm:text-[12px]">
                 {t.topHeading}
               </span>
             </div>
 
+            {/* Heading — only "Who we are" removed; rest of heading intact */}
             <h3
               ref={leftBlockRef}
               className={[
-                "mt-4 font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.2] text-[#13233F] sm:mt-5 sm:text-3xl md:text-4xl",
+                "mt-6 font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.2] text-[#3EA96E] sm:mt-7 sm:text-3xl md:text-4xl",
                 "transition-all duration-700 ease-out",
                 leftBlockInView
                   ? "translate-x-0 opacity-100"
@@ -196,8 +195,9 @@ export default function WhoWeAreSection() {
                 bottomBlockInView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
               ].join(" ")}
             >
+              {/* Checklist — extra top space */}
               <ul
-                className="mt-6 grid grid-cols-1 gap-2.5 sm:mt-7 sm:grid-cols-2 sm:gap-3 md:gap-4"
+                className="mt-10 grid grid-cols-1 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-4 md:gap-5"
                 aria-label={
                   isAr ? "خدماتنا" : langCode === "FR" ? "Nos capacités" : "Our capabilities"
                 }
@@ -205,9 +205,9 @@ export default function WhoWeAreSection() {
                 {t.checklist.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-2 font-[family-name:var(--font-poppins)] text-[12px] font-medium leading-snug text-[#13233F] sm:text-[13px]"
+                    className="flex items-start gap-2 font-[family-name:var(--font-poppins)] text-[12px] font-medium leading-snug text-[#1A1A1A] sm:text-[13px]"
                   >
-                    <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[10px] font-bold text-[#13233F] sm:h-5 sm:w-5 sm:text-xs">
+                    <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#3EA96E] text-[10px] font-bold text-white sm:h-5 sm:w-5 sm:text-xs">
                       ✓
                     </span>
                     <span>{item}</span>
@@ -215,10 +215,11 @@ export default function WhoWeAreSection() {
                 ))}
               </ul>
 
-              <p className="mt-5 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-[#5C5C5C] sm:mt-6 sm:text-[14px] md:text-[15px]">
+              {/* Paragraphs — extra spacing between them */}
+              <p className="mt-10 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-[#1A1A1A] sm:mt-12 sm:text-[14px] md:text-[15px]">
                 {t.paragraph1}
               </p>
-              <p className="mt-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-[#5C5C5C] sm:mt-4 sm:text-[14px] md:text-[15px]">
+              <p className="mt-6 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-[#6B6B6B] sm:mt-7 sm:text-[14px] md:text-[15px]">
                 {t.paragraph2}
               </p>
 
@@ -226,7 +227,7 @@ export default function WhoWeAreSection() {
                 href={EXPLORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/btn mt-6 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#13233F] px-5 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-white transition-colors duration-300 hover:bg-[#C0272D] sm:mt-8 sm:px-6 sm:text-[13.5px] md:mt-10"
+                className="group/btn mt-10 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#2E7D5B] px-5 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-white transition-colors duration-300 hover:bg-[#255F47] sm:mt-12 sm:px-6 sm:text-[13.5px] md:mt-14"
               >
                 {t.cta}
                 <span
@@ -240,11 +241,11 @@ export default function WhoWeAreSection() {
             </div>
           </div>
 
-          {/* Image column */}
+          {/* Image column — slightly smaller */}
           <div
             ref={imageBlockRef}
             className={[
-              "order-1 relative w-full cursor-pointer overflow-hidden rounded-[1.5rem] mt-8 sm:rounded-[2rem]",
+              "order-1 relative mx-auto w-full max-w-[420px] cursor-pointer overflow-hidden rounded-[1.5rem] mt-8 sm:max-w-[460px] sm:rounded-[2rem] lg:max-w-[440px]",
               "aspect-[4/3] sm:aspect-[16/10] md:aspect-[3/2] lg:aspect-[4/5]",
               isAr ? "lg:order-1" : "lg:order-2",
               "transition-all duration-700 ease-out",
@@ -259,7 +260,7 @@ export default function WhoWeAreSection() {
               src={ABOUT_IMAGE}
               alt="Boyut Al-Kawthar — who we are"
               fill
-              sizes="(min-width: 1024px) 45vw, (min-width: 640px) 90vw, 100vw"
+              sizes="(min-width: 1024px) 40vw, (min-width: 640px) 80vw, 100vw"
               quality={85}
               className="object-cover object-center transition-transform duration-700 ease-out hover:scale-105"
             />

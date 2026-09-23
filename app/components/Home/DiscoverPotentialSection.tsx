@@ -21,7 +21,7 @@ type LangCode = "EN" | "AR" | "FR";
 
 const CONTAINER_WIDTH = 1081;
 const CONTAINER_HEIGHT = 721;
-const BACKGROUND_IMAGE = "/about/back2.png";
+const BACKGROUND_IMAGE = "/about/backr.png";
 
 // md breakpoint (768px) / 1081 => niche wala scale mobile mana jayega
 const MOBILE_SCALE_BREAKPOINT = 768 / CONTAINER_WIDTH;
@@ -46,8 +46,6 @@ const TEXT = {
     stat4Label: "TRADE BALANCE",
     stat4Year: "2023",
     stat4Desc: "A strong trade surplus that powers the Kingdom's economic growth.",
-    paragraph:
-      "Imagine your brand, worldwide! We, at Boyout Al Kawthar, don't just offer expertise and connections; we open doors. Partner with us, and we'll build you a custom roadmap to conquer new markets.",
   },
   AR: {
     badge: "اكتشف إمكاناتك معنا",
@@ -68,8 +66,6 @@ const TEXT = {
     stat4Label: "الميزان التجاري",
     stat4Year: "2023",
     stat4Desc: "فائض تجاري قوي يعزز النمو الاقتصادي للمملكة.",
-    paragraph:
-      "تخيل علامتك التجارية حول العالم! نحن في بيوت الكوثر لا نقدم الخبرة والاتصالات فحسب، بل نفتح الأبواب. كن شريكًا لنا، وسنبني لك خارطة طريق مخصصة لفتح أسواق جديدة.",
   },
   FR: {
     badge: "Découvrez votre potentiel avec nous",
@@ -90,8 +86,6 @@ const TEXT = {
     stat4Label: "BALANCE COMMERCIALE",
     stat4Year: "2023",
     stat4Desc: "Un excédent commercial solide qui alimente la croissance économique du Royaume.",
-    paragraph:
-      "Imaginez votre marque à l'échelle mondiale ! Nous ouvrons des portes et construisons pour vous une feuille de route personnalisée pour conquérir de nouveaux marchés.",
   },
 } as const;
 
@@ -198,9 +192,9 @@ export default function DiscoverPotentialSection() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-[#13233F]`}
+      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-[#1B4D3E]`}
     >
-      {/* Background image — /about/back2.png (no overlay, image has its own) */}
+      {/* Background image — /about/backr.png */}
       <Image
         src={BACKGROUND_IMAGE}
         alt=""
@@ -210,6 +204,7 @@ export default function DiscoverPotentialSection() {
         className="object-cover object-center"
         priority
       />
+      {/* Overlay removed — background image shown as-is */}
 
       <div
         ref={wrapperRef}
@@ -225,7 +220,7 @@ export default function DiscoverPotentialSection() {
             transformOrigin: "top left",
           }}
         >
-          {/* Badge — gold (mobile pe chhota) */}
+          {/* Badge (mobile pe chhota) */}
           <div
             className={`absolute left-0 right-0 top-[34px] text-center transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-[300px]"
@@ -233,7 +228,7 @@ export default function DiscoverPotentialSection() {
             style={{ transitionDelay: "0ms" }}
           >
             <p
-              className="text-center font-[family-name:var(--font-poppins)] font-bold text-[#F5B301]"
+              className="text-center font-[family-name:var(--font-poppins)] font-bold text-[#3EA96E]"
               style={{
                 transform: `scale(${textScale})`,
                 transformOrigin: "top center",
@@ -266,33 +261,17 @@ export default function DiscoverPotentialSection() {
             </h1>
           </div>
 
-          {/* Underline — gold (desktop only) */}
+          {/* Underline (desktop only) */}
           {!isMobile && (
             <div
-              className={`absolute left-1/2 top-[130px] h-[2px] w-[150px] -translate-x-1/2 bg-[#F5B301] transition-all duration-1000 ease-out ${
+              className={`absolute left-1/2 top-[130px] h-[2px] w-[150px] -translate-x-1/2 bg-[#3EA96E] transition-all duration-1000 ease-out ${
                 isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
               }`}
               style={{ transitionDelay: "250ms" }}
             />
           )}
 
-          {/* Description paragraph — WHITE (desktop only, mobile version niche flow me hai) */}
-          {!isMobile && (
-            <div
-              className={`absolute left-1/2 top-[150px] -translate-x-1/2 text-center transition-all duration-1000 ease-out ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[100px]"
-              }`}
-              style={{ transitionDelay: "300ms" }}
-            >
-              <div style={{ transform: `scale(${textScale})`, transformOrigin: "top center" }}>
-                <p className="mx-auto max-w-[600px] font-[family-name:var(--font-poppins)] text-[14px] font-light leading-relaxed text-white">
-                  {t.paragraph}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* Arc connectors — gold */}
+          {/* Arc connectors */}
           <svg
             className="absolute left-0 top-0"
             width="1081"
@@ -301,48 +280,29 @@ export default function DiscoverPotentialSection() {
           >
             <path
               d="M342,330 C342,255 460,225 533,225 C606,225 724,255 724,330"
-              stroke="#F5B301"
+              stroke="#3EA96E"
               strokeWidth={isMobile ? "8" : "6"}
               fill="none"
             />
             <path
               d="M320,352 C280,360 285,420 283,494"
-              stroke="#F5B301"
+              stroke="#3EA96E"
               strokeWidth={isMobile ? "5" : "3.4"}
               fill="none"
               strokeLinecap="round"
             />
             <path
               d="M746,352 C786,360 790,420 786,494"
-              stroke="#F5B301"
+              stroke="#3EA96E"
               strokeWidth={isMobile ? "5" : "3.4"}
               fill="none"
               strokeLinecap="round"
             />
           </svg>
 
-          {/* Node 1 - Center Top */}
-          <div
-            className={`absolute left-[500px] top-[220px] flex items-center justify-center rounded-full border-[#F5B301] bg-[#0E1A30] shadow-lg transition-all duration-1000 ease-out ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
-            }`}
-            style={{
-              transitionDelay: "400ms",
-              width: isMobile ? "80px" : "66px",
-              height: isMobile ? "80px" : "66px",
-              borderWidth: isMobile ? "2.5px" : "1.5px",
-            }}
-          >
-            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#F5B301" strokeWidth={isMobile ? "2" : "1.6"} strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M3 12h18" />
-              <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z" />
-            </svg>
-          </div>
-
           {/* Node 2 - Left Top */}
           <div
-            className={`absolute left-[309px] top-[320px] flex items-center justify-center rounded-full border-[#F5B301] bg-[#0E1A30] shadow-lg transition-all duration-1000 ease-out ${
+            className={`absolute left-[309px] top-[320px] flex items-center justify-center rounded-full border-[#3EA96E] bg-[#0F3327] shadow-lg transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
             }`}
             style={{
@@ -352,7 +312,7 @@ export default function DiscoverPotentialSection() {
               borderWidth: isMobile ? "2.5px" : "1.5px",
             }}
           >
-            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#F5B301" strokeWidth={isMobile ? "2" : "1.6"} strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#3EA96E" strokeWidth={isMobile ? "2" : "1.6"} strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 21h18" />
               <path d="M5 21V8l7-5 7 5v13" />
               <path d="M9 21v-6h6v6" />
@@ -361,7 +321,7 @@ export default function DiscoverPotentialSection() {
 
           {/* Node 3 - Right Top */}
           <div
-            className={`absolute left-[693px] top-[320px] flex items-center justify-center rounded-full border-[#F5B301] bg-[#0E1A30] shadow-lg transition-all duration-1000 ease-out ${
+            className={`absolute left-[693px] top-[320px] flex items-center justify-center rounded-full border-[#3EA96E] bg-[#0F3327] shadow-lg transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
             }`}
             style={{
@@ -371,7 +331,7 @@ export default function DiscoverPotentialSection() {
               borderWidth: isMobile ? "2.5px" : "1.5px",
             }}
           >
-            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#F5B301" strokeWidth={isMobile ? "2" : "1.6"} strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#3EA96E" strokeWidth={isMobile ? "2" : "1.6"} strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 17l6-6 4 4 8-8" />
               <path d="M14 7h7v7" />
             </svg>
@@ -379,7 +339,7 @@ export default function DiscoverPotentialSection() {
 
           {/* Node 4 - Left Bottom */}
           <div
-            className={`absolute left-[250px] top-[490px] flex items-center justify-center rounded-full border-[#F5B301] bg-[#0E1A30] shadow-lg transition-all duration-1000 ease-out ${
+            className={`absolute left-[250px] top-[490px] flex items-center justify-center rounded-full border-[#3EA96E] bg-[#0F3327] shadow-lg transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
             }`}
             style={{
@@ -389,7 +349,7 @@ export default function DiscoverPotentialSection() {
               borderWidth: isMobile ? "2.5px" : "1.5px",
             }}
           >
-            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#F5B301" strokeWidth={isMobile ? "2" : "1.7"} strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#3EA96E" strokeWidth={isMobile ? "2" : "1.7"} strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
               <path d="M3.3 7l8.7 5 8.7-5" />
               <path d="M12 22V12" />
@@ -398,7 +358,7 @@ export default function DiscoverPotentialSection() {
 
           {/* Node 5 - Right Bottom */}
           <div
-            className={`absolute left-[753px] top-[490px] flex items-center justify-center rounded-full border-[#F5B301] bg-[#0E1A30] shadow-lg transition-all duration-1000 ease-out ${
+            className={`absolute left-[753px] top-[490px] flex items-center justify-center rounded-full border-[#3EA96E] bg-[#0F3327] shadow-lg transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
             }`}
             style={{
@@ -408,7 +368,7 @@ export default function DiscoverPotentialSection() {
               borderWidth: isMobile ? "2.5px" : "1.5px",
             }}
           >
-            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#F5B301" strokeWidth={isMobile ? "2" : "1.6"} strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className={isMobile ? "h-9 w-9" : "h-7 w-7"} fill="none" stroke="#3EA96E" strokeWidth={isMobile ? "2" : "1.6"} strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2.5l2.9 6.3 6.9.7-5.2 4.6 1.6 6.7L12 17.6 5.8 20.8l1.6-6.7-5.2-4.6 6.9-.7L12 2.5z" />
             </svg>
           </div>
@@ -424,16 +384,16 @@ export default function DiscoverPotentialSection() {
                 style={{ transitionDelay: "350ms" }}
               >
                 <div style={{ transform: `scale(${textScale})`, transformOrigin: "top right" }}>
-                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#F5B301]">
+                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#3EA96E]">
                     {t.stat1Value}
                   </div>
                   <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[14.5px] font-bold leading-tight tracking-wide text-white">
                     {t.stat1Label}
                     <br />
-                    <span className="text-[12px] font-medium text-[#F5B301]">{t.stat1Year}</span>
+                    <span className="text-[12px] font-medium text-[#3EA96E]">{t.stat1Year}</span>
                   </div>
                 </div>
-                <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#F5B301]" />
+                <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#3EA96E]" />
                 <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70">
                   {t.stat1Desc}
                 </p>
@@ -447,16 +407,16 @@ export default function DiscoverPotentialSection() {
                 style={{ transitionDelay: "400ms" }}
               >
                 <div style={{ transform: `scale(${textScale})`, transformOrigin: "top left" }}>
-                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#F5B301]">
+                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#3EA96E]">
                     {t.stat2Value}
                   </div>
                   <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[14.5px] font-bold leading-tight tracking-wide text-white">
                     {t.stat2Label}
                     <br />
-                    <span className="text-[12px] font-medium text-[#F5B301]">{t.stat2Year}</span>
+                    <span className="text-[12px] font-medium text-[#3EA96E]">{t.stat2Year}</span>
                   </div>
                 </div>
-                <div className="my-2.5 h-[2px] w-[34px] bg-[#F5B301]" />
+                <div className="my-2.5 h-[2px] w-[34px] bg-[#3EA96E]" />
                 <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70">
                   {t.stat2Desc}
                 </p>
@@ -470,16 +430,16 @@ export default function DiscoverPotentialSection() {
                 style={{ transitionDelay: "550ms" }}
               >
                 <div style={{ transform: `scale(${textScale})`, transformOrigin: "top left" }}>
-                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#F5B301]">
+                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#3EA96E]">
                     {t.stat3Value}
                   </div>
                   <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[14.5px] font-bold leading-tight tracking-wide text-white">
                     {t.stat3Label}
                     <br />
-                    <span className="text-[12px] font-medium text-[#F5B301]">{t.stat3Year}</span>
+                    <span className="text-[12px] font-medium text-[#3EA96E]">{t.stat3Year}</span>
                   </div>
                 </div>
-                <div className="my-2.5 h-[2px] w-[34px] bg-[#F5B301]" />
+                <div className="my-2.5 h-[2px] w-[34px] bg-[#3EA96E]" />
                 <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70">
                   {t.stat3Desc}
                 </p>
@@ -493,16 +453,16 @@ export default function DiscoverPotentialSection() {
                 style={{ transitionDelay: "500ms" }}
               >
                 <div style={{ transform: `scale(${textScale})`, transformOrigin: "top right" }}>
-                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#F5B301]">
+                  <div className="font-[family-name:var(--font-playfair)] text-[29px] font-extrabold leading-none text-[#3EA96E]">
                     {t.stat4Value}
                   </div>
                   <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[14.5px] font-bold leading-tight tracking-wide text-white">
                     {t.stat4Label}
                     <br />
-                    <span className="text-[12px] font-medium text-[#F5B301]">{t.stat4Year}</span>
+                    <span className="text-[12px] font-medium text-[#3EA96E]">{t.stat4Year}</span>
                   </div>
                 </div>
-                <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#F5B301]" />
+                <div className="my-2.5 ml-auto h-[2px] w-[34px] bg-[#3EA96E]" />
                 <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/70">
                   {t.stat4Desc}
                 </p>
@@ -517,7 +477,7 @@ export default function DiscoverPotentialSection() {
             }`}
             style={{ transitionDelay: "450ms" }}
           >
-            <div className="absolute bottom-0 left-0 h-full w-full cursor-pointer overflow-hidden rounded-full border-4 border-[#F5B301] bg-[#13233F] shadow-xl shadow-[#F5B301]/20 transition-all duration-500 ease-out group-hover/logo:scale-105 group-hover/logo:shadow-2xl group-hover/logo:shadow-[#F5B301]/40">
+            <div className="absolute bottom-0 left-0 h-full w-full cursor-pointer overflow-hidden rounded-full border-4 border-[#3EA96E] bg-[#1B4D3E] shadow-xl shadow-[#3EA96E]/20 transition-all duration-500 ease-out group-hover/logo:scale-105 group-hover/logo:shadow-2xl group-hover/logo:shadow-[#3EA96E]/40">
               <Image
                 src="/logo-Boyot-1.png"
                 alt="Boyut Al Kawthar"
@@ -530,18 +490,9 @@ export default function DiscoverPotentialSection() {
         </div>
       </div>
 
-      {/* ===== MOBILE: paragraph + stats normal flow me (no scaling, no overlap) ===== */}
+      {/* ===== MOBILE: stats normal flow me (no scaling, no overlap) ===== */}
       {isMobile && (
         <div className="relative z-10 mx-auto w-full max-w-[1081px] px-5 pb-12 pt-4">
-          <p
-            className={`mx-auto mb-7 max-w-[520px] text-center font-[family-name:var(--font-poppins)] text-[12px] font-light leading-relaxed text-white/85 transition-all duration-1000 ease-out ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[40px]"
-            }`}
-            style={{ transitionDelay: "300ms" }}
-          >
-            {t.paragraph}
-          </p>
-
           <div className="grid grid-cols-2 gap-x-5 gap-y-7">
             {mobileStats.map((s, i) => (
               <div
@@ -551,17 +502,17 @@ export default function DiscoverPotentialSection() {
                 }`}
                 style={{ transitionDelay: `${350 + i * 100}ms` }}
               >
-                <div className="font-[family-name:var(--font-playfair)] text-[19px] font-extrabold leading-none text-[#F5B301]">
+                <div className="font-[family-name:var(--font-playfair)] text-[19px] font-extrabold leading-none text-[#3EA96E]">
                   {s.value}
                 </div>
                 <div className="mt-1.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-bold leading-tight tracking-wide text-white">
                   {s.label}
                 </div>
-                <div className="mt-0.5 font-[family-name:var(--font-poppins)] text-[9.5px] font-medium text-[#F5B301]">
+                <div className="mt-0.5 font-[family-name:var(--font-poppins)] text-[9.5px] font-medium text-[#3EA96E]">
                   {s.year}
                 </div>
                 <div
-                  className={`my-2 h-[2px] w-[28px] bg-[#F5B301] ${isAr ? "ml-auto" : ""}`}
+                  className={`my-2 h-[2px] w-[28px] bg-[#3EA96E] ${isAr ? "ml-auto" : ""}`}
                 />
                 <p className="font-[family-name:var(--font-poppins)] text-[10.5px] font-light leading-relaxed text-white/70">
                   {s.desc}

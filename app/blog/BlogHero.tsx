@@ -113,9 +113,9 @@ export default function BlogHero() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative flex min-h-[460px] w-full items-center justify-center overflow-hidden bg-[#13233F] sm:min-h-[520px] lg:min-h-[580px]`}
+      className={`${playfair.variable} ${poppins.variable} relative flex min-h-[460px] w-full items-center justify-center overflow-hidden bg-[#0F3327] sm:min-h-[520px] lg:min-h-[580px]`}
     >
-      {/* Background image — image has its own overlay */}
+      {/* Background image */}
       <Image
         src={BACKGROUND_IMAGE}
         alt=""
@@ -125,6 +125,9 @@ export default function BlogHero() {
         className="object-cover object-center"
         priority
       />
+
+      {/* Green tint overlay — same as NewsHero (40%) */}
+      <div className="absolute inset-0 bg-[#0F3327]/40" aria-hidden="true" />
 
       {/* Content — centered */}
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-5 py-14 text-center sm:px-6 sm:py-16 lg:px-10 lg:py-20">
@@ -136,7 +139,7 @@ export default function BlogHero() {
           ].join(" ")}
           style={{ transitionDelay: "0ms" }}
         >
-          <p className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[5px] text-[#F5B301] sm:text-[11.5px] sm:tracking-[7px]">
+          <p className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[5px] text-[#3EA96E] drop-shadow-md sm:text-[11.5px] sm:tracking-[7px]">
             {t.brand}
           </p>
         </div>
@@ -145,7 +148,7 @@ export default function BlogHero() {
         <h1
           className={[
             "font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.18] text-white sm:text-3xl md:text-4xl",
-            "transition-all duration-1000 ease-out",
+            "transition-all duration-1000 ease-out drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]",
             isVisible
               ? "translate-x-0 opacity-100"
               : isAr
@@ -157,10 +160,10 @@ export default function BlogHero() {
           {t.heading}
         </h1>
 
-        {/* Gold accent bar */}
+        {/* Green accent bar */}
         <span
           className={[
-            "mt-3.5 block h-1 w-14 rounded-full bg-[#F5B301] transition-all duration-1000 ease-out sm:mt-4 sm:w-16",
+            "mt-3.5 block h-1 w-14 rounded-full bg-[#3EA96E] shadow-lg shadow-black/40 transition-all duration-1000 ease-out sm:mt-4 sm:w-16",
             isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
           ].join(" ")}
           style={{ transitionDelay: "350ms" }}
@@ -169,8 +172,8 @@ export default function BlogHero() {
         {/* Description — slides from RIGHT */}
         <p
           className={[
-            "mx-auto mt-4 max-w-xl font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/85 sm:mt-5 sm:text-[13.5px] md:text-[14px]",
-            "transition-all duration-1000 ease-out",
+            "mx-auto mt-4 max-w-xl font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white sm:mt-5 sm:text-[13.5px] md:text-[14px]",
+            "transition-all duration-1000 ease-out drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]",
             isVisible
               ? "translate-x-0 opacity-100"
               : isAr
@@ -187,19 +190,19 @@ export default function BlogHero() {
           aria-label="Breadcrumb"
           className={[
             "mt-6 flex items-center gap-2 font-[family-name:var(--font-poppins)] text-[11.5px] font-medium sm:mt-7 sm:text-[12.5px]",
-            "transition-all duration-1000 ease-out",
+            "transition-all duration-1000 ease-out drop-shadow-md",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           ].join(" ")}
           style={{ transitionDelay: "650ms" }}
         >
           <Link
             href="/"
-            className="cursor-pointer text-white/70 transition-colors duration-300 hover:text-[#F5B301]"
+            className="cursor-pointer text-white/80 transition-colors duration-300 hover:text-[#3EA96E]"
           >
             {t.breadcrumbHome}
           </Link>
-          <span className="text-[#F5B301]">{isAr ? "←" : "→"}</span>
-          <span className="text-[#F5B301]">{t.breadcrumbCurrent}</span>
+          <span className="text-[#3EA96E]">{isAr ? "←" : "→"}</span>
+          <span className="text-[#3EA96E]">{t.breadcrumbCurrent}</span>
         </nav>
       </div>
     </section>

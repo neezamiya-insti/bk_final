@@ -74,7 +74,7 @@ function readStoredLang(): LangCode {
 
 export default function Partners() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
 
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
 
@@ -133,27 +133,27 @@ export default function Partners() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white py-10 sm:py-16`}
+      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white `}
     >
       {/* Heading with Description */}
       <motion.div
         className="relative z-[1] mx-auto max-w-3xl px-5 text-center"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: false, amount: 0.1 }}
         variants={staggerContainer}
       >
         <motion.h2
           variants={fadeInUp}
-          className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#13233F] sm:text-4xl"
+          className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-4xl"
         >
           {t.heading}
         </motion.h2>
 
-        {/* Gold accent bar */}
+        {/* Accent bar */}
         <motion.span
           variants={fadeInUp}
-          className="mx-auto mt-3 block h-1 w-16 rounded-full bg-[#F5B301] sm:mt-4 sm:w-20"
+          className="mx-auto mt-3 block h-1 w-16 rounded-full bg-[#3EA96E] sm:mt-4 sm:w-20"
         />
 
         <motion.p
@@ -180,7 +180,7 @@ export default function Partners() {
                 {PARTNER_IMAGES.map((src, idx) => (
                   <div
                     key={`${rep}-${idx}`}
-                    className="flex h-24 w-44 shrink-0 items-center justify-center rounded-[18px] border border-[#13233F]/10 bg-white/70 px-5 py-4 shadow-sm shadow-[#13233F]/5"
+                    className="flex h-24 w-44 shrink-0 items-center justify-center rounded-[18px] border border-[#1B4D3E]/10 bg-white/70 px-5 py-4 shadow-sm shadow-[#1B4D3E]/5"
                   >
                     <Image
                       src={src}
