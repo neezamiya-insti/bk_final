@@ -194,7 +194,7 @@ function CalendarIcon() {
       viewBox="0 0 24 24"
       className="h-4 w-4 shrink-0"
       fill="none"
-      stroke="#3EA96E"
+      stroke="#F5B301"
       strokeWidth="1.8"
     >
       <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -296,7 +296,7 @@ export default function ScrollParallaxGallery() {
     return (
       <article
         key={`${rowKey}-${i}`}
-        className="group/card shrink-0 cursor-pointer overflow-hidden rounded-3xl border border-[#0F3327]/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+        className="group/card shrink-0 cursor-pointer overflow-hidden rounded-3xl border border-[#2C7046]/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#F5B301]/50 hover:shadow-lg hover:shadow-[#2C7046]/10"
         style={{ width: `${CARD_WIDTH}px` }}
       >
         {/* Image */}
@@ -314,12 +314,12 @@ export default function ScrollParallaxGallery() {
         {/* Content */}
         <div className="p-4">
           {/* Title */}
-          <h3 className="line-clamp-2 font-[family-name:var(--font-playfair)] text-[14px] font-extrabold leading-snug text-[#0F3327] sm:text-[15px]">
+          <h3 className="line-clamp-2 font-[family-name:var(--font-playfair)] text-[14px] font-extrabold leading-snug text-[#2C7046] sm:text-[15px]">
             {title}
           </h3>
 
-          {/* Green divider */}
-          <div className="my-2 h-[2px] w-8 rounded-full bg-[#3EA96E]" />
+          {/* Gold divider */}
+          <div className="my-2 h-[2px] w-8 rounded-full bg-[#F5B301] transition-all duration-500 group-hover/card:w-12" />
 
           {/* Description */}
           <p
@@ -339,7 +339,7 @@ export default function ScrollParallaxGallery() {
             <button
               type="button"
               onClick={() => toggleExpand(contentKey)}
-              className="cursor-pointer font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold text-[#3EA96E] underline underline-offset-2 transition-colors duration-300 hover:text-[#0F3327] sm:text-[12px]"
+              className="cursor-pointer font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold text-[#2C7046] underline underline-offset-2 transition-colors duration-300 hover:text-[#F5B301] sm:text-[12px]"
             >
               {isOpen ? t.showLess : t.readMore}
             </button>
@@ -352,14 +352,14 @@ export default function ScrollParallaxGallery() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full overflow-hidden py-10 bg-white `}
+      className={`${playfair.variable} ${poppins.variable} w-full overflow-hidden pb-10 -mt-10 bg-white `}
     >
-      {/* Heading — BRIGHT GREEN */}
+      {/* Heading — GREEN with gold underline */}
       <div className="mb-8 text-center md:mb-10">
-        <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-4xl">
+        <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#2C7046] sm:text-4xl">
           {t.heading}
         </h2>
-        <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:w-20" />
+        <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#F5B301] sm:w-20" />
       </div>
 
       {/* Top row — always LTR for consistent scroll direction */}
@@ -380,13 +380,13 @@ export default function ScrollParallaxGallery() {
       <div className="mt-9 flex flex-wrap items-center justify-center gap-4 px-4 md:mt-10">
         <Link
           href="/news"
-          className="cursor-pointer rounded-full bg-[#0F3327] px-7 py-2.5 font-[family-name:var(--font-poppins)] text-[13px] font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#3EA96E] hover:shadow-lg sm:text-[14px]"
+          className="cursor-pointer rounded-full bg-[#2C7046] px-7 py-2.5 font-[family-name:var(--font-poppins)] text-[13px] font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F5B301] hover:text-[#2C7046] hover:shadow-lg hover:shadow-[#F5B301]/25 sm:text-[14px]"
         >
           {t.newsBtn}
         </Link>
         <Link
           href="/blog"
-          className="cursor-pointer rounded-full border-2 border-[#0F3327] bg-white px-7 py-2.5 font-[family-name:var(--font-poppins)] text-[13px] font-semibold text-[#0F3327] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#3EA96E] hover:bg-[#3EA96E] hover:text-white hover:shadow-lg sm:text-[14px]"
+          className="cursor-pointer rounded-full border-2 border-[#2C7046] bg-white px-7 py-2.5 font-[family-name:var(--font-poppins)] text-[13px] font-semibold text-[#2C7046] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#F5B301] hover:bg-[#F5B301] hover:text-[#2C7046] hover:shadow-lg hover:shadow-[#F5B301]/25 sm:text-[14px]"
         >
           {t.blogBtn}
         </Link>

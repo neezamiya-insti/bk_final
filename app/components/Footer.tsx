@@ -242,7 +242,7 @@ export default function Footer() {
     <footer
       ref={footerRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full bg-[#1B4D3E] text-white`}
+      className={`${playfair.variable} ${poppins.variable} w-full bg-[#0F3327] text-white`}
     >
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 md:px-8 lg:px-10 lg:py-12">
         {/* Top grid */}
@@ -277,7 +277,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     aria-label={social.label}
                     title={social.label}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F5B301] hover:text-[#1B4D3E] sm:h-10 sm:w-10"
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F5B301] hover:text-[#0F3327] sm:h-10 sm:w-10"
                   >
                     <SocialIcon type={social.icon} />
                   </a>
@@ -286,7 +286,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 2 — About (tagline content now here) */}
+          {/* Column 2 — About */}
           <div className="min-w-0">
             <h4 className="font-[family-name:var(--font-playfair)] text-base font-extrabold text-white sm:text-lg">
               {t.aboutTitle}
@@ -344,7 +344,7 @@ export default function Footer() {
                 href={`mailto:${t.emailValue}`}
                 className="group/contact flex items-start gap-3 transition-colors duration-300 hover:text-[#F5B301]"
               >
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[12px] font-bold text-[#1B4D3E]">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[12px] font-bold text-[#0F3327]">
                   ✉
                 </span>
                 <span>
@@ -361,7 +361,7 @@ export default function Footer() {
                 href={`tel:${t.phoneValue}`}
                 className="group/contact flex items-start gap-3 transition-colors duration-300 hover:text-[#F5B301]"
               >
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[12px] font-bold text-[#1B4D3E]">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[12px] font-bold text-[#0F3327]">
                   ☎
                 </span>
                 <span>

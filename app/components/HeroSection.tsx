@@ -20,10 +20,16 @@ const poppins = Poppins({
 const EXPLORE_URL = "https://bk.com.sa/about-boyut-al-kawthar/";
 
 // High-quality free-license background (Unsplash, no attribution required)
-const HERO_IMAGE = '/hero1.png';
+const HERO_IMAGE = '/herof.png';
 
 const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
+
+// 🎨 Theme
+// Primary  (headings / main brand accent): bright green
+// Secondary (badges, borders, ring, hover states): gold
+const PRIMARY = "#398355";
+const SECONDARY = "#F5B301";
 
 const TEXT = {
   EN: {
@@ -71,6 +77,16 @@ function readStoredLang(): LangCode {
   return "EN";
 }
 
+// Badge positions — computed so every circle's CENTER sits exactly on the
+// dashed ring (ring radius = 41% of the aside box, centered at 50/50).
+// Using percentage left/top + -translate-x-1/2 -translate-y-1/2 means this
+// stays correct at any box size, so mobile and desktop both line up.
+const RING_POINTS = {
+  top: { left: "50%", top: "9%" },
+  bottomRight: { left: "85.5%", top: "70.5%" },
+  bottomLeft: { left: "14.5%", top: "70.5%" },
+};
+
 export default function HeroSection() {
   // Drives the "slide in" entrance on first render
   const [mounted, setMounted] = useState(false);
@@ -116,9 +132,13 @@ export default function HeroSection() {
     ].join(" ");
 
   return (
+    // sticky + top-0 + z-0: this pins the hero in place while the next
+    // section (Stats, given a higher z-index) scrolls up and over it,
+    // creating the "cover" effect on scroll. No color blending here —
+    // hero keeps its own independent look, Stats just physically covers it.
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} group relative min-h-screen overflow-hidden`}
+      className={`${playfair.variable} ${poppins.variable} group sticky top-0 z-0 min-h-screen overflow-hidden`}
     >
       {/* Plain CSS (not Tailwind-generated) so the keyframes + hover-pause rule
           are always present in the stylesheet, regardless of JIT scanning. */}
@@ -135,7 +155,7 @@ export default function HeroSection() {
         }
       `}</style>
 
-      {/* Background image — clickable, zooms smoothly on hover */}
+      {/* Background image — clickable, no zoom/scale, just a pointer cursor */}
       <Link
         href={EXPLORE_URL}
         target="_blank"
@@ -150,9 +170,16 @@ export default function HeroSection() {
           priority
           sizes="100vw"
           quality={85}
-          className="scale-110 object-cover transition-transform duration-700 ease-out will-change-transform group-hover:scale-125"
+          className="object-cover"
         />
       </Link>
+
+      {/* Subtle green overlay — same feel as the About hero */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] bg-[#398355]/40"
+        aria-hidden="true"
+      />
+
 
       {/* Content row — text + badge cluster share ONE flex container so they are
           always vertically centered against each other, on every screen size.
@@ -170,7 +197,7 @@ export default function HeroSection() {
         <div className={`max-w-xl shrink-0 lg:max-w-lg xl:max-w-xl ${isAr ? "text-right" : "text-left"}`}>
           <span
             className={[
-              "inline-block translate-y-4 font-[family-name:var(--font-poppins)] text-[12px] font-semibold uppercase tracking-[0.2em] text-[#3EA96E] sm:text-[13px]",
+              "inline-block translate-y-4 font-[family-name:var(--font-poppins)] text-[12px] font-semibold uppercase tracking-[0.2em] text-[#F5B301] sm:text-[13px]",
               slideClass(""),
             ].join(" ")}
           >
@@ -183,7 +210,7 @@ export default function HeroSection() {
               slideClass("delay-150"),
             ].join(" ")}
           >
-            {t.heading} <span className="text-[#3EA96E]">{t.headingHighlight}</span>
+            {t.heading} <span className="text-[#398355]">{t.headingHighlight}</span>
           </h1>
 
           <p
@@ -198,7 +225,7 @@ export default function HeroSection() {
           <div className={["mt-8 sm:mt-9", slideClass("delay-500")].join(" ")}>
             <Link
               href="/about-us"
-              className="group/btn relative z-20 inline-flex items-center gap-2 rounded-full bg-[#3EA96E] px-6 py-3 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white shadow-lg shadow-black/10 transition-colors duration-300 hover:bg-[#C0272D] hover:text-white cursor-pointer sm:px-7 sm:py-3.5 sm:text-[14.5px]"
+              className="group/btn relative z-20 inline-flex items-center gap-2 rounded-full bg-[#398355] px-6 py-3 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white shadow-lg shadow-black/10 transition-colors duration-300 hover:bg-[#F5B301] hover:text-[#0F3327] cursor-pointer sm:px-7 sm:py-3.5 sm:text-[14.5px]"
             >
               {t.cta}
               <span
@@ -213,19 +240,18 @@ export default function HeroSection() {
         </div>
 
         {/* Badge cluster — now a normal flex child, so it's always centered
-            against the text block regardless of screen height/ratio. The
-            dashed ring is slightly larger, and the top "Our Location" badge
-            is pulled further out so it no longer touches the center circle
-            (matching the gap the bottom two badges already had). */}
+            against the text block regardless of screen height/ratio. Every
+            badge's CENTER point sits exactly on the dashed ring (see
+            RING_POINTS above), on mobile and desktop alike. */}
         <aside
           className={[
             "bk-ring-group relative z-10 h-[min(78vw,320px)] w-[min(78vw,320px)] shrink-0 text-center text-white",
             "sm:h-[360px] sm:w-[360px]",
           ].join(" ")}
         >
-          <div className="bk-ring-el absolute inset-[9%] rounded-full border-2 border-dashed border-[#3EA96E]" />
+          <div className="bk-ring-el absolute inset-[9%] rounded-full border-2 border-dashed border-[#F5B301]" />
 
-          <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#3EA96E] bg-[#1B4D3E] p-4 shadow-2xl sm:h-36 sm:w-36 sm:p-5">
+          <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-[#F5B301] bg-[#398355] p-4 shadow-2xl sm:h-36 sm:w-36 sm:p-5">
             <Image
               src="/logo-Boyot-1.png"
               alt="Boyut Al-Kawthar logo"
@@ -235,7 +261,10 @@ export default function HeroSection() {
             />
           </div>
 
-          <div className="absolute left-1/2 -top-6 flex h-28 w-28 -translate-x-1/2 flex-col items-center justify-center rounded-full border-2 border-[#3EA96E] bg-[#1B4D3E]/90 px-3 shadow-xl sm:-top-8 sm:h-32 sm:w-32">
+          <div
+            style={{ left: RING_POINTS.top.left, top: RING_POINTS.top.top }}
+            className="absolute flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-2 border-[#F5B301] bg-[#398355] px-3 shadow-xl sm:h-32 sm:w-32"
+          >
             <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
               {t.ourLocation}
             </span>
@@ -244,12 +273,15 @@ export default function HeroSection() {
             </span>
           </div>
 
-          <div className="absolute bottom-0 left-0 flex h-28 w-28 flex-col items-center justify-center rounded-full border-2 border-[#3EA96E] bg-[#1B4D3E]/90 px-2.5 shadow-xl sm:h-32 sm:w-32">
+          <div
+            style={{ left: RING_POINTS.bottomLeft.left, top: RING_POINTS.bottomLeft.top }}
+            className="absolute flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-2 border-[#F5B301] bg-[#398355] px-2.5 shadow-xl sm:h-32 sm:w-32"
+          >
             <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
               {t.emailUs}
             </span>
             <a
-              className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#3EA96E] sm:mt-2 sm:text-[10px]"
+              className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#F5B301] sm:mt-2 sm:text-[10px]"
               href="mailto:Info@bk.com.sa"
               dir="ltr"
             >
@@ -257,12 +289,15 @@ export default function HeroSection() {
             </a>
           </div>
 
-          <div className="absolute bottom-0 right-0 flex h-28 w-28 flex-col items-center justify-center rounded-full border-2 border-[#3EA96E] bg-[#1B4D3E]/90 px-2.5 shadow-xl sm:h-32 sm:w-32">
+          <div
+            style={{ left: RING_POINTS.bottomRight.left, top: RING_POINTS.bottomRight.top }}
+            className="absolute flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-2 border-[#F5B301] bg-[#398355] px-2.5 shadow-xl sm:h-32 sm:w-32"
+          >
             <span className="font-[family-name:var(--font-poppins)] text-[10px] font-semibold sm:text-[11px]">
               {t.callUs}
             </span>
             <a
-              className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#3EA96E] sm:mt-2 sm:text-[10px]"
+              className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#F5B301] sm:mt-2 sm:text-[10px]"
               href="tel:+966538597719"
               dir="ltr"
             >

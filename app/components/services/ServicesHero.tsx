@@ -113,9 +113,9 @@ export default function ServicesHero() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative flex min-h-[460px] w-full items-center justify-center overflow-hidden bg-[#0F3327] sm:min-h-[520px] lg:min-h-[580px]`}
+      className={`${playfair.variable} ${poppins.variable} relative flex min-h-[460px] w-full items-center justify-center overflow-hidden bg-[#2C7046] sm:min-h-[520px] lg:min-h-[580px]`}
     >
-      {/* Background image — image has its own overlay */}
+      {/* Background image */}
       <Image
         src={BACKGROUND_IMAGE}
         alt=""
@@ -126,8 +126,8 @@ export default function ServicesHero() {
         priority
       />
 
-      {/* Slight green tint overlay so the background matches the site theme */}
-      <div className="absolute inset-0 bg-[#0F3327]/40" aria-hidden="true" />
+      {/* Green tint overlay */}
+      <div className="absolute inset-0 bg-[#2C7046]/45" aria-hidden="true" />
 
       {/* Content — centered */}
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-5 py-14 text-center sm:px-6 sm:py-16 lg:px-10 lg:py-20">
@@ -139,7 +139,7 @@ export default function ServicesHero() {
           ].join(" ")}
           style={{ transitionDelay: "0ms" }}
         >
-          <p className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[5px] text-[#3EA96E] sm:text-[11.5px] sm:tracking-[7px]">
+          <p className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[5px] text-[#F5B301] sm:text-[11.5px] sm:tracking-[7px]">
             {t.brand}
           </p>
         </div>
@@ -160,10 +160,10 @@ export default function ServicesHero() {
           {t.heading}
         </h1>
 
-        {/* Green accent bar */}
+        {/* Gold accent bar */}
         <span
           className={[
-            "mt-3.5 block h-1 w-14 rounded-full bg-[#3EA96E] transition-all duration-1000 ease-out sm:mt-4 sm:w-16",
+            "mt-3.5 block h-1 w-14 rounded-full bg-[#F5B301] transition-all duration-1000 ease-out sm:mt-4 sm:w-16",
             isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
           ].join(" ")}
           style={{ transitionDelay: "350ms" }}
@@ -197,12 +197,12 @@ export default function ServicesHero() {
         >
           <Link
             href="/"
-            className="cursor-pointer text-white/70 transition-colors duration-300 hover:text-[#3EA96E]"
+            className="cursor-pointer text-white/70 transition-colors duration-300 hover:text-[#F5B301]"
           >
             {t.breadcrumbHome}
           </Link>
-          <span className="text-[#3EA96E]">{isAr ? "←" : "→"}</span>
-          <span className="text-[#3EA96E]">{t.breadcrumbCurrent}</span>
+          <span className="text-[#F5B301]">{isAr ? "←" : "→"}</span>
+          <span className="text-[#F5B301]">{t.breadcrumbCurrent}</span>
         </nav>
       </div>
     </section>

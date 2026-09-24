@@ -285,7 +285,7 @@ function BenefitIcon({ type }: { type: string }) {
   const common = {
     className: "h-6 w-6",
     fill: "none",
-    stroke: "#3EA96E",
+    stroke: "#F5B301",
     strokeWidth: "1.6",
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
@@ -413,10 +413,10 @@ export default function WhyPartnerAndFormSection() {
   const [formRef, formInView] = useInView<HTMLDivElement>(0.15);
 
   const inputBase =
-    "w-full cursor-pointer rounded-xl border border-[#1B4D3E]/15 bg-white px-4 py-3 font-[family-name:var(--font-poppins)] text-[13px] font-light text-[#1A1A1A] placeholder:text-[#6B6B6B]/50 outline-none transition-all duration-300 focus:border-[#3EA96E] focus:ring-2 focus:ring-[#3EA96E]/30 sm:text-[13.5px]";
+    "w-full cursor-pointer rounded-xl border border-[#2C7046]/15 bg-white px-4 py-3 font-[family-name:var(--font-poppins)] text-[13px] font-light text-[#1A1A1A] placeholder:text-[#6B6B6B]/50 outline-none transition-all duration-300 focus:border-[#F5B301] focus:ring-2 focus:ring-[#F5B301]/30 sm:text-[13.5px]";
 
   const labelBase =
-    "mb-1.5 block font-[family-name:var(--font-poppins)] text-[12px] font-semibold text-[#1B4D3E] sm:text-[12.5px]";
+    "mb-1.5 block font-[family-name:var(--font-poppins)] text-[12px] font-semibold text-[#2C7046] sm:text-[12.5px]";
 
   return (
     <section
@@ -434,7 +434,7 @@ export default function WhyPartnerAndFormSection() {
         >
           <motion.div
             variants={fadeInUp}
-            className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#1B4D3E]/10 px-4 py-1.5 font-[family-name:var(--font-poppins)] text-[11px] font-semibold text-[#1B4D3E] shadow-sm sm:text-[12px]"
+            className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#2C7046]/10 px-4 py-1.5 font-[family-name:var(--font-poppins)] text-[11px] font-semibold text-[#2C7046] shadow-sm sm:text-[12px]"
           >
             <svg
               className="h-3.5 w-3.5"
@@ -452,19 +452,19 @@ export default function WhyPartnerAndFormSection() {
 
           <motion.h2
             variants={fadeInUp}
-            className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.15] text-[#1B4D3E] sm:text-3xl md:text-4xl"
+            className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.15] text-[#2C7046] sm:text-3xl md:text-4xl"
           >
             {t.benefitsHeading}{" "}
-            <span className="text-[#3EA96E]">{t.benefitsHeadingAccent}</span>
+            <span className="text-[#F5B301]">{t.benefitsHeadingAccent}</span>
           </motion.h2>
 
           <motion.div
             variants={fadeInUp}
             className="mt-3 flex items-center justify-center gap-1.5"
           >
-            <div className="h-1 w-[34px] rounded-full bg-[#3EA96E]" />
-            <div className="h-[4px] w-[4px] rounded-full bg-[#3EA96E] opacity-55" />
-            <div className="h-[4px] w-[4px] rounded-full bg-[#3EA96E] opacity-30" />
+            <div className="h-1 w-[34px] rounded-full bg-[#F5B301]" />
+            <div className="h-[4px] w-[4px] rounded-full bg-[#F5B301] opacity-55" />
+            <div className="h-[4px] w-[4px] rounded-full bg-[#F5B301] opacity-30" />
           </motion.div>
 
           <motion.p
@@ -488,23 +488,23 @@ export default function WhyPartnerAndFormSection() {
               key={benefit.title}
               variants={fadeInUp}
               style={{ transitionDelay: `${i * 100}ms` }}
-              className="group/card relative cursor-pointer overflow-hidden rounded-3xl border border-[#1B4D3E]/10 bg-white p-6 shadow-sm transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#3EA96E]/50 hover:shadow-xl"
+              className="group/card relative cursor-pointer overflow-hidden rounded-3xl border border-[#2C7046]/10 bg-white p-6 shadow-sm transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#F5B301]/50 hover:shadow-xl hover:shadow-[#2C7046]/10"
             >
-              {/* Top green bar — hover */}
-              <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-[#3EA96E] transition-transform duration-500 ease-out group-hover/card:scale-x-100" />
+              {/* Top gold bar — hover */}
+              <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-[#F5B301] transition-transform duration-500 ease-out group-hover/card:scale-x-100" />
 
               {/* Icon */}
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1B4D3E] transition-transform duration-500 group-hover/card:scale-110">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2C7046] transition-transform duration-500 group-hover/card:scale-110">
                 <BenefitIcon type={benefit.icon} />
               </div>
 
               {/* Title */}
-              <h3 className="font-[family-name:var(--font-playfair)] text-[16px] font-extrabold leading-snug text-[#1B4D3E] sm:text-[17px]">
+              <h3 className="font-[family-name:var(--font-playfair)] text-[16px] font-extrabold leading-snug text-[#2C7046] sm:text-[17px]">
                 {benefit.title}
               </h3>
 
-              {/* Divider */}
-              <div className="my-2.5 h-[2px] w-8 rounded-full bg-[#3EA96E] transition-all duration-500 group-hover/card:w-12" />
+              {/* Gold divider */}
+              <div className="my-2.5 h-[2px] w-8 rounded-full bg-[#F5B301] transition-all duration-500 group-hover/card:w-12" />
 
               {/* Description */}
               <p className="font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-[#6B6B6B] sm:text-[13px]">
@@ -524,7 +524,7 @@ export default function WhyPartnerAndFormSection() {
           formInView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
         ].join(" ")}
       >
-        <div className="relative overflow-hidden rounded-[2rem] bg-[#1B4D3E] shadow-2xl shadow-[#1B4D3E]/20 sm:rounded-[2.5rem]">
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#2C7046] shadow-2xl shadow-[#2C7046]/20 sm:rounded-[2.5rem]">
           {/* 🌐 Background image for the form card */}
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -532,24 +532,24 @@ export default function WhyPartnerAndFormSection() {
             aria-hidden="true"
           />
 
-          {/* Slight dark-green overlay for readability */}
-          <div className="absolute inset-0 bg-[#0F3327]/70" aria-hidden="true" />
+          {/* Green overlay for readability */}
+          <div className="absolute inset-0 bg-[#2C7046]/75" aria-hidden="true" />
 
           <div className="relative grid grid-cols-1 gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:p-12">
             {/* Left — Text */}
             <div className="flex flex-col justify-center">
               {/* Badge */}
-              <div className="mb-4 inline-flex items-center gap-2 self-start rounded-full border border-[#3EA96E]/30 bg-[#3EA96E]/10 px-3 py-1 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#3EA96E]">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#3EA96E]" />
+              <div className="mb-4 inline-flex items-center gap-2 self-start rounded-full border border-[#F5B301]/30 bg-[#F5B301]/10 px-3 py-1 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#F5B301]">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#F5B301]" />
                 {t.formBadge}
               </div>
 
               <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.15] text-white sm:text-3xl md:text-[34px]">
                 {t.formHeading}{" "}
-                <span className="text-[#3EA96E]">{t.formHeadingAccent}</span>
+                <span className="text-[#F5B301]">{t.formHeadingAccent}</span>
               </h2>
 
-              <span className="mt-3 block h-1 w-14 rounded-full bg-[#3EA96E] sm:w-16" />
+              <span className="mt-3 block h-1 w-14 rounded-full bg-[#F5B301] sm:w-16" />
 
               <p className="mt-4 font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/80 sm:text-[13.5px]">
                 {t.formParagraph}
@@ -559,7 +559,7 @@ export default function WhyPartnerAndFormSection() {
               <div className="mt-6 space-y-2.5">
                 {t.trustItems.map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#3EA96E] text-[10px] font-bold text-white">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F5B301] text-[10px] font-bold text-[#2C7046]">
                       ✓
                     </span>
                     <span className="font-[family-name:var(--font-poppins)] text-[12px] font-light text-white/80 sm:text-[12.5px]">
@@ -573,8 +573,8 @@ export default function WhyPartnerAndFormSection() {
             {/* Right — Form */}
             <div>
               {submitted ? (
-                <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-[#3EA96E]/40 bg-[#3EA96E]/10 p-8 text-center backdrop-blur-sm">
-                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#3EA96E] text-[28px] text-white">
+                <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-[#F5B301]/40 bg-[#F5B301]/10 p-8 text-center backdrop-blur-sm">
+                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#F5B301] text-[28px] text-[#2C7046]">
                     ✓
                   </div>
                   <p className="font-[family-name:var(--font-playfair)] text-base font-extrabold text-white sm:text-lg">
@@ -587,7 +587,7 @@ export default function WhyPartnerAndFormSection() {
                   <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="name" className={`${labelBase} !text-white`}>
-                        {t.formName} <span className="text-[#3EA96E]">*</span>
+                        {t.formName} <span className="text-[#F5B301]">*</span>
                       </label>
                       <input
                         id="name"
@@ -620,7 +620,7 @@ export default function WhyPartnerAndFormSection() {
                   <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="email" className={`${labelBase} !text-white`}>
-                        {t.formEmail} <span className="text-[#3EA96E]">*</span>
+                        {t.formEmail} <span className="text-[#F5B301]">*</span>
                       </label>
                       <input
                         id="email"
@@ -654,7 +654,7 @@ export default function WhyPartnerAndFormSection() {
                   {/* Service dropdown */}
                   <div>
                     <label htmlFor="service" className={`${labelBase} !text-white`}>
-                      {t.formService} <span className="text-[#3EA96E]">*</span>
+                      {t.formService} <span className="text-[#F5B301]">*</span>
                     </label>
                     <select
                       id="service"
@@ -662,7 +662,7 @@ export default function WhyPartnerAndFormSection() {
                       required
                       value={form.service}
                       onChange={handleChange}
-                      className={`${inputBase} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%231B4D3E%22 stroke-width=%222%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-10 rtl:bg-[left_1rem_center] rtl:pr-4 rtl:pl-10`}
+                      className={`${inputBase} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%232C7046%22 stroke-width=%222%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-10 rtl:bg-[left_1rem_center] rtl:pr-4 rtl:pl-10`}
                     >
                       <option value="" disabled>
                         {t.selectService}
@@ -691,10 +691,10 @@ export default function WhyPartnerAndFormSection() {
                     />
                   </div>
 
-                  {/* Submit */}
+                  {/* Submit — GOLD with white text, hover flips to white with green */}
                   <button
                     type="submit"
-                    className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#2E7D5B] px-6 py-3 font-[family-name:var(--font-poppins)] text-[13px] font-bold text-white transition-all duration-300 hover:bg-[#255F47] hover:shadow-lg sm:text-[13.5px]"
+                    className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#F5B301] px-6 py-3 font-[family-name:var(--font-poppins)] text-[13px] font-bold text-white transition-all duration-300 hover:bg-white hover:text-[#2C7046] hover:shadow-lg hover:shadow-[#F5B301]/25 sm:text-[13.5px]"
                   >
                     {t.formSubmit}
                     <span

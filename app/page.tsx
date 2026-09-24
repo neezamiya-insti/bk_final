@@ -15,11 +15,15 @@ import StatsSection from './components/Home/StatsSection'
 function Page() {
   return (
     <>
-      {/* 1. HERO — Hook attention */}
-      <HeroSection />
-
-      {/* 2. STATS — Instant credibility with numbers */}
-      <StatsSection />
+      {/* 1 + 2. HERO + STATS — wrapped together so the sticky-cover effect
+          (Stats sliding over Hero) is scoped to just these two sections.
+          Once this wrapper's height is scrolled past, everything below
+          behaves completely normally — nothing gets covered. */}
+      <div className="relative">
+        <HeroSection />
+        <StatsSection />
+        <Partners />
+      </div>
 
       {/* 3. WHO WE ARE — Brand story */}
       <WhoWeAreSection />
@@ -37,7 +41,7 @@ function Page() {
       <OurPhilosophySection />
 
       {/* 8. PARTNERS — Social proof (trust) */}
-      <Partners />
+
 
       {/* 9. LATEST NEWS & BLOGS — Fresh content */}
       <ScrollParallaxGallery />

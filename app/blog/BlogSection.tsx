@@ -239,7 +239,7 @@ function CalendarIcon() {
       viewBox="0 0 24 24"
       className="h-3.5 w-3.5 shrink-0"
       fill="none"
-      stroke="#3EA96E"
+      stroke="#F5B301"
       strokeWidth="1.8"
     >
       <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -354,10 +354,10 @@ export default function BlogSection() {
             headingInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
           ].join(" ")}
         >
-          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#1B4D3E] sm:text-3xl md:text-4xl">
+          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#2C7046] sm:text-3xl md:text-4xl">
             {t.heading}
           </h2>
-          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:w-20" />
+          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#F5B301] sm:w-20" />
           <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-poppins)] text-[13px] font-light leading-relaxed text-[#6B6B6B] sm:text-[14px] md:text-[15px]">
             {t.subheading}
           </p>
@@ -389,7 +389,7 @@ export default function BlogSection() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t.searchPlaceholder}
-              className={`w-full cursor-text rounded-full border border-[#1B4D3E]/15 bg-white py-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-[#1A1A1A] placeholder:text-[#6B6B6B]/60 outline-none transition-all duration-300 focus:border-[#3EA96E] focus:ring-2 focus:ring-[#3EA96E]/30 sm:text-[14px] ${
+              className={`w-full cursor-text rounded-full border border-[#2C7046]/15 bg-white py-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-light text-[#1A1A1A] placeholder:text-[#6B6B6B]/60 outline-none transition-all duration-300 focus:border-[#F5B301] focus:ring-2 focus:ring-[#F5B301]/30 sm:text-[14px] ${
                 isAr ? "pr-11 pl-4" : "pl-11 pr-4"
               }`}
             />
@@ -412,8 +412,8 @@ export default function BlogSection() {
               onClick={() => setActiveCategory("all")}
               className={`cursor-pointer rounded-full px-4 py-1.5 font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold transition-all duration-300 sm:text-[12px] ${
                 activeCategory === "all"
-                  ? "bg-[#2E7D5B] text-white"
-                  : "bg-[#1B4D3E]/5 text-[#1B4D3E] hover:bg-[#2E7D5B]/15"
+                  ? "bg-[#2C7046] text-white"
+                  : "bg-[#2C7046]/5 text-[#2C7046] hover:bg-[#F5B301]/15 hover:text-[#F5B301]"
               }`}
             >
               {t.allCategories}
@@ -432,8 +432,8 @@ export default function BlogSection() {
                   onClick={() => setActiveCategory(cat)}
                   className={`cursor-pointer rounded-full px-4 py-1.5 font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold transition-all duration-300 sm:text-[12px] ${
                     activeCategory === cat
-                      ? "bg-[#2E7D5B] text-white"
-                      : "bg-[#1B4D3E]/5 text-[#1B4D3E] hover:bg-[#2E7D5B]/15"
+                      ? "bg-[#2C7046] text-white"
+                      : "bg-[#2C7046]/5 text-[#2C7046] hover:bg-[#F5B301]/15 hover:text-[#F5B301]"
                   }`}
                 >
                   {catLabel}
@@ -462,8 +462,8 @@ export default function BlogSection() {
                   key={post.id}
                   style={{ transitionDelay: `${index * 120}ms` }}
                   className={[
-                    "group/card cursor-pointer overflow-hidden rounded-3xl border border-[#1B4D3E]/10 bg-white shadow-sm",
-                    "transition-all duration-700 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl",
+                    "group/card cursor-pointer overflow-hidden rounded-3xl border border-[#2C7046]/10 bg-white shadow-sm",
+                    "transition-all duration-700 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:border-[#F5B301]/50 hover:shadow-xl hover:shadow-[#2C7046]/15",
                     cardsInView
                       ? "translate-y-0 opacity-100"
                       : "translate-y-16 opacity-0",
@@ -478,7 +478,7 @@ export default function BlogSection() {
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 ease-out group-hover/card:scale-110"
                     />
-                    <span className="absolute top-4 rounded-full bg-[#3EA96E] px-3 py-1 font-[family-name:var(--font-poppins)] text-[10.5px] font-bold uppercase tracking-wide text-white shadow-md ltr:left-4 rtl:right-4">
+                    <span className="absolute top-4 rounded-full bg-[#F5B301] px-3 py-1 font-[family-name:var(--font-poppins)] text-[10.5px] font-bold uppercase tracking-wide text-[#2C7046] shadow-md ltr:left-4 rtl:right-4">
                       {category}
                     </span>
                   </div>
@@ -494,7 +494,7 @@ export default function BlogSection() {
                     {/* Title */}
                     <h3
                       className={[
-                        "font-[family-name:var(--font-playfair)] font-extrabold leading-snug text-[#1B4D3E] transition-colors duration-300 group-hover/card:text-[#3EA96E]",
+                        "font-[family-name:var(--font-playfair)] font-extrabold leading-snug text-[#2C7046] transition-colors duration-300 group-hover/card:text-[#F5B301]",
                         isExpanded
                           ? "text-[15px] sm:text-[16.5px]"
                           : "text-[15px] sm:text-[16.5px] line-clamp-2",
@@ -503,9 +503,9 @@ export default function BlogSection() {
                       {title}
                     </h3>
 
-                    {/* Green divider */}
+                    {/* Gold divider */}
                     <div
-                      className={`my-3 h-[2px] w-10 rounded-full bg-[#3EA96E] transition-all duration-500 ${
+                      className={`my-3 h-[2px] w-10 rounded-full bg-[#F5B301] transition-all duration-500 ${
                         isExpanded ? "w-16" : "group-hover/card:w-14"
                       } ${isAr ? "ml-auto mr-0" : "ml-0 mr-auto"}`}
                     />
@@ -534,7 +534,7 @@ export default function BlogSection() {
                         toggleExpand(post.id);
                       }}
                       className={[
-                        "mt-4 inline-flex cursor-pointer items-center gap-1.5 font-[family-name:var(--font-poppins)] text-[12px] font-semibold text-[#2E7D5B] transition-colors duration-300 hover:text-[#1B4D3E] sm:text-[12.5px]",
+                        "mt-4 inline-flex cursor-pointer items-center gap-1.5 font-[family-name:var(--font-poppins)] text-[12px] font-semibold text-[#2C7046] transition-colors duration-300 hover:text-[#F5B301] sm:text-[12.5px]",
                         isAr ? "self-end flex-row-reverse" : "self-start",
                       ].join(" ")}
                     >
@@ -553,7 +553,7 @@ export default function BlogSection() {
             })}
           </div>
         ) : (
-          <div className="rounded-3xl border border-[#1B4D3E]/10 bg-[#F5F7FA] py-16 text-center">
+          <div className="rounded-3xl border border-[#2C7046]/10 bg-[#F5F7FA] py-16 text-center">
             <p className="font-[family-name:var(--font-poppins)] text-[14px] font-light text-[#6B6B6B] sm:text-[15px]">
               {t.noResults}
             </p>

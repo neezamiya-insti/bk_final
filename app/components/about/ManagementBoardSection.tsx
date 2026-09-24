@@ -143,10 +143,10 @@ function MemberCard({
     <motion.div
       variants={cardIn}
       whileHover={{ y: -6, transition: { duration: 0.3 } }}
-      className={`group/card relative w-full cursor-pointer overflow-hidden rounded-[24px] bg-white shadow-[0_18px_40px_rgba(15,51,39,0.14)] transition-all duration-300 hover:shadow-[0_24px_50px_rgba(15,51,39,0.22)] ${
+      className={`group/card relative w-full cursor-pointer overflow-hidden rounded-[24px] bg-white shadow-[0_18px_40px_rgba(44,112,70,0.14)] transition-all duration-300 hover:shadow-[0_24px_50px_rgba(44,112,70,0.22)] ${
         featured
-          ? "max-w-[300px] ring-2 ring-[#3EA96E]/70"
-          : "max-w-[280px] ring-1 ring-[#0F3327]/8"
+          ? "max-w-[300px] ring-2 ring-[#F5B301]/70"
+          : "max-w-[280px] ring-1 ring-[#2C7046]/8"
       }`}
     >
       {/* Photo */}
@@ -162,17 +162,17 @@ function MemberCard({
           sizes="(max-width: 640px) 100vw, 320px"
           className="cursor-pointer object-cover object-top transition-transform duration-700 ease-out group-hover/card:scale-110"
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0F3327]/25 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#2C7046]/30 to-transparent" />
       </div>
 
       {/* Name bar */}
       <div
-        className={`relative bg-[#0F3327] px-5 py-4 ${
+        className={`relative bg-[#2C7046] px-5 py-4 ${
           isAr ? "text-right" : "text-left"
         }`}
       >
         <div
-          className={`absolute top-0 h-[3px] w-12 bg-[#3EA96E] transition-all duration-500 group-hover/card:w-24 ${
+          className={`absolute top-0 h-[3px] w-12 bg-[#F5B301] transition-all duration-500 group-hover/card:w-24 ${
             isAr ? "right-5" : "left-5"
           }`}
         />
@@ -183,7 +183,7 @@ function MemberCard({
         >
           {member.name}
         </div>
-        <div className="mt-1 font-[family-name:var(--font-poppins)] text-[11.5px] font-light leading-relaxed text-[#3EA96E] sm:text-[12px]">
+        <div className="mt-1 font-[family-name:var(--font-poppins)] text-[11.5px] font-light leading-relaxed text-[#F5B301] sm:text-[12px]">
           {member.role}
         </div>
       </div>
@@ -195,9 +195,9 @@ function LevelTag({ label }: { label: string }) {
   return (
     <motion.div
       variants={fadeInUp}
-      className="inline-flex items-center gap-2 rounded-full border border-[#0F3327]/10 bg-[#F4FAF7] px-3 py-1 font-[family-name:var(--font-poppins)] text-[10px] font-semibold tracking-[0.16em] text-[#0F3327]/55 sm:px-3.5 sm:text-[10.5px]"
+      className="inline-flex items-center gap-2 rounded-full border border-[#2C7046]/10 bg-[#F4FAF7] px-3 py-1 font-[family-name:var(--font-poppins)] text-[10px] font-semibold tracking-[0.16em] text-[#2C7046]/70 sm:px-3.5 sm:text-[10.5px]"
     >
-      <span className="h-[5px] w-[5px] rounded-full bg-[#3EA96E]" />
+      <span className="h-[5px] w-[5px] rounded-full bg-[#F5B301]" />
       {label}
     </motion.div>
   );
@@ -236,7 +236,7 @@ export default function ManagementHierarchySection() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white`}
+      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white `}
     >
       {/* soft background grid */}
       <div
@@ -244,7 +244,7 @@ export default function ManagementHierarchySection() {
         className="pointer-events-none absolute inset-0 opacity-[0.45]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(15,51,39,0.07) 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, rgba(44,112,70,0.08) 1px, transparent 0)",
           backgroundSize: "26px 26px",
           maskImage:
             "radial-gradient(ellipse at 50% 40%, black 40%, transparent 78%)",
@@ -253,7 +253,7 @@ export default function ManagementHierarchySection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-12 sm:px-5 sm:py-16 lg:py-20">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-12 sm:px-5 sm:py-16">
         {/* Heading */}
         <motion.div
           className="mb-10 text-center"
@@ -263,7 +263,7 @@ export default function ManagementHierarchySection() {
         >
           <motion.div
             variants={fadeInUp}
-            className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#0F3327]/10 px-3 py-1.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold text-[#0F3327] shadow-sm sm:px-4 sm:text-[12px]"
+            className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#2C7046]/10 px-3 py-1.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold text-[#2C7046] shadow-sm sm:px-4 sm:text-[12px]"
           >
             <svg
               className="h-3 w-3 sm:h-3.5 sm:w-3.5"
@@ -284,19 +284,19 @@ export default function ManagementHierarchySection() {
 
           <motion.h2
             variants={fadeInUp}
-            className="font-[family-name:var(--font-playfair)] text-[22px] font-extrabold leading-[1.15] text-[#0F3327] sm:text-[28px] md:text-[32px] lg:text-4xl"
+            className="font-[family-name:var(--font-playfair)] text-[22px] font-extrabold leading-[1.15] text-[#2C7046] sm:text-[28px] md:text-[32px] lg:text-4xl"
           >
             {t.heading}{" "}
-            <span className="text-[#3EA96E]">{t.headingAccent}</span>
+            <span className="text-[#F5B301]">{t.headingAccent}</span>
           </motion.h2>
 
           <motion.div
             variants={fadeInUp}
             className="mt-3 flex items-center justify-center gap-1.5"
           >
-            <div className="h-1 w-[34px] rounded-full bg-[#3EA96E]" />
-            <div className="h-[4px] w-[4px] rounded-full bg-[#3EA96E] opacity-55" />
-            <div className="h-[4px] w-[4px] rounded-full bg-[#3EA96E] opacity-30" />
+            <div className="h-1 w-[34px] rounded-full bg-[#F5B301]" />
+            <div className="h-[4px] w-[4px] rounded-full bg-[#F5B301] opacity-55" />
+            <div className="h-[4px] w-[4px] rounded-full bg-[#F5B301] opacity-30" />
           </motion.div>
 
           <motion.p
@@ -327,27 +327,27 @@ export default function ManagementHierarchySection() {
           <motion.div
             variants={lineGrow}
             style={{ transformOrigin: "top" }}
-            className="h-10 w-[2px] bg-gradient-to-b from-[#3EA96E] to-[#0F3327]/25"
+            className="h-10 w-[2px] bg-gradient-to-b from-[#F5B301] to-[#2C7046]/25"
           />
 
           {/* Connector: horizontal bus (SM and up) */}
           <div className="relative hidden w-full max-w-[680px] sm:block">
             <motion.div
               variants={lineGrowX}
-              className="mx-auto h-[2px] w-1/2 bg-[#0F3327]/25"
+              className="mx-auto h-[2px] w-1/2 bg-[#2C7046]/25"
             />
             {/* node dot in the middle */}
-            <div className="absolute left-1/2 top-1/2 h-[9px] w-[9px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-[#3EA96E] shadow-[0_0_0_2px_rgba(62,169,110,0.25)]" />
+            <div className="absolute left-1/2 top-1/2 h-[9px] w-[9px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-[#F5B301] shadow-[0_0_0_2px_rgba(245,179,1,0.3)]" />
             {/* drops down to each child */}
             <motion.div
               variants={lineGrow}
               style={{ transformOrigin: "top" }}
-              className="absolute left-1/4 top-0 h-10 w-[2px] bg-[#0F3327]/25"
+              className="absolute left-1/4 top-0 h-10 w-[2px] bg-[#2C7046]/25"
             />
             <motion.div
               variants={lineGrow}
               style={{ transformOrigin: "top" }}
-              className="absolute left-3/4 top-0 h-10 w-[2px] bg-[#0F3327]/25"
+              className="absolute left-3/4 top-0 h-10 w-[2px] bg-[#2C7046]/25"
             />
           </div>
 
@@ -358,7 +358,7 @@ export default function ManagementHierarchySection() {
           <motion.div
             variants={lineGrow}
             style={{ transformOrigin: "top" }}
-            className="h-6 w-[2px] bg-[#0F3327]/25 sm:hidden"
+            className="h-6 w-[2px] bg-[#2C7046]/25 sm:hidden"
           />
 
           {/* Level 2 — Executives */}

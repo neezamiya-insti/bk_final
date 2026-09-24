@@ -164,14 +164,14 @@ export default function OurPhilosophySection() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full bg-white pb-4 pt-10 sm:pb-16 sm:pt-18`}
+      className={`${playfair.variable} ${poppins.variable} w-full bg-white pb-4  sm:pb-16 `}
     >
       {/* Top heading — centered */}
       <div className="flex flex-col items-center text-center">
         <h2
           ref={topHeadingRef}
           className={[
-            "font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-4xl ",
+            "font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#2C7046] sm:text-4xl ",
             "transition-all duration-700 ease-out",
             topHeadingInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           ].join(" ")}
@@ -179,10 +179,10 @@ export default function OurPhilosophySection() {
           {t.topHeading}
         </h2>
 
-        {/* Accent bar */}
+        {/* Gold accent bar */}
         <span
           className={[
-            "mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:mt-4 sm:w-20",
+            "mt-3 h-1 w-16 rounded-full bg-[#F5B301] sm:mt-4 sm:w-20",
             "transition-all duration-700 ease-out delay-150",
             topHeadingInView ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
           ].join(" ")}
@@ -203,8 +203,7 @@ export default function OurPhilosophySection() {
         </p>
       </div>
 
-      {/* Cards grid — content ab har screen par card ke andar rehta hai,
-          isliye pehle wali bari bottom padding ki zaroorat nahi */}
+      {/* Cards grid */}
       <div
         ref={cardsRef}
         className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-5 px-4 pb-10 sm:mt-10 sm:gap-6 sm:px-6 sm:pb-14 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-5 lg:px-10 lg:pb-16"
@@ -237,45 +236,45 @@ export default function OurPhilosophySection() {
               <div
                 className={[
                   "absolute inset-0 overflow-hidden rounded-[1.25rem] border shadow-sm transition-all duration-700 ease-out sm:rounded-[1.5rem]",
-                  isOpen ? "border-[#3EA96E]/60 shadow-lg" : "border-[#1B4D3E]/10",
-                  "md:group-hover/card:-translate-y-1 md:group-hover/card:border-[#3EA96E]/60 md:group-hover/card:shadow-lg",
+                  isOpen ? "border-[#F5B301]/70 shadow-lg" : "border-[#2C7046]/10",
+                  "md:group-hover/card:-translate-y-1 md:group-hover/card:border-[#F5B301]/70 md:group-hover/card:shadow-lg",
                 ].join(" ")}
               >
-                {/* Background image + base overlay */}
+                {/* Background image + base overlay (green tint) */}
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center"
                   style={{
-                    backgroundImage: `linear-gradient(rgba(27, 77, 62, 0.35), rgba(27, 77, 62, 0.55)), url(${PHILOSOPHY_BACKGROUNDS[i]})`,
+                    backgroundImage: `linear-gradient(rgba(44, 112, 70, 0.45), rgba(44, 112, 70, 0.65)), url(${PHILOSOPHY_BACKGROUNDS[i]})`,
                   }}
                 />
 
-                {/* Extra dark layer — open / hover par fade in, taake paragraph readable rahe */}
+                {/* Extra dark green layer — open / hover par fade in */}
                 <div
                   aria-hidden="true"
                   className={[
-                    "pointer-events-none absolute inset-0 z-[1] bg-[#1B4D3E]/45 transition-opacity duration-500 ease-out",
+                    "pointer-events-none absolute inset-0 z-[1] bg-[#2C7046]/55 transition-opacity duration-500 ease-out",
                     isOpen ? "opacity-100" : "opacity-0 md:group-hover/card:opacity-100",
                   ].join(" ")}
                 />
               </div>
 
-              {/* Content — har breakpoint par card ke BEECH me */}
+              {/* Content */}
               <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center sm:px-7 lg:px-8">
-                {/* Title */}
-                <h4 className="font-[family-name:var(--font-playfair)] text-xl font-extrabold leading-snug text-[#3EA96E] drop-shadow-[0_2px_4px_rgba(27,77,62,0.9)] lg:text-[22px]">
+                {/* Title — gold */}
+                <h4 className="font-[family-name:var(--font-playfair)] text-xl font-extrabold leading-snug text-[#F5B301] drop-shadow-[0_2px_4px_rgba(15,51,39,0.9)] lg:text-[22px]">
                   {card.title}
                 </h4>
 
-                {/* Divider */}
+                {/* Gold divider */}
                 <div
                   className={[
-                    "mt-3 h-[2px] rounded-full bg-[#3EA96E] transition-all duration-500 ease-out",
+                    "mt-3 h-[2px] rounded-full bg-[#F5B301] transition-all duration-500 ease-out",
                     isOpen ? "w-14" : "w-10 md:group-hover/card:w-14",
                   ].join(" ")}
                 />
 
-                {/* Description — ek paragraph, center me expand hota hua */}
+                {/* Description */}
                 <div
                   className={[
                     "grid w-full transition-all duration-500 ease-out",
@@ -285,13 +284,13 @@ export default function OurPhilosophySection() {
                   ].join(" ")}
                 >
                   <div className={`w-full overflow-hidden ${isAr ? "text-right" : "text-left"}`}>
-                    <p className="font-[family-name:var(--font-poppins)] text-[13px] font-medium leading-relaxed text-white drop-shadow-[0_2px_4px_rgba(27,77,62,0.95)] sm:text-[13.5px] lg:text-[14px]">
+                    <p className="font-[family-name:var(--font-poppins)] text-[13px] font-medium leading-relaxed text-white drop-shadow-[0_2px_4px_rgba(15,51,39,0.95)] sm:text-[13.5px] lg:text-[14px]">
                       {card.desc}
                     </p>
                   </div>
                 </div>
 
-                {/* Hint — sirf mobile par, band halat me */}
+                {/* Hint — mobile only */}
                 <span
                   className={[
                     "mt-4 font-[family-name:var(--font-poppins)] text-[10px] font-medium uppercase tracking-[2px] text-white/75",

@@ -159,11 +159,11 @@ export default function MissionVisionSection() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} min-w-0 w-full overflow-x-clip bg-white px-4 py-14 sm:px-6 md:px-8 md:py-16`}
+      className={`${playfair.variable} ${poppins.variable} min-w-0 w-full overflow-x-clip bg-white px-4 py-14 sm:px-6 md:px-8 md:py-20`}
     >
       <div className="relative mx-auto grid min-w-0 w-full grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 md:gap-28">
-        {/* Center logo — static, rounded, no dynamic images */}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 z-20 hidden h-48 w-48 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-white bg-[#0F3327] shadow-xl md:block">
+        {/* Center logo — static, rounded */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 z-20 hidden h-48 w-48 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-[#F5B301] bg-[#2C7046] shadow-xl md:block">
           <div className="relative h-full w-full p-6">
             <Image
               src={CENTER_LOGO}
@@ -181,8 +181,8 @@ export default function MissionVisionSection() {
             <div
               ref={card.ref}
               className={[
-                "group relative cursor-pointer overflow-hidden rounded-[2.5rem] bg-white p-8 shadow-lg shadow-[#0F3327]/10 ring-1 ring-[#0F3327]/5 md:w-[78%] md:justify-self-center",
-                "transition-all duration-500 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#0F3327]/20 sm:p-10",
+                "group relative cursor-pointer overflow-hidden rounded-[2.5rem] bg-white p-8 shadow-lg shadow-[#2C7046]/10 ring-1 ring-[#2C7046]/5 md:w-[78%] md:justify-self-center",
+                "transition-all duration-500 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#2C7046]/20 sm:p-10",
                 "transition-[transform,opacity,box-shadow] duration-700",
                 card.inView
                   ? "translate-y-0 opacity-100"
@@ -203,19 +203,19 @@ export default function MissionVisionSection() {
               <div className="absolute inset-0 bg-white/70" />
             </div>
 
-            {/* Decorative glow blob */}
-            <span className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#3EA96E]/15 blur-2xl transition-transform duration-700 ease-out group-hover:scale-125" />
+            {/* Decorative glow blob — now gold */}
+            <span className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#F5B301]/15 blur-2xl transition-transform duration-700 ease-out group-hover:scale-125" />
 
-            {/* Icon badge */}
-            <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#3EA96E] text-[#0F3327] transition-transform duration-500 ease-out group-hover:rotate-6 group-hover:scale-110 sm:h-16 sm:w-16">
+            {/* Icon badge — green with gold icon on hover */}
+            <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#2C7046] text-[#F5B301] transition-transform duration-500 ease-out group-hover:rotate-6 group-hover:scale-110 sm:h-16 sm:w-16">
               <card.Icon />
             </div>
 
-            <h3 className="relative mt-6 font-[family-name:var(--font-playfair)] text-xl font-extrabold text-[#3EA96E] sm:text-2xl">
+            <h3 className="relative mt-6 font-[family-name:var(--font-playfair)] text-xl font-extrabold text-[#2C7046] sm:text-2xl">
               {card.label}
             </h3>
 
-            <div className="relative mt-3 h-[3px] w-10 rounded-full bg-[#3EA96E]" />
+            <div className="relative mt-3 h-[3px] w-10 rounded-full bg-[#F5B301]" />
 
             <p className="relative mt-4 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-[#5C5C5C] sm:text-[14.5px]">
               {card.text}
@@ -223,7 +223,7 @@ export default function MissionVisionSection() {
             </div>
             {index === 0 && (
               <div className="relative z-20 flex items-center justify-center md:hidden">
-                <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-white bg-[#0F3327] p-3 shadow-xl">
+                <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-[#F5B301] bg-[#2C7046] p-3 shadow-xl">
                   <Image
                     src={CENTER_LOGO}
                     alt="Boyut Al-Kawthar logo"

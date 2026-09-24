@@ -20,8 +20,10 @@ const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
 
 const CONTAINER_WIDTH = 1081;
-const CONTAINER_HEIGHT = 721;
-const BACKGROUND_IMAGE = "/about/backr.png";
+// Reduced from 721 — pulls the arc/nodes/stats block up so the gap under
+// the heading underline is much tighter.
+const CONTAINER_HEIGHT = 631;
+const BACKGROUND_IMAGE = "/about/backf.png";
 
 // md breakpoint (768px) / 1081 => niche wala scale mobile mana jayega
 const MOBILE_SCALE_BREAKPOINT = 768 / CONTAINER_WIDTH;
@@ -188,13 +190,19 @@ export default function DiscoverPotentialSection() {
     { value: t.stat4Value, label: t.stat4Label, year: t.stat4Year, desc: t.stat4Desc },
   ];
 
+  // 3D-feel node style: gradient background + layered shadow + subtle ring,
+  // instead of the old flat dark-green fill.
+  const node3D =
+    "flex items-center justify-center rounded-full shadow-[0_10px_22px_-6px_rgba(0,0,0,0.55),inset_0_2px_3px_rgba(255,255,255,0.12),inset_0_-4px_8px_rgba(0,0,0,0.45)] ring-1 ring-[#3EA96E]/30 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_16px_30px_-6px_rgba(0,0,0,0.6),inset_0_2px_3px_rgba(255,255,255,0.15),inset_0_-4px_8px_rgba(0,0,0,0.45)]";
+  const node3DBg = { backgroundImage: "linear-gradient(155deg, #164A34 0%, #0A2A1E 100%)" };
+
   return (
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-[#1B4D3E]`}
+      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-[#0F3327] py-8`}
     >
-      {/* Background image — /about/backr.png */}
+      {/* Background image — /about/backf.png */}
       <Image
         src={BACKGROUND_IMAGE}
         alt=""
@@ -204,7 +212,17 @@ export default function DiscoverPotentialSection() {
         className="object-cover object-center"
         priority
       />
-      {/* Overlay removed — background image shown as-is */}
+
+      {/* Light green overlay — subtle wash for legibility & theme consistency */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] bg-[#398355]/35"
+        aria-hidden="true"
+      />
+      {/* Light vertical darkening (top + bottom) for text contrast */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/25 via-transparent to-black/35"
+        aria-hidden="true"
+      />
 
       <div
         ref={wrapperRef}
@@ -271,28 +289,29 @@ export default function DiscoverPotentialSection() {
             />
           )}
 
-          {/* Arc connectors */}
+          {/* Arc connectors — endpoints now match each node's exact CENTER
+              point (342,263) / (724,263) / (283,433) / (786,433) */}
           <svg
             className="absolute left-0 top-0"
             width="1081"
-            height="721"
-            viewBox="0 0 1081 721"
+            height="631"
+            viewBox="0 0 1081 631"
           >
             <path
-              d="M342,330 C342,255 460,225 533,225 C606,225 724,255 724,330"
+              d="M342,263 C342,188 460,158 533,158 C606,158 724,188 724,263"
               stroke="#3EA96E"
               strokeWidth={isMobile ? "8" : "6"}
               fill="none"
             />
             <path
-              d="M320,352 C280,360 285,420 283,494"
+              d="M342,263 C300,271 286,353 283,433"
               stroke="#3EA96E"
               strokeWidth={isMobile ? "5" : "3.4"}
               fill="none"
               strokeLinecap="round"
             />
             <path
-              d="M746,352 C786,360 790,420 786,494"
+              d="M724,263 C766,271 780,353 786,433"
               stroke="#3EA96E"
               strokeWidth={isMobile ? "5" : "3.4"}
               fill="none"
@@ -300,12 +319,13 @@ export default function DiscoverPotentialSection() {
             />
           </svg>
 
-          {/* Node 2 - Left Top */}
+          {/* Node 2 - Left Top — center exactly at (342, 263) — pushed 1rem further LEFT */}
           <div
-            className={`absolute left-[309px] top-[320px] flex items-center justify-center rounded-full border-[#3EA96E] bg-[#0F3327] shadow-lg transition-all duration-1000 ease-out ${
+            className={`${node3D} absolute left-[293px] top-[230px] border-[#3EA96E] transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
             }`}
             style={{
+              ...node3DBg,
               transitionDelay: "500ms",
               width: isMobile ? "80px" : "66px",
               height: isMobile ? "80px" : "66px",
@@ -319,12 +339,13 @@ export default function DiscoverPotentialSection() {
             </svg>
           </div>
 
-          {/* Node 3 - Right Top */}
+          {/* Node 3 - Right Top — center exactly at (724, 263) — pushed 1rem further RIGHT */}
           <div
-            className={`absolute left-[693px] top-[320px] flex items-center justify-center rounded-full border-[#3EA96E] bg-[#0F3327] shadow-lg transition-all duration-1000 ease-out ${
+            className={`${node3D} absolute left-[707px] top-[230px] border-[#3EA96E] transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
             }`}
             style={{
+              ...node3DBg,
               transitionDelay: "500ms",
               width: isMobile ? "80px" : "66px",
               height: isMobile ? "80px" : "66px",
@@ -337,12 +358,13 @@ export default function DiscoverPotentialSection() {
             </svg>
           </div>
 
-          {/* Node 4 - Left Bottom */}
+          {/* Node 4 - Left Bottom — center exactly at (283, 433) */}
           <div
-            className={`absolute left-[250px] top-[490px] flex items-center justify-center rounded-full border-[#3EA96E] bg-[#0F3327] shadow-lg transition-all duration-1000 ease-out ${
+            className={`${node3D} absolute left-[250px] top-[400px] border-[#3EA96E] transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
             }`}
             style={{
+              ...node3DBg,
               transitionDelay: "600ms",
               width: isMobile ? "80px" : "66px",
               height: isMobile ? "80px" : "66px",
@@ -356,12 +378,13 @@ export default function DiscoverPotentialSection() {
             </svg>
           </div>
 
-          {/* Node 5 - Right Bottom */}
+          {/* Node 5 - Right Bottom — center exactly at (786, 433) */}
           <div
-            className={`absolute left-[753px] top-[490px] flex items-center justify-center rounded-full border-[#3EA96E] bg-[#0F3327] shadow-lg transition-all duration-1000 ease-out ${
+            className={`${node3D} absolute left-[753px] top-[400px] border-[#3EA96E] transition-all duration-1000 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[150px]"
             }`}
             style={{
+              ...node3DBg,
               transitionDelay: "600ms",
               width: isMobile ? "80px" : "66px",
               height: isMobile ? "80px" : "66px",
@@ -378,7 +401,7 @@ export default function DiscoverPotentialSection() {
             <>
               {/* Stat 1: Saudi GDP */}
               <div
-                className={`absolute left-[20px] top-[290px] w-[210px] text-right transition-all duration-1000 ease-out ${
+                className={`absolute left-[20px] top-[200px] w-[210px] text-right transition-all duration-1000 ease-out ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
                 }`}
                 style={{ transitionDelay: "350ms" }}
@@ -401,7 +424,7 @@ export default function DiscoverPotentialSection() {
 
               {/* Stat 2: Saudi FDI */}
               <div
-                className={`absolute left-[840px] top-[290px] w-[210px] text-left transition-all duration-1000 ease-out ${
+                className={`absolute left-[840px] top-[200px] w-[210px] text-left transition-all duration-1000 ease-out ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
                 }`}
                 style={{ transitionDelay: "400ms" }}
@@ -424,7 +447,7 @@ export default function DiscoverPotentialSection() {
 
               {/* Stat 3: Saudi Export */}
               <div
-                className={`absolute left-[880px] top-[470px] w-[210px] text-left transition-all duration-1000 ease-out ${
+                className={`absolute left-[880px] top-[380px] w-[210px] text-left transition-all duration-1000 ease-out ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
                 }`}
                 style={{ transitionDelay: "550ms" }}
@@ -447,7 +470,7 @@ export default function DiscoverPotentialSection() {
 
               {/* Stat 4: Trade Balance */}
               <div
-                className={`absolute left-[20px] top-[490px] w-[210px] text-right transition-all duration-1000 ease-out ${
+                className={`absolute left-[20px] top-[400px] w-[210px] text-right transition-all duration-1000 ease-out ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[200px]"
                 }`}
                 style={{ transitionDelay: "500ms" }}
@@ -477,7 +500,10 @@ export default function DiscoverPotentialSection() {
             }`}
             style={{ transitionDelay: "450ms" }}
           >
-            <div className="absolute bottom-0 left-0 h-full w-full cursor-pointer overflow-hidden rounded-full border-4 border-[#3EA96E] bg-[#1B4D3E] shadow-xl shadow-[#3EA96E]/20 transition-all duration-500 ease-out group-hover/logo:scale-105 group-hover/logo:shadow-2xl group-hover/logo:shadow-[#3EA96E]/40">
+            <div
+              className="absolute bottom-0 left-0 h-full w-full cursor-pointer overflow-hidden rounded-full border-4 border-[#3EA96E] shadow-[0_18px_40px_-8px_rgba(0,0,0,0.6),inset_0_3px_6px_rgba(255,255,255,0.1),inset_0_-6px_14px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out group-hover/logo:scale-105 group-hover/logo:shadow-[0_24px_50px_-8px_rgba(62,169,110,0.4)]"
+              style={{ backgroundImage: "radial-gradient(circle at 35% 30%, #1B5A3F 0%, #0A2A1E 75%)" }}
+            >
               <Image
                 src="/logo-Boyot-1.png"
                 alt="Boyut Al Kawthar"

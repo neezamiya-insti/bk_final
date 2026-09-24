@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Playfair_Display, Poppins } from "next/font/google";
@@ -20,32 +19,34 @@ const poppins = Poppins({
 const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
 
-const BACKGROUND_IMAGE = "/about/hero.png";
+// Online background image (Unsplash — free to use)
+const BACKGROUND_IMAGE =
+  "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1920&q=80";
 
 const TEXT = {
   EN: {
     brand: "Boyut Al-Kawthar",
     breadcrumbHome: "Home",
-    breadcrumbCurrent: "About Us",
-    heading: "About Boyut Al-Kawthar",
+    breadcrumbCurrent: "Contact Us",
+    heading: "Get in Touch",
     paragraph:
-      "Your trusted advisors in business success. We empower Saudi exporters to confidently navigate the global marketplace, bridging the gap between local producers and international opportunities.",
+      "Have a question or ready to start your export journey? Our team is here to help. Reach out to us and we'll get back to you within 24 hours.",
   },
   AR: {
     brand: "بيوت الكوثر",
     breadcrumbHome: "الرئيسية",
-    breadcrumbCurrent: "من نحن",
-    heading: "عن بيوت الكوثر",
+    breadcrumbCurrent: "اتصل بنا",
+    heading: "تواصل معنا",
     paragraph:
-      "مستشاروك الموثوقون في نجاح الأعمال. نمكّن المصدرين السعوديين من التنقل بثقة في الأسواق العالمية، ونسد الفجوة بين المنتجين المحليين والفرص الدولية.",
+      "هل لديك سؤال أو مستعد لبدء رحلة التصدير؟ فريقنا هنا لمساعدتك. تواصل معنا وسنرد عليك خلال ٢٤ ساعة.",
   },
   FR: {
     brand: "Boyut Al-Kawthar",
     breadcrumbHome: "Accueil",
-    breadcrumbCurrent: "À propos",
-    heading: "À propos de Boyut Al-Kawthar",
+    breadcrumbCurrent: "Contactez-nous",
+    heading: "Entrons en contact",
     paragraph:
-      "Vos conseillers de confiance pour la réussite de votre entreprise. Nous permettons aux exportateurs saoudiens de naviguer en toute confiance sur le marché mondial, en comblant le fossé entre les producteurs locaux et les opportunités internationales.",
+      "Vous avez une question ou vous êtes prêt à démarrer votre parcours d'exportation ? Notre équipe est là pour vous aider. Contactez-nous et nous vous répondrons dans les 24 heures.",
   },
 } as const;
 
@@ -56,7 +57,7 @@ function readStoredLang(): LangCode {
   return "EN";
 }
 
-export default function AboutHero() {
+export default function ContactHero() {
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -113,30 +114,34 @@ export default function AboutHero() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative flex min-h-[500px] w-full items-center justify-center overflow-hidden bg-[#0F3327] sm:min-h-[560px] lg:min-h-[620px]`}
+      className={`${playfair.variable} ${poppins.variable} relative flex min-h-[460px] w-full items-center justify-center overflow-hidden bg-[#2C7046] sm:min-h-[520px] lg:min-h-[580px]`}
     >
-      {/* Background image — about/hero.png (no overlay) */}
-      <Image
-        src={BACKGROUND_IMAGE}
-        alt=""
-        fill
-        sizes="100vw"
-        quality={85}
-        className="object-cover object-center"
-        priority
+      {/* Background image — online URL */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${BACKGROUND_IMAGE})` }}
+      />
+
+      {/* Green tint overlay — same feel as other hero sections */}
+      <div className="absolute inset-0 bg-[#2C7046]/45" aria-hidden="true" />
+
+      {/* Extra vertical gradient (top + bottom) for text legibility */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35"
+        aria-hidden="true"
       />
 
       {/* Content — centered */}
-      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-5 py-16 text-center sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-5 py-14 text-center sm:px-6 sm:py-16 lg:px-10 lg:py-20">
         {/* Brand — top small */}
         <div
           className={[
-            "mb-4 transition-all duration-1000 ease-out",
+            "mb-3.5 transition-all duration-1000 ease-out",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           ].join(" ")}
           style={{ transitionDelay: "0ms" }}
         >
-          <p className="font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold uppercase tracking-[6px] text-[#3EA96E] sm:text-[12.5px] sm:tracking-[8px]">
+          <p className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[5px] text-[#F5B301] drop-shadow-md sm:text-[11.5px] sm:tracking-[7px]">
             {t.brand}
           </p>
         </div>
@@ -144,8 +149,8 @@ export default function AboutHero() {
         {/* Heading — slides from LEFT */}
         <h1
           className={[
-            "font-[family-name:var(--font-playfair)] text-3xl font-extrabold leading-[1.15] text-white sm:text-4xl md:text-5xl",
-            "transition-all duration-1000 ease-out",
+            "font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.18] text-white sm:text-3xl md:text-4xl",
+            "transition-all duration-1000 ease-out drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]",
             isVisible
               ? "translate-x-0 opacity-100"
               : isAr
@@ -157,10 +162,10 @@ export default function AboutHero() {
           {t.heading}
         </h1>
 
-        {/* Green accent bar */}
+        {/* Gold accent bar */}
         <span
           className={[
-            "mt-4 block h-1 w-16 rounded-full bg-[#3EA96E] transition-all duration-1000 ease-out sm:mt-5 sm:w-20",
+            "mt-3.5 block h-1 w-14 rounded-full bg-[#F5B301] shadow-lg shadow-black/40 transition-all duration-1000 ease-out sm:mt-4 sm:w-16",
             isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
           ].join(" ")}
           style={{ transitionDelay: "350ms" }}
@@ -169,8 +174,8 @@ export default function AboutHero() {
         {/* Description — slides from RIGHT */}
         <p
           className={[
-            "mx-auto mt-5 max-w-2xl font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-white/85 sm:mt-6 sm:text-[14.5px] md:text-[15px]",
-            "transition-all duration-1000 ease-out",
+            "mx-auto mt-4 max-w-xl font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white sm:mt-5 sm:text-[13.5px] md:text-[14px]",
+            "transition-all duration-1000 ease-out drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]",
             isVisible
               ? "translate-x-0 opacity-100"
               : isAr
@@ -186,20 +191,20 @@ export default function AboutHero() {
         <nav
           aria-label="Breadcrumb"
           className={[
-            "mt-7 flex items-center gap-2 font-[family-name:var(--font-poppins)] text-[12px] font-medium sm:mt-8 sm:text-[13px]",
-            "transition-all duration-1000 ease-out",
+            "mt-6 flex items-center gap-2 font-[family-name:var(--font-poppins)] text-[11.5px] font-medium sm:mt-7 sm:text-[12.5px]",
+            "transition-all duration-1000 ease-out drop-shadow-md",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           ].join(" ")}
           style={{ transitionDelay: "650ms" }}
         >
           <Link
             href="/"
-            className="cursor-pointer text-white/70 transition-colors duration-300 hover:text-[#3EA96E]"
+            className="cursor-pointer text-white/80 transition-colors duration-300 hover:text-[#F5B301]"
           >
             {t.breadcrumbHome}
           </Link>
-          <span className="text-[#3EA96E]">{isAr ? "←" : "→"}</span>
-          <span className="text-[#3EA96E]">{t.breadcrumbCurrent}</span>
+          <span className="text-[#F5B301]">{isAr ? "←" : "→"}</span>
+          <span className="text-[#F5B301]">{t.breadcrumbCurrent}</span>
         </nav>
       </div>
     </section>

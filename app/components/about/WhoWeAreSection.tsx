@@ -129,7 +129,7 @@ export default function WhoWeAreSection() {
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white pt-0 pb-10 sm:pb-14 md:pb-16 lg:pb-20`}
+      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white  pb-10 sm:pb-14 md:pb-16 lg:pb-20 py-10`}
     >
       {/* Subtle decorative background image */}
       <div className="pointer-events-none absolute inset-0 -z-0">
@@ -161,22 +161,22 @@ export default function WhoWeAreSection() {
             <div
               ref={badgeRef}
               className={[
-                "inline-flex items-center gap-2 rounded-full bg-[#1B4D3E]/8 px-3.5 py-1.5",
+                "inline-flex items-center gap-2 rounded-full bg-[#2C7046]/8 px-3.5 py-1.5",
                 "transition-all duration-700 ease-out",
                 badgeInView ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
               ].join(" ")}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#3EA96E]" />
-              <span className="font-[family-name:var(--font-poppins)] text-[11px] font-semibold uppercase tracking-wide text-[#1B4D3E] sm:text-[12px]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#F5B301]" />
+              <span className="font-[family-name:var(--font-poppins)] text-[11px] font-semibold uppercase tracking-wide text-[#2C7046] sm:text-[12px]">
                 {t.topHeading}
               </span>
             </div>
 
-            {/* Heading — only "Who we are" removed; rest of heading intact */}
+            {/* Heading */}
             <h3
               ref={leftBlockRef}
               className={[
-                "mt-6 font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.2] text-[#3EA96E] sm:mt-7 sm:text-3xl md:text-4xl",
+                "mt-6 font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-[1.2] text-[#2C7046] sm:mt-7 sm:text-3xl md:text-4xl",
                 "transition-all duration-700 ease-out",
                 leftBlockInView
                   ? "translate-x-0 opacity-100"
@@ -195,7 +195,7 @@ export default function WhoWeAreSection() {
                 bottomBlockInView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0",
               ].join(" ")}
             >
-              {/* Checklist — extra top space */}
+              {/* Checklist */}
               <ul
                 className="mt-10 grid grid-cols-1 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-4 md:gap-5"
                 aria-label={
@@ -207,7 +207,7 @@ export default function WhoWeAreSection() {
                     key={item}
                     className="flex items-start gap-2 font-[family-name:var(--font-poppins)] text-[12px] font-medium leading-snug text-[#1A1A1A] sm:text-[13px]"
                   >
-                    <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#3EA96E] text-[10px] font-bold text-white sm:h-5 sm:w-5 sm:text-xs">
+                    <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[10px] font-bold text-[#2C7046] sm:h-5 sm:w-5 sm:text-xs">
                       ✓
                     </span>
                     <span>{item}</span>
@@ -215,7 +215,7 @@ export default function WhoWeAreSection() {
                 ))}
               </ul>
 
-              {/* Paragraphs — extra spacing between them */}
+              {/* Paragraphs */}
               <p className="mt-10 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-[#1A1A1A] sm:mt-12 sm:text-[14px] md:text-[15px]">
                 {t.paragraph1}
               </p>
@@ -227,7 +227,7 @@ export default function WhoWeAreSection() {
                 href={EXPLORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/btn mt-10 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#2E7D5B] px-5 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-white transition-colors duration-300 hover:bg-[#255F47] sm:mt-12 sm:px-6 sm:text-[13.5px] md:mt-14"
+                className="group/btn mt-10 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#2C7046] px-5 py-2.5 font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-white transition-colors duration-300 hover:bg-[#F5B301] hover:text-[#2C7046] sm:mt-12 sm:px-6 sm:text-[13.5px] md:mt-14"
               >
                 {t.cta}
                 <span
@@ -241,7 +241,7 @@ export default function WhoWeAreSection() {
             </div>
           </div>
 
-          {/* Image column — slightly smaller */}
+          {/* Image column */}
           <div
             ref={imageBlockRef}
             className={[

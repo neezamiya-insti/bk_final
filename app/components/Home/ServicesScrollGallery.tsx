@@ -25,6 +25,12 @@ type ServiceCard = {
   image: string;
 };
 
+// Online high-quality free images (Unsplash / Pexels)
+const EXPORT_DOC_IMG =
+  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop";
+const LOGISTICS_IMG =
+  "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1200";
+
 const TEXT = {
   EN: {
     badge: "What We Offer",
@@ -60,6 +66,16 @@ const TEXT = {
         title: "Competition Analysis",
         desc: "Before you take on the global stage, you need to know the players. At BOYUT AL-KAWTHAR, we conduct comprehensive competitor analyses, delving into your target markets to identify your rivals, their strengths and weaknesses, and any existing market gaps you can fill.",
         image: "/services/s6.png",
+      },
+      {
+        title: "Export Documentation",
+        desc: "BOYUT AL-KAWTHAR handles all export documentation, certificates of origin, customs paperwork, and regulatory compliance so your shipments move smoothly across borders without delays.",
+        image: EXPORT_DOC_IMG,
+      },
+      {
+        title: "Logistics & Shipping",
+        desc: "BOYUT AL-KAWTHAR coordinates end-to-end logistics including freight, warehousing, and last-mile delivery, ensuring your products reach international buyers safely and on time.",
+        image: LOGISTICS_IMG,
       },
     ] as ServiceCard[],
   },
@@ -98,6 +114,16 @@ const TEXT = {
         desc: "قبل أن تدخل الساحة العالمية، تحتاج إلى معرفة اللاعبين. في بيوت الكوثر، نجري تحليلات شاملة للمنافسين، ونتعمق في أسواقك المستهدفة لتحديد منافسيك ونقاط قوتهم وضعفهم وأي فجوات سوقية يمكنك سدها.",
         image: "/services/s6.png",
       },
+      {
+        title: "مستندات التصدير",
+        desc: "تتولى بيوت الكوثر جميع مستندات التصدير وشهادات المنشأ والأوراق الجمركية والامتثال التنظيمي لضمان عبور شحناتك الحدود بسلاسة دون تأخير.",
+        image: EXPORT_DOC_IMG,
+      },
+      {
+        title: "الخدمات اللوجستية والشحن",
+        desc: "تنسّق بيوت الكوثر الخدمات اللوجستية من البداية إلى النهاية بما في ذلك الشحن والتخزين والتوصيل، لضمان وصول منتجاتك إلى المشترين الدوليين بأمان وفي الوقت المحدد.",
+        image: LOGISTICS_IMG,
+      },
     ] as ServiceCard[],
   },
   FR: {
@@ -134,6 +160,16 @@ const TEXT = {
         title: "Analyse de la concurrence",
         desc: "Avant de vous lancer sur la scène mondiale, vous devez connaître les acteurs. Chez BOYUT AL-KAWTHAR, nous réalisons des analyses complètes de la concurrence, en examinant vos marchés cibles pour identifier vos rivaux, leurs forces et faiblesses, ainsi que les lacunes du marché que vous pouvez combler.",
         image: "/services/s6.png",
+      },
+      {
+        title: "Documentation d'exportation",
+        desc: "BOYUT AL-KAWTHAR gère toute la documentation d'exportation, les certificats d'origine, les formalités douanières et la conformité réglementaire afin que vos expéditions traversent les frontières sans retard.",
+        image: EXPORT_DOC_IMG,
+      },
+      {
+        title: "Logistique et expédition",
+        desc: "BOYUT AL-KAWTHAR coordonne la logistique de bout en bout, y compris le fret, l'entreposage et la livraison finale, pour que vos produits atteignent les acheteurs internationaux en toute sécurité et à temps.",
+        image: LOGISTICS_IMG,
       },
     ] as ServiceCard[],
   },
@@ -173,8 +209,7 @@ export default function ServicesSection() {
     };
   }, []);
 
-  // Scroll reveal — cards slide up from bottom every time the section
-  // enters the viewport, and reset when it scrolls out (repeats on re-scroll)
+  // Scroll reveal
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -201,19 +236,19 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full overflow-x-hidden bg-white px-4 py-16 md:px-8`}
+      className={`${playfair.variable} ${poppins.variable} w-full overflow-x-hidden bg-white px-6 py-16 sm:px-10 md:px-16 lg:px-24 xl:px-32`}
     >
       {/* Heading */}
       <div className="mx-auto mb-12 max-w-3xl text-center">
         <p
-          className={`font-[family-name:var(--font-poppins)] text-[12px] font-bold tracking-[6px] text-[#0F3327] transition-all duration-700 ease-out ${
+          className={`font-[family-name:var(--font-poppins)] text-[11px] font-bold tracking-[6px] text-[#2C7046] transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {t.badge}
         </p>
         <h2
-          className={`mt-3 font-[family-name:var(--font-playfair)] text-[28px] font-extrabold leading-tight text-[#3EA96E] transition-all duration-700 ease-out sm:text-[36px] ${
+          className={`mt-3 font-[family-name:var(--font-playfair)] text-[28px] font-extrabold leading-tight text-[#2C7046] transition-all duration-700 ease-out sm:text-[36px] ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{ transitionDelay: "100ms" }}
@@ -221,47 +256,48 @@ export default function ServicesSection() {
           {t.heading}
         </h2>
         <div
-          className={`mx-auto mt-4 h-[2px] w-[80px] bg-[#3EA96E] transition-all duration-700 ease-out ${
+          className={`mx-auto mt-4 h-[3px] w-[70px] rounded-full bg-[#F5B301] transition-all duration-700 ease-out ${
             isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
           }`}
           style={{ transitionDelay: "200ms" }}
         />
       </div>
 
-      {/* All services grid */}
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* All services grid — 4 per row on desktop */}
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
         {t.services.map((service, i) => (
           <article
             key={service.title}
-            className={`group/card flex cursor-pointer flex-col overflow-hidden rounded-3xl border border-[#0F3327]/10 bg-white shadow-sm transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-[#3EA96E]/15 ${
+            className={`group/card flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-[#2C7046]/10 bg-white transition-all duration-700 ease-out hover:-translate-y-1 hover:border-[#F5B301]/40 hover:shadow-lg hover:shadow-[#2C7046]/10 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
             }`}
-            style={{ transitionDelay: `${150 + i * 100}ms` }}
+            style={{ transitionDelay: `${150 + i * 80}ms` }}
           >
-            <div className="relative h-40 w-full overflow-hidden">
+            <div className="relative h-32 w-full overflow-hidden sm:h-36">
               <img
                 src={service.image}
                 alt={service.title}
                 className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105"
               />
+              <div className="pointer-events-none absolute inset-0 bg-[#2C7046]/0 transition-colors duration-500 group-hover/card:bg-[#2C7046]/10" />
             </div>
 
-            <div className="flex flex-1 flex-col p-6">
-              <h3 className="font-[family-name:var(--font-playfair)] text-[15px] font-extrabold leading-snug text-[#0F3327] sm:text-[16px]">
+            <div className="flex flex-1 flex-col p-4 sm:p-5">
+              <h3 className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold leading-snug text-[#2C7046] sm:text-[15px]">
                 {service.title}
               </h3>
-              <div className="mt-2 h-[3px] w-8 rounded-full bg-[#3EA96E]" />
+              <div className="mt-2 h-[2px] w-7 rounded-full bg-[#F5B301] transition-all duration-500 group-hover/card:w-12" />
               <p
-                className="mt-3 line-clamp-5 font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-[#5C5C5C] sm:text-[13px]"
+                className="mt-2.5 line-clamp-4 font-[family-name:var(--font-poppins)] text-[11.5px] font-light leading-relaxed text-[#5C5C5C] sm:text-[12px]"
                 dir={isAr ? "rtl" : "ltr"}
               >
                 {service.desc}
               </p>
               <Link
                 href="/services"
-                className="mt-auto cursor-pointer pt-4 font-[family-name:var(--font-poppins)] text-[12.5px] font-semibold text-[#3EA96E] underline underline-offset-2 transition-colors duration-300 hover:text-[#0F3327] sm:text-[13px]"
+                className="mt-auto cursor-pointer pt-3 font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold text-[#2C7046] transition-colors duration-300 hover:text-[#F5B301] sm:text-[12px]"
               >
-                {t.learnMore}
+                {t.learnMore} →
               </Link>
             </div>
           </article>

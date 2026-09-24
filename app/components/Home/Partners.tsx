@@ -133,7 +133,7 @@ export default function Partners() {
     <section
       ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} relative w-full overflow-hidden bg-white `}
+      className={`${playfair.variable} ${poppins.variable} relative w-full py-10 overflow-hidden bg-white `}
     >
       {/* Heading with Description */}
       <motion.div
@@ -145,15 +145,15 @@ export default function Partners() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-4xl"
+          className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#2C7046] sm:text-4xl"
         >
           {t.heading}
         </motion.h2>
 
-        {/* Accent bar */}
+        {/* Gold accent bar */}
         <motion.span
           variants={fadeInUp}
-          className="mx-auto mt-3 block h-1 w-16 rounded-full bg-[#3EA96E] sm:mt-4 sm:w-20"
+          className="mx-auto mt-3 block h-1 w-16 rounded-full bg-[#F5B301] sm:mt-4 sm:w-20"
         />
 
         <motion.p
@@ -180,7 +180,7 @@ export default function Partners() {
                 {PARTNER_IMAGES.map((src, idx) => (
                   <div
                     key={`${rep}-${idx}`}
-                    className="flex h-24 w-44 shrink-0 items-center justify-center rounded-[18px] border border-[#1B4D3E]/10 bg-white/70 px-5 py-4 shadow-sm shadow-[#1B4D3E]/5"
+                    className="flex h-24 w-44 shrink-0 items-center justify-center rounded-[18px] border border-[#2C7046]/10 bg-white/70 px-5 py-4 shadow-sm shadow-[#2C7046]/5 transition-all duration-300 hover:border-[#F5B301]/60 hover:shadow-md hover:shadow-[#F5B301]/15"
                   >
                     <Image
                       src={src}

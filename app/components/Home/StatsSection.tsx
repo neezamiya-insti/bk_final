@@ -19,34 +19,42 @@ const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
 
 type Stat = {
-  value: number;
-  suffix: string;
+  value?: number;
+  suffix?: string;
+  text?: { EN: string; AR: string; FR: string };
   label: { EN: string; AR: string; FR: string };
+  icon: "years" | "markets" | "clients" | "seda";
 };
 
 const STATS: Stat[] = [
   {
+    value: 7,
+    suffix: "+",
+    label: { EN: "Years Experience", AR: "سنوات الخبرة", FR: "Années d'expérience" },
+    icon: "years",
+  },
+  {
+    value: 65,
+    suffix: "+",
+    label: { EN: "Global Markets", AR: "أسواق عالمية", FR: "Marchés mondiaux" },
+    icon: "markets",
+  },
+  {
     value: 20,
     suffix: "+",
     label: { EN: "Happy Clients", AR: "عملاء سعداء", FR: "Clients satisfaits" },
+    icon: "clients",
   },
   {
-    value: 98,
-    suffix: "%",
-    label: { EN: "Client Satisfaction", AR: "رضا العملاء", FR: "Satisfaction client" },
-  },
-  {
-    value: 55,
-    suffix: "+",
-    label: { EN: "Global Markets", AR: "أسواق عالمية", FR: "Marchés mondiaux" },
+    text: { EN: "SEDA", AR: "SEDA", FR: "SEDA" },
+    label: {
+      EN: "Certified Exporter",
+      AR: "مصدّر معتمد",
+      FR: "Exportateur certifié",
+    },
+    icon: "seda",
   },
 ];
-
-const HEADING = {
-  EN: "Results That Speak",
-  AR: "نتائج تتحدث عن نفسها",
-  FR: "Des résultats qui parlent",
-} as const;
 
 function readStoredLang(): LangCode {
   if (typeof window === "undefined") return "EN";
@@ -89,7 +97,6 @@ function useCountUp(target: number, start: boolean, duration = 1800) {
 
     function tick(now: number) {
       const progress = Math.min((now - startTime) / duration, 1);
-      // ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(Math.round(eased * target));
       if (progress < 1) rafId = requestAnimationFrame(tick);
@@ -102,34 +109,163 @@ function useCountUp(target: number, start: boolean, duration = 1800) {
   return value;
 }
 
+/** 3D-style icon rendered with layered gradients + shadows. */
+function Icon3D({ type }: { type: Stat["icon"] }) {
+  const base =
+    "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl sm:h-11 sm:w-11 " +
+    "bg-gradient-to-br from-white/95 to-white/70 " +
+    "shadow-[0_5px_10px_-3px_rgba(0,0,0,0.35),inset_0_1.5px_3px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(0,0,0,0.08)] " +
+    "ring-1 ring-white/60 transition-transform duration-500 hover:-translate-y-0.5 hover:scale-105";
+
+  const gold = "#F5B301";
+  const green = "#2C7046";
+
+  if (type === "years") {
+    return (
+      <div className={base}>
+        <svg viewBox="0 0 48 48" className="h-6 w-6 sm:h-7 sm:w-7">
+          <defs>
+            <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#FFDD66" />
+              <stop offset="100%" stopColor={gold} />
+            </linearGradient>
+          </defs>
+          <path
+            d="M16 8h16v8a8 8 0 0 1-16 0V8z"
+            fill="url(#goldGrad)"
+            stroke={green}
+            strokeWidth="1.5"
+          />
+          <path
+            d="M16 10h-4a4 4 0 0 0 4 4M32 10h4a4 4 0 0 1-4 4"
+            fill="none"
+            stroke={green}
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <rect x="21" y="24" width="6" height="8" fill={green} />
+          <rect x="16" y="32" width="16" height="4" rx="1" fill="url(#goldGrad)" stroke={green} strokeWidth="1.2" />
+          <circle cx="24" cy="15" r="2.5" fill="#fff" opacity="0.8" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (type === "markets") {
+    return (
+      <div className={base}>
+        <svg viewBox="0 0 48 48" className="h-6 w-6 sm:h-7 sm:w-7">
+          <defs>
+            <linearGradient id="globeGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#4FA96E" />
+              <stop offset="100%" stopColor={green} />
+            </linearGradient>
+          </defs>
+          <circle cx="24" cy="24" r="15" fill="url(#globeGrad)" stroke={green} strokeWidth="1.5" />
+          <ellipse cx="24" cy="24" rx="7" ry="15" fill="none" stroke="#fff" strokeWidth="1.3" opacity="0.85" />
+          <path d="M9 24h30M12 17h24M12 31h24" stroke="#fff" strokeWidth="1.2" opacity="0.8" />
+          <circle cx="19" cy="18" r="2" fill={gold} opacity="0.9" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (type === "clients") {
+    return (
+      <div className={base}>
+        <svg viewBox="0 0 48 48" className="h-6 w-6 sm:h-7 sm:w-7">
+          <defs>
+            <linearGradient id="peopleGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#4FA96E" />
+              <stop offset="100%" stopColor={green} />
+            </linearGradient>
+          </defs>
+          <circle cx="24" cy="15" r="6" fill="url(#peopleGrad)" stroke={green} strokeWidth="1.3" />
+          <path
+            d="M12 36c0-6 5.4-11 12-11s12 5 12 11v2H12v-2z"
+            fill="url(#peopleGrad)"
+            stroke={green}
+            strokeWidth="1.3"
+          />
+          <circle cx="13" cy="21" r="4" fill={gold} opacity="0.9" />
+          <circle cx="35" cy="21" r="4" fill={gold} opacity="0.9" />
+        </svg>
+      </div>
+    );
+  }
+
+  // SEDA — certified badge
+  return (
+    <div className={base}>
+      <svg viewBox="0 0 48 48" className="h-6 w-6 sm:h-7 sm:w-7">
+        <defs>
+          <linearGradient id="badgeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#FFDD66" />
+            <stop offset="100%" stopColor={gold} />
+          </linearGradient>
+        </defs>
+        <path
+          d="M24 6l5 3 6-.5 2 5.6 5 3.3-2 5.6 2 5.6-5 3.3-2 5.6-6-.5-5 3-5-3-6 .5-2-5.6-5-3.3 2-5.6-2-5.6 5-3.3 2-5.6 6 .5z"
+          fill="url(#badgeGrad)"
+          stroke={green}
+          strokeWidth="1.3"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M17 24l5 5 9-10"
+          fill="none"
+          stroke={green}
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  );
+}
+
 function StatItem({ stat, langCode, delay }: { stat: Stat; langCode: LangCode; delay: number }) {
   const [ref, inView] = useInView<HTMLDivElement>(0.4);
-  const count = useCountUp(stat.value, inView);
+  const count = useCountUp(stat.value ?? 0, inView && stat.value !== undefined);
+  const isSeda = stat.value === undefined;
 
   return (
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={[
-        "flex flex-col items-center text-center",
+        "flex items-center gap-3 text-left sm:gap-4",
         "transition-all duration-700 ease-out",
-        inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
+        inView ? "translate-x-0 opacity-100" : "-translate-x-6 opacity-0",
       ].join(" ")}
     >
-      <span className="font-[family-name:var(--font-playfair)] text-4xl font-extrabold text-[#1B4D3E] sm:text-5xl md:text-6xl">
-        {count}
-        <span className="text-[#3EA96E]">{stat.suffix}</span>
-      </span>
-      <span className="mt-2 font-[family-name:var(--font-poppins)] text-[12.5px] font-medium uppercase tracking-[0.15em] text-[#5C5C5C] sm:mt-3 sm:text-[13.5px]">
-        {stat.label[langCode]}
-      </span>
+      <Icon3D type={stat.icon} />
+
+      <div className="flex flex-col justify-center">
+        {isSeda ? (
+          // Playfair's all-caps letters render visually taller than the
+          // numerals at the same font-size, so SEDA is sized one step down
+          // to *look* the same height as "7+", "65+", "20+".
+          <span className="font-[family-name:var(--font-playfair)] text-xl font-extrabold leading-none text-[#F5B301] sm:text-2xl">
+            {stat.text?.[langCode]}
+          </span>
+        ) : (
+          <span className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold leading-none text-white sm:text-3xl">
+            {count}
+            <span className="text-[#F5B301]">{stat.suffix}</span>
+          </span>
+        )}
+
+        <span className="mt-1 max-w-[170px] whitespace-nowrap font-[family-name:var(--font-poppins)] text-[10.5px] font-medium uppercase tracking-[0.12em] text-white/90 sm:text-[11.5px]">
+          {stat.label[langCode]}
+        </span>
+      </div>
     </div>
   );
 }
 
 export default function StatsSection() {
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
-  const [headingRef, headingInView] = useInView<HTMLDivElement>(0.5);
 
   useEffect(() => {
     const handleLangChange = (e: Event) => {
@@ -152,33 +288,20 @@ export default function StatsSection() {
   const isAr = langCode === "AR";
 
   return (
+    // relative + z-10: sits above the sticky Hero (z-0), so as the page
+    // scrolls this section's normal document flow physically slides up and
+    // over the pinned hero — the "cover" effect. Solid own background,
+    // no gradient/blend into the hero's colors.
     <section
       dir={isAr ? "rtl" : "ltr"}
-      className={`${playfair.variable} ${poppins.variable} w-full bg-[#1B4D3E]/[0.03] py-12 sm:py-16`}
+      style={{
+        backgroundColor: "rgb(57, 131, 85)",
+      }}
+      className={`${playfair.variable} ${poppins.variable} relative z-10 w-full py-6 sm:py-7`}
     >
-      {/* Heading — same pattern as the other sections */}
-      <div ref={headingRef} className="flex flex-col items-center text-center">
-        <h2
-          className={[
-            "font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-4xl",
-            "transition-all duration-700 ease-out",
-            headingInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-          ].join(" ")}
-        >
-          {HEADING[langCode]}
-        </h2>
-        <span
-          className={[
-            "mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:mt-4 sm:w-20",
-            "transition-all duration-700 ease-out delay-150",
-            headingInView ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
-          ].join(" ")}
-        />
-      </div>
-
       <div
         dir="ltr"
-        className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-10 px-6 sm:mt-12 sm:grid-cols-3 sm:gap-6 sm:px-10"
+        className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-6 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6 sm:px-10 lg:grid-cols-4"
       >
         {STATS.map((stat, i) => (
           <StatItem key={stat.label.EN} stat={stat} langCode={langCode} delay={i * 150} />

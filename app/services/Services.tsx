@@ -424,7 +424,7 @@ export default function ServicesShowcaseSection() {
           ))}
 
           {/* Description overlay card */}
-          <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-[#0F3327]/85 p-3.5 backdrop-blur-sm sm:inset-x-4 sm:bottom-4 sm:p-4 md:inset-x-5 md:bottom-5 md:p-5 lg:inset-x-6 lg:bottom-6 lg:p-6">
+          <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-[#2C7046]/90 p-3.5 backdrop-blur-sm sm:inset-x-4 sm:bottom-4 sm:p-4 md:inset-x-5 md:bottom-5 md:p-5 lg:inset-x-6 lg:bottom-6 lg:p-6">
             <p
               key={activeIndex}
               className="animate-[fadeIn_0.5s_ease-out] font-[family-name:var(--font-poppins)] text-[11.5px] font-light leading-relaxed text-white sm:text-[12.5px] md:text-[13px] lg:text-[13.5px]"
@@ -437,7 +437,7 @@ export default function ServicesShowcaseSection() {
         {/* Right: numbered services list — switches only on click */}
         <div
           className={[
-            "border-t-2 border-[#3EA96E]/40",
+            "border-t-2 border-[#2C7046]/40",
             "transition-all duration-1000 ease-out",
             isVisible
               ? "translate-x-0 opacity-100"
@@ -455,7 +455,7 @@ export default function ServicesShowcaseSection() {
                 type="button"
                 onClick={() => setActiveIndex(i)}
                 className={[
-                  "group flex w-full cursor-pointer items-center justify-between gap-2 border-b border-[#0F3327]/10 py-3.5 text-left transition-colors duration-300 sm:gap-3 sm:py-4 md:gap-4 md:py-5 lg:py-6",
+                  "group flex w-full cursor-pointer items-center justify-between gap-2 border-b border-[#2C7046]/10 py-3.5 text-left transition-colors duration-300 sm:gap-3 sm:py-4 md:gap-4 md:py-5 lg:py-6",
                   isAr ? "text-right" : "text-left",
                 ].join(" ")}
               >
@@ -463,7 +463,7 @@ export default function ServicesShowcaseSection() {
                   <span
                     className={[
                       "shrink-0 pt-0.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold transition-colors duration-300 sm:pt-0 sm:text-[11.5px] md:text-xs lg:text-sm",
-                      isActive ? "text-[#3EA96E]" : "text-[#0F3327]/40",
+                      isActive ? "text-[#F5B301]" : "text-[#2C7046]/40",
                     ].join(" ")}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -471,7 +471,7 @@ export default function ServicesShowcaseSection() {
                   <h3
                     className={[
                       "font-[family-name:var(--font-playfair)] text-[14.5px] font-extrabold leading-snug transition-colors duration-300 sm:text-base md:text-lg lg:text-2xl",
-                      isActive ? "text-[#3EA96E]" : "text-[#0F3327]",
+                      isActive ? "text-[#2C7046]" : "text-[#2C7046]/70",
                     ].join(" ")}
                   >
                     {service.title}
@@ -482,8 +482,8 @@ export default function ServicesShowcaseSection() {
                   className={[
                     "flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-full transition-all duration-300 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-10 lg:w-10",
                     isActive
-                      ? "bg-[#3EA96E] text-white"
-                      : "bg-transparent text-[#0F3327]/50 group-hover:text-[#3EA96E]",
+                      ? "bg-[#F5B301] text-white"
+                      : "bg-transparent text-[#2C7046]/50 group-hover:text-[#F5B301]",
                   ].join(" ")}
                 >
                   <ArrowIcon active={isActive} />
@@ -498,7 +498,7 @@ export default function ServicesShowcaseSection() {
       <div className="relative mx-auto mt-10 max-w-6xl sm:mt-12 lg:mt-14">
         <div
           key={activeIndex}
-          className="animate-[fadeInUp_0.5s_ease-out] overflow-hidden rounded-[1.5rem] bg-[#0F3327] shadow-[0_20px_50px_rgba(15,51,39,0.25)] sm:rounded-[2rem]"
+          className="animate-[fadeInUp_0.5s_ease-out] overflow-hidden rounded-[1.5rem] bg-[#2C7046] shadow-[0_20px_50px_rgba(44,112,70,0.25)] sm:rounded-[2rem]"
         >
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_1.4fr]">
             {/* Left: service image */}
@@ -511,13 +511,13 @@ export default function ServicesShowcaseSection() {
                 className="object-cover object-center transition-transform duration-700 ease-out hover:scale-105"
               />
               {/* Green fade on the right */}
-              <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-l from-[#0F3327] to-transparent lg:block" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-l from-[#2C7046] to-transparent lg:block" />
             </div>
 
             {/* Right: details */}
             <div className="relative flex flex-col p-5 sm:p-7 lg:p-9">
               {/* Label */}
-              <span className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[#3EA96E] sm:text-[11.5px]">
+              <span className="font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[#F5B301] sm:text-[11.5px]">
                 {t.detailsLabel}
               </span>
 
@@ -526,8 +526,8 @@ export default function ServicesShowcaseSection() {
                 {active.title}
               </h3>
 
-              {/* Green bar */}
-              <span className="mt-3 block h-1 w-14 rounded-full bg-[#3EA96E]" />
+              {/* Gold bar */}
+              <span className="mt-3 block h-1 w-14 rounded-full bg-[#F5B301]" />
 
               {/* Description */}
               <p className="mt-4 font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-white/80 sm:text-[13.5px] md:text-[14px]">
@@ -538,8 +538,8 @@ export default function ServicesShowcaseSection() {
               <ul className="mt-5 grid grid-cols-1 gap-2.5 sm:gap-3">
                 {active.details.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 sm:gap-3">
-                    {/* Green check icon */}
-                    <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3EA96E] text-white sm:h-[22px] sm:w-[22px]">
+                    {/* Gold check icon */}
+                    <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F5B301] text-[#2C7046] sm:h-[22px] sm:w-[22px]">
                       <svg
                         viewBox="0 0 24 24"
                         className="h-3 w-3 sm:h-3.5 sm:w-3.5"
@@ -575,14 +575,14 @@ export default function ServicesShowcaseSection() {
       >
         {/* Heading above map */}
         <div className="mx-auto mb-6 max-w-6xl px-0 text-center sm:mb-8">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[#1B4D3E]/10 px-4 py-1.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#1B4D3E] sm:text-[11.5px]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#3EA96E]" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-[#2C7046]/10 px-4 py-1.5 font-[family-name:var(--font-poppins)] text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#2C7046] sm:text-[11.5px]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#F5B301]" />
             {t.mapLabel}
           </span>
-          <h2 className="mt-3 font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#1B4D3E] sm:text-3xl md:text-4xl">
+          <h2 className="mt-3 font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#2C7046] sm:text-3xl md:text-4xl">
             {t.mapHeading}
           </h2>
-          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:w-20" />
+          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-[#F5B301] sm:w-20" />
           <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-poppins)] text-[12.5px] font-light leading-relaxed text-[#6B6B6B] sm:text-[13.5px] md:text-[14px]">
             {t.mapParagraph}
           </p>

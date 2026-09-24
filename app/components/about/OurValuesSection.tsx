@@ -184,10 +184,10 @@ export default function OurValuesSection() {
             headingInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
           ].join(" ")}
         >
-          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#3EA96E] sm:text-4xl">
+          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-extrabold text-[#2C7046] sm:text-4xl">
             {t.heading}
           </h2>
-          <div className="mt-3 h-1 w-16 rounded-full bg-[#3EA96E] sm:mt-4 sm:w-20" />
+          <div className="mt-3 h-1 w-16 rounded-full bg-[#F5B301] sm:mt-4 sm:w-20" />
           <p className="mt-4 font-[family-name:var(--font-poppins)] text-[13.5px] font-light leading-relaxed text-[#5C5C5C] sm:mt-5 sm:text-[14px] md:text-[15px]">
             {t.paragraph}
           </p>
@@ -204,9 +204,9 @@ export default function OurValuesSection() {
                 key={value.title}
                 style={{ transitionDelay: `${i * 120}ms` }}
                 className={[
-                  "group/card relative flex cursor-pointer flex-col overflow-hidden rounded-[1.75rem] bg-white p-5 shadow-lg shadow-[#0F3327]/10 ring-1 ring-[#0F3327]/5 sm:p-6",
+                  "group/card relative flex cursor-pointer flex-col overflow-hidden rounded-[1.75rem] bg-white p-5 shadow-lg shadow-[#2C7046]/10 ring-1 ring-[#2C7046]/5 sm:p-6",
                   OFFSETS[i],
-                  "transition-all duration-700 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#0F3327]/15",
+                  "transition-all duration-700 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#2C7046]/15 hover:ring-[#F5B301]/40",
                   cardsInView ? "translate-y-0 opacity-100" : "translate-y-14 opacity-0",
                 ].join(" ")}
               >
@@ -221,10 +221,10 @@ export default function OurValuesSection() {
                 </div>
 
                 <div className="relative mt-5 flex items-baseline gap-1.5">
-                  <span className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#3EA96E]">
+                  <span className="font-[family-name:var(--font-playfair)] text-lg font-extrabold text-[#F5B301]">
                     {String(i + 1).padStart(2, "0")}.
                   </span>
-                  <h4 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold leading-snug text-[#0F3327] sm:text-xl">
+                  <h4 className="font-[family-name:var(--font-playfair)] text-lg font-extrabold leading-snug text-[#2C7046] sm:text-xl">
                     {value.title}
                   </h4>
                 </div>
@@ -237,7 +237,7 @@ export default function OurValuesSection() {
                 <span
                   aria-hidden="true"
                   className={[
-                    "pointer-events-none absolute -bottom-3 select-none font-[family-name:var(--font-playfair)] text-[80px] font-extrabold leading-none text-[#0F3327]/[0.06] sm:text-[96px]",
+                    "pointer-events-none absolute -bottom-3 select-none font-[family-name:var(--font-playfair)] text-[80px] font-extrabold leading-none text-[#2C7046]/[0.06] sm:text-[96px]",
                     isAr ? "-left-2" : "-right-2",
                   ].join(" ")}
                 >
