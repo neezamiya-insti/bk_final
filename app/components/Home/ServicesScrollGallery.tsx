@@ -27,9 +27,9 @@ type ServiceCard = {
 
 // Online high-quality free images (Unsplash / Pexels)
 const EXPORT_DOC_IMG =
-  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop";
+  "/services/Export1.png";
 const LOGISTICS_IMG =
-  "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1200";
+  "/services/Log.png";
 
 const TEXT = {
   EN: {
@@ -50,22 +50,22 @@ const TEXT = {
       {
         title: "Lead Generation",
         desc: "BOYUT AL-KAWTHAR runs digital marketing campaigns in different regions for your products within an efficient marketing strategy built on accurate insights from its expertise in different markets.",
-        image: "/services/s3.png",
+        image: "/services/Lead.png",
       },
       {
         title: "Meeting Agenda with Potential Buyers",
         desc: "BOYUT AL-KAWTHAR set up meetings and arrange official visits for buyers directly to your manufacturing facilities to discuss with you all the details about technical information, delivery terms and pricing.",
-        image: "/services/s4.png",
+        image: "/services/Meeting.png",
       },
       {
         title: "Trade Missions",
         desc: "BOYUT AL-KAWTHAR arrange specialized industry-clustered trade missions to potential markets to meet up with potential markets to speed up the communications and to find a touchstone for opening new markets efficiently.",
-        image: "/services/s5.png",
+        image: "/services/Trade.png",
       },
       {
         title: "Competition Analysis",
         desc: "Before you take on the global stage, you need to know the players. At BOYUT AL-KAWTHAR, we conduct comprehensive competitor analyses, delving into your target markets to identify your rivals, their strengths and weaknesses, and any existing market gaps you can fill.",
-        image: "/services/s6.png",
+        image: "/services/Competition1.png",
       },
       {
         title: "Export Documentation",
@@ -182,10 +182,101 @@ function readStoredLang(): LangCode {
   return "EN";
 }
 
+/**
+ * Reveal-on-scroll hook.
+ * Each element observes ITSELF (threshold 0), so it works on mobile where the
+ * whole section is very tall. Once revealed it stays revealed.
+ */
+function useReveal<T extends HTMLElement>(rootMargin = "0px 0px -40px 0px") {
+  const ref = useRef<T>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    // Fallback: if IntersectionObserver is not supported, just show it
+    // if (typeof IntersectionObserver === "undefined") {
+    //   setVisible(true);
+    //   return;
+    // }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0, rootMargin }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [rootMargin]);
+
+  return { ref, visible };
+}
+
+function ServiceCardItem({
+  service,
+  index,
+  learnMore,
+  isAr,
+}: {
+  service: ServiceCard;
+  index: number;
+  learnMore: string;
+  isAr: boolean;
+}) {
+  const { ref, visible } = useReveal<HTMLElement>();
+
+  return (
+    <article
+      ref={ref}
+      className={`group/card grid h-[380px] cursor-pointer grid-rows-2 overflow-hidden rounded-2xl border border-[#2C7046]/10 bg-white transition-all duration-700 ease-out hover:-translate-y-1 hover:border-[#F5B301]/40 hover:shadow-lg hover:shadow-[#2C7046]/10 ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+      // Stagger only within a row (max 4 columns) so lower cards don't wait long
+      style={{ transitionDelay: visible ? `${(index % 4) * 80}ms` : "0ms" }}
+    >
+      {/* Image — 50% (row 1) */}
+      <div className="relative w-full overflow-hidden">
+        <img
+          src={service.image}
+          alt={service.title}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-[#2C7046]/0 transition-colors duration-500 group-hover/card:bg-[#2C7046]/10" />
+      </div>
+
+      {/* Content — 50% (row 2) */}
+      <div className="flex flex-col p-4 sm:p-5">
+        <h3 className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold leading-snug text-[#2C7046] sm:text-[15px]">
+          {service.title}
+        </h3>
+        <div className="mt-2 h-[2px] w-7 rounded-full bg-[#F5B301] transition-all duration-500 group-hover/card:w-12" />
+        <p
+          className="mt-2.5 line-clamp-4 font-[family-name:var(--font-poppins)] text-[11.5px] font-light leading-relaxed text-[#5C5C5C] sm:text-[12px]"
+          dir={isAr ? "rtl" : "ltr"}
+        >
+          {service.desc}
+        </p>
+        <Link
+          href="/services"
+          className="mt-auto cursor-pointer pt-3 font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold text-[#2C7046] transition-colors duration-300 hover:text-[#F5B301] sm:text-[12px]"
+        >
+          {learnMore} →
+        </Link>
+      </div>
+    </article>
+  );
+}
+
 export default function ServicesSection() {
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
 
   // Language change listener
   useEffect(() => {
@@ -209,47 +300,26 @@ export default function ServicesSection() {
     };
   }, []);
 
-  // Scroll reveal
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -80px 0px",
-      }
-    );
-
-    const currentRef = sectionRef.current;
-    if (currentRef) observer.observe(currentRef);
-
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
-  }, []);
-
   const isAr = langCode === "AR";
   const t = TEXT[langCode];
 
   return (
     <section
-      ref={sectionRef}
       dir={isAr ? "rtl" : "ltr"}
       className={`${playfair.variable} ${poppins.variable} w-full overflow-x-hidden bg-white px-6 py-16 sm:px-10 md:px-16 lg:px-24 xl:px-32`}
     >
       {/* Heading */}
-      <div className="mx-auto mb-12 max-w-3xl text-center">
+      <div ref={headingRef} className="mx-auto mb-12 max-w-3xl text-center">
         <p
           className={`font-[family-name:var(--font-poppins)] text-[11px] font-bold tracking-[6px] text-[#2C7046] transition-all duration-700 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            headingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {t.badge}
         </p>
         <h2
           className={`mt-3 font-[family-name:var(--font-playfair)] text-[28px] font-extrabold leading-tight text-[#2C7046] transition-all duration-700 ease-out sm:text-[36px] ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            headingVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{ transitionDelay: "100ms" }}
         >
@@ -257,7 +327,7 @@ export default function ServicesSection() {
         </h2>
         <div
           className={`mx-auto mt-4 h-[3px] w-[70px] rounded-full bg-[#F5B301] transition-all duration-700 ease-out ${
-            isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+            headingVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
           }`}
           style={{ transitionDelay: "200ms" }}
         />
@@ -266,41 +336,13 @@ export default function ServicesSection() {
       {/* All services grid — 4 per row on desktop */}
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
         {t.services.map((service, i) => (
-          <article
+          <ServiceCardItem
             key={service.title}
-            className={`group/card flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-[#2C7046]/10 bg-white transition-all duration-700 ease-out hover:-translate-y-1 hover:border-[#F5B301]/40 hover:shadow-lg hover:shadow-[#2C7046]/10 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
-            }`}
-            style={{ transitionDelay: `${150 + i * 80}ms` }}
-          >
-            <div className="relative h-32 w-full overflow-hidden sm:h-36">
-              <img
-                src={service.image}
-                alt={service.title}
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-[#2C7046]/0 transition-colors duration-500 group-hover/card:bg-[#2C7046]/10" />
-            </div>
-
-            <div className="flex flex-1 flex-col p-4 sm:p-5">
-              <h3 className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold leading-snug text-[#2C7046] sm:text-[15px]">
-                {service.title}
-              </h3>
-              <div className="mt-2 h-[2px] w-7 rounded-full bg-[#F5B301] transition-all duration-500 group-hover/card:w-12" />
-              <p
-                className="mt-2.5 line-clamp-4 font-[family-name:var(--font-poppins)] text-[11.5px] font-light leading-relaxed text-[#5C5C5C] sm:text-[12px]"
-                dir={isAr ? "rtl" : "ltr"}
-              >
-                {service.desc}
-              </p>
-              <Link
-                href="/services"
-                className="mt-auto cursor-pointer pt-3 font-[family-name:var(--font-poppins)] text-[11.5px] font-semibold text-[#2C7046] transition-colors duration-300 hover:text-[#F5B301] sm:text-[12px]"
-              >
-                {t.learnMore} →
-              </Link>
-            </div>
-          </article>
+            service={service}
+            index={i}
+            learnMore={t.learnMore}
+            isAr={isAr}
+          />
         ))}
       </div>
     </section>

@@ -18,7 +18,7 @@ const poppins = Poppins({
 });
 
 const EXPLORE_URL = "https://bk.com.sa/boyut-al-kawthar-services/";
-const ABOUT_IMAGE = "/about/why1.png";
+const ABOUT_IMAGE = "/about/wh3.png";
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1759272840712-c7e5ea852367?fm=jpg&q=80&w=2400&auto=format&fit=crop";
 

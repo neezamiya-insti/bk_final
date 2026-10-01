@@ -37,11 +37,11 @@ const TEXT = {
       { label: "Banking Report", href: "/services" },
     ],
     contactAddress:
-      "4329 Ibrahim Ibn Baz st., Al Sulay District, Riyadh 14276, Saudi Arabia.",
+      "Al Dana Tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433.",
     emailLabel: "Email Us",
-    emailValue: "Info@bk.com.sa",
+    emailValue: "info@bk.com.sa",
     phoneLabel: "Call Us",
-    phoneValue: "+966538597719",
+    phoneValue: "0509726031",
     copyright: "© 2025 Boyut Al Kawthar. All rights reserved.",
   },
   AR: {
@@ -58,11 +58,11 @@ const TEXT = {
       { label: "التقرير المصرفي", href: "/services" },
     ],
     contactAddress:
-      "4329 شارع إبراهيم بن باز، حي السلي، الرياض 14276، المملكة العربية السعودية.",
+      "برج الدانة، طريق الأمير فيصل بن فهد، الحزام الأخضر، الخبر 34433.",
     emailLabel: "راسلنا",
-    emailValue: "Info@bk.com.sa",
+    emailValue: "info@bk.com.sa",
     phoneLabel: "اتصل بنا",
-    phoneValue: "+966538597719",
+    phoneValue: "0509726031",
     copyright: "© 2025 بيوت الكوثر. جميع الحقوق محفوظة.",
   },
   FR: {
@@ -79,11 +79,11 @@ const TEXT = {
       { label: "Rapport bancaire", href: "/services" },
     ],
     contactAddress:
-      "Rue Ibrahim Ibn Baz, District Al Sulay, Riyad 14276, Arabie Saoudite.",
+      "Al Dana Tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433.",
     emailLabel: "Écrivez-nous",
-    emailValue: "Info@bk.com.sa",
+    emailValue: "info@bk.com.sa",
     phoneLabel: "Appelez-nous",
-    phoneValue: "+966538597719",
+    phoneValue: "0509726031",
     copyright: "© 2025 Boyut Al Kawthar. Tous droits réservés.",
   },
 } as const;
@@ -117,7 +117,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "WhatsApp",
-    href: "https://wa.me/966538597719",
+    href: "https://wa.me/966509726031",
     icon: "whatsapp",
   },
 ];

@@ -40,7 +40,7 @@ const TEXT = {
       "Take Your Products Global. We Handle the Details. Unlock 55+ World-Wide Markets. We\u2019ll Guide Your Expansion.",
     cta: "Explore More",
     ourLocation: "Our Location",
-    address: "Ibrahim Ibn Baz St., Al Sulay District, Riyadh 14276, Saudi Arabia.",
+    address: "Al Dana Tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433.",
     emailUs: "Email Us",
     callUs: "Call Us",
   },
@@ -52,7 +52,7 @@ const TEXT = {
       "خذ منتجاتك إلى العالمية. نحن نتولى التفاصيل. افتح أكثر من 55 سوقاً حول العالم. سنرشدك خلال رحلة توسّعك.",
     cta: "استكشف المزيد",
     ourLocation: "موقعنا",
-    address: "شارع إبراهيم بن باز، حي السلي، الرياض 14276، المملكة العربية السعودية.",
+    address: "برج الدانة، طريق الأمير فيصل بن فهد، الحزام الأخضر، الخبر 34433.",
     emailUs: "راسلنا عبر البريد",
     callUs: "اتصل بنا",
   },
@@ -64,7 +64,7 @@ const TEXT = {
       "Faites passer vos produits à l'échelle mondiale. Nous nous occupons des détails. Accédez à plus de 55 marchés dans le monde. Nous vous guidons dans votre expansion.",
     cta: "En savoir plus",
     ourLocation: "Notre emplacement",
-    address: "Rue Ibrahim Ibn Baz, District Al Sulay, Riyad 14276, Arabie Saoudite.",
+    address: "Al Dana Tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433.",
     emailUs: "Écrivez-nous",
     callUs: "Appelez-nous",
   },
@@ -210,7 +210,7 @@ export default function HeroSection() {
               slideClass("delay-150"),
             ].join(" ")}
           >
-            {t.heading} <span className="text-[#398355]">{t.headingHighlight}</span>
+            {t.heading} <span className="text-[#F5B301]">{t.headingHighlight}</span>
           </h1>
 
           <p
@@ -282,10 +282,10 @@ export default function HeroSection() {
             </span>
             <a
               className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#F5B301] sm:mt-2 sm:text-[10px]"
-              href="mailto:Info@bk.com.sa"
+              href="mailto:info@bk.com.sa"
               dir="ltr"
             >
-              Info@bk.com.sa
+              info@bk.com.sa
             </a>
           </div>
 
@@ -298,10 +298,10 @@ export default function HeroSection() {
             </span>
             <a
               className="mt-1.5 font-[family-name:var(--font-poppins)] text-[9px] text-white/85 transition-colors hover:text-[#F5B301] sm:mt-2 sm:text-[10px]"
-              href="tel:+966538597719"
+              href="tel:0509726031"
               dir="ltr"
             >
-              +966 53 859 7719
+              0509726031
             </a>
           </div>
         </aside>

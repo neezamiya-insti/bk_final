@@ -88,6 +88,110 @@ const UI_TEXT = {
 const LANG_STORAGE_KEY = "bk-lang";
 const PARTNER_HREF = "/become-a-partner";
 
+/* ---------- Top bar contact info ---------- */
+const CONTACT = {
+  email: "info@bk.com.sa",
+  phone: "0509726031",
+  address:
+    "Al dana tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433",
+};
+
+function MailIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M3 7l9 6 9-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  );
+}
+
+function ContactSet() {
+  return (
+    <div className="flex shrink-0 items-center gap-12 pr-12">
+      <a
+        href={`mailto:${CONTACT.email}`}
+        className="flex items-center gap-2 transition-colors hover:text-[#F5B301]"
+      >
+        <MailIcon />
+        <span>{CONTACT.email}</span>
+      </a>
+      <a
+        href={`tel:${CONTACT.phone}`}
+        className="flex items-center gap-2 transition-colors hover:text-[#F5B301]"
+      >
+        <PhoneIcon />
+        <span dir="ltr">{CONTACT.phone}</span>
+      </a>
+      <span className="flex items-center gap-2">
+        <PinIcon />
+        <span>{CONTACT.address}</span>
+      </span>
+    </div>
+  );
+}
+
+function TopBar() {
+  return (
+    <div
+      dir="ltr"
+      className="w-full overflow-hidden bg-[#2C7046] py-2 font-[family-name:var(--font-poppins)] text-[12px] font-normal text-white sm:text-[12.5px]"
+    >
+      <style>{`
+        @keyframes topbarScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .topbar-track {
+          animation: topbarScroll 35s linear infinite;
+        }
+        .topbar-track:hover {
+          animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .topbar-track { animation: none; }
+        }
+      `}</style>
+
+      {/* Two identical halves => seamless right-to-left loop */}
+      <div className="topbar-track flex w-max whitespace-nowrap">
+        {[0, 1].map((half) => (
+          <div key={half} className="flex shrink-0 items-center" aria-hidden={half === 1}>
+            <ContactSet />
+            <ContactSet />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function GlobeIcon() {
   return (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,166 +273,167 @@ export default function Navbar() {
 
   return (
     <div className={`${playfair.variable} ${poppins.variable} fixed inset-x-0 top-0 z-50`}>
-      {/* Navbar wrapper — px-3 on mobile to give left/right gap */}
-      <div className="px-3 pt-3 sm:px-4 sm:pt-4">
-        <nav
-          className={[
-            "mx-auto flex max-w-6xl items-center justify-between",
-            "rounded-full border border-black/5 bg-white/95 px-4 py-2.5 backdrop-blur-md sm:px-6 sm:py-3",
-            "transition-shadow duration-300",
-            scrolled ? "shadow-lg shadow-[#2C7046]/10" : "shadow-sm",
-          ].join(" ")}
-        >
-          {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center gap-2.5 cursor-pointer">
-            <span className="flex flex-col leading-tight">
-              <span className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold tracking-wide text-[#2C7046] sm:text-[16px]">
-                BOYUT AL-KAWTHAR
-              </span>
-              <span className="font-[family-name:var(--font-poppins)] text-[8.5px] font-light tracking-wide text-neutral-500 sm:text-[9px]">
-                {isAr
-                  ? "تجارة عالمية . خبرة محلية"
-                  : isFr
-                  ? "Commerce mondial . Expertise locale."
-                  : "Global Trade . Local Expertise."}
-              </span>
-            </span>
-          </Link>
+      {/* Top layer — contact info scrolling right → left */}
+      <TopBar />
 
-          {/* Desktop nav links */}
-          <ul className="hidden items-center gap-8 lg:flex">
-            {NAV_ITEMS.map((item) => {
-              const isActive = activePath === item.href;
-              return (
-                <li key={item.label} className="group relative">
-                  <Link
-                    href={item.href}
-                    onClick={() => setActivePath(item.href)}
+      {/* Full-width navbar — no side gaps, no centered container */}
+      <nav
+        className={[
+          "flex w-full items-center justify-between",
+          "border-b border-black/5 bg-white/95 px-4 py-2.5 backdrop-blur-md sm:px-6 sm:py-3 lg:px-10",
+          "transition-shadow duration-300",
+          scrolled ? "shadow-lg shadow-[#2C7046]/10" : "shadow-sm",
+        ].join(" ")}
+      >
+        {/* Logo */}
+        <Link href="/" className="flex shrink-0 items-center gap-2.5 cursor-pointer">
+          <span className="flex flex-col leading-tight">
+            <span className="font-[family-name:var(--font-playfair)] text-[14px] font-extrabold tracking-wide text-[#2C7046] sm:text-[16px]">
+              BOYUT AL-KAWTHAR
+            </span>
+            <span className="font-[family-name:var(--font-poppins)] text-[8.5px] font-light tracking-wide text-neutral-500 sm:text-[9px]">
+              {isAr
+                ? "تجارة عالمية . خبرة محلية"
+                : isFr
+                ? "Commerce mondial . Expertise locale."
+                : "Global Trade . Local Expertise."}
+            </span>
+          </span>
+        </Link>
+
+        {/* Desktop nav links */}
+        <ul className="hidden items-center gap-8 lg:flex">
+          {NAV_ITEMS.map((item) => {
+            const isActive = activePath === item.href;
+            return (
+              <li key={item.label} className="group relative">
+                <Link
+                  href={item.href}
+                  onClick={() => setActivePath(item.href)}
+                  className={[
+                    "font-[family-name:var(--font-playfair)] text-[14.5px] font-bold transition-colors cursor-pointer",
+                    isActive ? "text-[#F5B301]" : "text-[#2C7046] hover:text-[#F5B301]",
+                  ].join(" ")}
+                >
+                  {getLabel(item, lang.code)}
+                </Link>
+
+                {item.dropdown && (
+                  <div
                     className={[
-                      "font-[family-name:var(--font-playfair)] text-[14.5px] font-bold transition-colors cursor-pointer",
-                      isActive ? "text-[#F5B301]" : "text-[#2C7046] hover:text-[#F5B301]",
+                      "invisible absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-3 opacity-0",
+                      "transition-all duration-150 ease-out",
+                      "group-hover:visible group-hover:translate-y-2 group-hover:opacity-100",
                     ].join(" ")}
                   >
-                    {getLabel(item, lang.code)}
-                  </Link>
-
-                  {item.dropdown && (
                     <div
                       className={[
-                        "invisible absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-3 opacity-0",
-                        "transition-all duration-150 ease-out",
-                        "group-hover:visible group-hover:translate-y-2 group-hover:opacity-100",
+                        "rounded-3xl border border-black/5 bg-white p-5 shadow-xl shadow-[#2C7046]/10",
+                        item.dropdown.length > 4
+                          ? "grid w-[420px] grid-cols-2 gap-x-8 gap-y-1"
+                          : "flex w-52 flex-col gap-1",
                       ].join(" ")}
                     >
-                      <div
-                        className={[
-                          "rounded-3xl border border-black/5 bg-white p-5 shadow-xl shadow-[#2C7046]/10",
-                          item.dropdown.length > 4
-                            ? "grid w-[420px] grid-cols-2 gap-x-8 gap-y-1"
-                            : "flex w-52 flex-col gap-1",
-                        ].join(" ")}
-                      >
-                        {item.dropdown.map((link) => (
-                          <Link
-                            key={link.label}
-                            href={link.href}
-                            className={[
-                              "whitespace-nowrap rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[13.5px] transition-colors cursor-pointer",
-                              link.highlight
-                                ? "font-bold text-[#F5B301] hover:bg-[#F5B301]/5"
-                                : "text-[#2C7046] hover:bg-[#2C7046]/5 hover:text-[#F5B301]",
-                            ].join(" ")}
-                          >
-                            {getLabel(link, lang.code)}
-                          </Link>
-                        ))}
-                      </div>
+                      {item.dropdown.map((link) => (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          className={[
+                            "whitespace-nowrap rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[13.5px] transition-colors cursor-pointer",
+                            link.highlight
+                              ? "font-bold text-[#F5B301] hover:bg-[#F5B301]/5"
+                              : "text-[#2C7046] hover:bg-[#2C7046]/5 hover:text-[#F5B301]",
+                          ].join(" ")}
+                        >
+                          {getLabel(link, lang.code)}
+                        </Link>
+                      ))}
                     </div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
 
-          {/* Right side: language + CTA (desktop) */}
-          <div className="hidden items-center gap-4 lg:flex">
-            <div
-              className="group relative"
-              onMouseEnter={() => setLangOpen(true)}
-              onMouseLeave={() => setLangOpen(false)}
-            >
-              <button
-                type="button"
-                className="flex items-center gap-1.5 rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[14px] font-medium text-[#2C7046] transition-colors hover:bg-[#2C7046]/5 cursor-pointer"
-              >
-                <GlobeIcon />
-                {lang.code}
-                <ChevronIcon open={langOpen} />
-              </button>
-              <div
-                className={[
-                  "invisible absolute right-0 top-full z-50 translate-y-2 opacity-0",
-                  "transition-all duration-150 ease-out",
-                  "group-hover:visible group-hover:translate-y-1 group-hover:opacity-100",
-                ].join(" ")}
-              >
-                <div className="w-40 rounded-2xl border border-black/5 bg-white p-2 shadow-xl shadow-[#2C7046]/10">
-                  {LANGUAGES.map((l) => (
-                    <button
-                      key={l.code}
-                      type="button"
-                      onClick={() => setLang(l)}
-                      className={[
-                        "flex w-full items-center justify-between rounded-full px-3 py-2 text-left font-[family-name:var(--font-poppins)] text-[13.5px] transition-colors cursor-pointer",
-                        l.code === lang.code
-                          ? "bg-[#2C7046]/5 font-semibold text-[#2C7046]"
-                          : "text-[#2C7046] hover:bg-[#2C7046]/5 hover:text-[#F5B301]",
-                      ].join(" ")}
-                    >
-                      <span>{l.label}</span>
-                      <span className="text-[11px] font-bold text-[#5C5C5C]">{l.code}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* CTA — Become a Partner — GOLD by default, white text; hover → green */}
-            <Link
-              href={PARTNER_HREF}
-              className="group inline-flex items-center gap-2 rounded-full bg-[#F5B301] px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white transition-colors hover:bg-[#2C7046] cursor-pointer"
-            >
-              {UI_TEXT.becomePartner[lang.code]}
-              <span className="transition-transform group-hover:translate-x-1">
-                {isRtl ? "←" : "→"}
-              </span>
-            </Link>
-          </div>
-
-          {/* Mobile right side — Language toggle + Hamburger */}
-          <div className="flex items-center gap-1.5 lg:hidden">
+        {/* Right side: language + CTA (desktop) */}
+        <div className="hidden items-center gap-4 lg:flex">
+          <div
+            className="group relative"
+            onMouseEnter={() => setLangOpen(true)}
+            onMouseLeave={() => setLangOpen(false)}
+          >
             <button
               type="button"
-              onClick={cycleLanguage}
-              className="flex items-center gap-1 rounded-full border border-black/10 px-2.5 py-1.5 font-[family-name:var(--font-poppins)] text-[11.5px] font-medium text-[#2C7046] transition-colors hover:bg-[#2C7046]/5 cursor-pointer"
+              className="flex items-center gap-1.5 rounded-full px-3 py-2 font-[family-name:var(--font-poppins)] text-[14px] font-medium text-[#2C7046] transition-colors hover:bg-[#2C7046]/5 cursor-pointer"
             >
               <GlobeIcon />
               {lang.code}
+              <ChevronIcon open={langOpen} />
             </button>
-
-            <button
-              type="button"
-              aria-label={UI_TEXT.openMenu[lang.code]}
-              onClick={() => setMobileOpen(true)}
-              className="flex flex-col gap-1.5 rounded-full p-2 cursor-pointer"
+            <div
+              className={[
+                "invisible absolute right-0 top-full z-50 translate-y-2 opacity-0",
+                "transition-all duration-150 ease-out",
+                "group-hover:visible group-hover:translate-y-1 group-hover:opacity-100",
+              ].join(" ")}
             >
-              <span className="h-0.5 w-5 rounded-full bg-[#2C7046]" />
-              <span className="h-0.5 w-5 rounded-full bg-[#2C7046]" />
-              <span className="h-0.5 w-5 rounded-full bg-[#2C7046]" />
-            </button>
+              <div className="w-40 rounded-2xl border border-black/5 bg-white p-2 shadow-xl shadow-[#2C7046]/10">
+                {LANGUAGES.map((l) => (
+                  <button
+                    key={l.code}
+                    type="button"
+                    onClick={() => setLang(l)}
+                    className={[
+                      "flex w-full items-center justify-between rounded-full px-3 py-2 text-left font-[family-name:var(--font-poppins)] text-[13.5px] transition-colors cursor-pointer",
+                      l.code === lang.code
+                        ? "bg-[#2C7046]/5 font-semibold text-[#2C7046]"
+                        : "text-[#2C7046] hover:bg-[#2C7046]/5 hover:text-[#F5B301]",
+                    ].join(" ")}
+                  >
+                    <span>{l.label}</span>
+                    <span className="text-[11px] font-bold text-[#5C5C5C]">{l.code}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-        </nav>
-      </div>
+
+          {/* CTA — Become a Partner — GOLD by default, white text; hover → green */}
+          <Link
+            href={PARTNER_HREF}
+            className="group inline-flex items-center gap-2 rounded-full bg-[#F5B301] px-6 py-2.5 font-[family-name:var(--font-poppins)] text-[14px] font-semibold text-white transition-colors hover:bg-[#2C7046] cursor-pointer"
+          >
+            {UI_TEXT.becomePartner[lang.code]}
+            <span className="transition-transform group-hover:translate-x-1">
+              {isRtl ? "←" : "→"}
+            </span>
+          </Link>
+        </div>
+
+        {/* Mobile right side — Language toggle + Hamburger */}
+        <div className="flex items-center gap-1.5 lg:hidden">
+          <button
+            type="button"
+            onClick={cycleLanguage}
+            className="flex items-center gap-1 rounded-full border border-black/10 px-2.5 py-1.5 font-[family-name:var(--font-poppins)] text-[11.5px] font-medium text-[#2C7046] transition-colors hover:bg-[#2C7046]/5 cursor-pointer"
+          >
+            <GlobeIcon />
+            {lang.code}
+          </button>
+
+          <button
+            type="button"
+            aria-label={UI_TEXT.openMenu[lang.code]}
+            onClick={() => setMobileOpen(true)}
+            className="flex flex-col gap-1.5 rounded-full p-2 cursor-pointer"
+          >
+            <span className="h-0.5 w-5 rounded-full bg-[#2C7046]" />
+            <span className="h-0.5 w-5 rounded-full bg-[#2C7046]" />
+            <span className="h-0.5 w-5 rounded-full bg-[#2C7046]" />
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile overlay */}
       <div

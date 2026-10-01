@@ -34,7 +34,7 @@ const STATS: Stat[] = [
     icon: "years",
   },
   {
-    value: 65,
+    value: 55,
     suffix: "+",
     label: { EN: "Global Markets", AR: "أسواق عالمية", FR: "Marchés mondiaux" },
     icon: "markets",

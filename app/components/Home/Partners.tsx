@@ -164,10 +164,11 @@ export default function Partners() {
         </motion.p>
       </motion.div>
 
-      {/* Diagonal ribbon slider — always LTR so direction never flips in Arabic */}
+      {/* Diagonal ribbon slider — always LTR so direction never flips in Arabic.
+          rotate-3 => left side up, right side down */}
       <div
         dir="ltr"
-        className="relative -ml-[20vw] mt-10 w-[140vw] max-w-none -rotate-3"
+        className="relative -ml-[20vw] mt-10 w-[140vw] max-w-none rotate-3"
       >
         <div className="overflow-hidden py-4">
           <div className="marquee-track-partners flex w-max whitespace-nowrap">

@@ -23,9 +23,23 @@ type LangCode = "EN" | "AR" | "FR";
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1759272840712-c7e5ea852367?fm=jpg&q=80&w=2400&auto=format&fit=crop";
 
-// 🌍 Google Maps embed — Riyadh, Saudi Arabia
+// 🌍 Google Maps embed — Al Khobar, Saudi Arabia
 const MAP_EMBED_URL =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.9959845682197!2d46.67529531500199!3d24.7135517841221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s";
+  "https://www.google.com/maps?q=" +
+  encodeURIComponent(
+    "Al Dana Tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433, Saudi Arabia"
+  ) +
+  "&output=embed";
+
+// ✅ Real service images (same files used in the Services cards section)
+const SERVICE_IMAGES = {
+  market: "/services/s1.png",
+  distributor: "/services/s2.png",
+  lead: "/services/Lead.png",
+  meeting: "/services/Meeting.png",
+  trade: "/services/Trade.png",
+  competition: "/services/Competition1.png",
+} as const;
 
 type ServiceItem = {
   title: string;
@@ -51,12 +65,12 @@ const TEXT: Record<
     mapLabel: "Find Us",
     mapHeading: "Visit Our Office",
     mapParagraph:
-      "4329 Ibrahim Ibn Baz St., Al Sulay District, Riyadh 14276, Saudi Arabia.",
+      "Al Dana Tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433, Saudi Arabia.",
     services: [
       {
         title: "Market Research",
         desc: "BOYUT AL-KAWTHAR through its R&D activities and network of offices, scans all the market needs and insights for a specific product and provides all the necessary market information required for decision making processes.",
-        image: "/services/s1.png",
+        image: SERVICE_IMAGES.market,
         details: [
           "In-depth analysis of target market trends and consumer behavior",
           "Competitor benchmarking and pricing intelligence reports",
@@ -67,7 +81,7 @@ const TEXT: Record<
       {
         title: "Distributor Finder",
         desc: "BOYUT AL-KAWTHAR connects its clients with prime prospects of agents and distributors who can carry their brand name into their regions adequately to run sustainable export business over years.",
-        image: "/services/s2.png",
+        image: SERVICE_IMAGES.distributor,
         details: [
           "Verified network of trusted agents and distributors",
           "Background checks and reliability screening",
@@ -78,7 +92,7 @@ const TEXT: Record<
       {
         title: "Lead Generation",
         desc: "BOYUT AL-KAWTHAR runs digital marketing campaigns in different regions for your products within an efficient marketing strategy built on accurate insights from its expertise in different markets.",
-        image: "/services/s3.png",
+        image: SERVICE_IMAGES.lead,
         details: [
           "Targeted digital campaigns across multiple regions",
           "Qualified B2B leads delivered directly to your team",
@@ -89,7 +103,7 @@ const TEXT: Record<
       {
         title: "Meeting Agenda with Potential Buyers",
         desc: "BOYUT AL-KAWTHAR set up meetings and arrange official visits for buyers directly to your manufacturing facilities to discuss with you all the details about technical information, delivery terms and pricing.",
-        image: "/services/s4.png",
+        image: SERVICE_IMAGES.meeting,
         details: [
           "Scheduling meetings with pre-qualified buyers",
           "Organizing factory visits and facility tours",
@@ -100,7 +114,7 @@ const TEXT: Record<
       {
         title: "Trade Missions",
         desc: "BOYUT AL-KAWTHAR arrange specialized industry-clustered trade missions to potential markets to meet up with potential markets to speed up the communications and to find a touchstone for opening new markets efficiently.",
-        image: "/services/s5.png",
+        image: SERVICE_IMAGES.trade,
         details: [
           "Organized trade missions to strategic markets",
           "Industry-clustered delegations for maximum impact",
@@ -111,7 +125,7 @@ const TEXT: Record<
       {
         title: "Competition Analysis",
         desc: "Before you take on the global stage, you need to know the players. At BOYUT AL-KAWTHAR, we conduct comprehensive competitor analyses, delving into your target markets to identify your rivals, their strengths and weaknesses, and any existing market gaps you can fill.",
-        image: "/services/s6.png",
+        image: SERVICE_IMAGES.competition,
         details: [
           "Full competitor mapping and SWOT analysis",
           "Identification of market gaps and opportunities",
@@ -127,12 +141,12 @@ const TEXT: Record<
     mapLabel: "موقعنا",
     mapHeading: "زيارة مكتبنا",
     mapParagraph:
-      "٤٣٢٩ شارع إبراهيم بن باز، حي السلي، الرياض ١٤٢٧٦، المملكة العربية السعودية.",
+      "برج الدانة، طريق الأمير فيصل بن فهد، الحزام الأخضر، الخبر ٣٤٤٣٣، المملكة العربية السعودية.",
     services: [
       {
         title: "أبحاث السوق",
         desc: "تقوم بيوت الكوثر من خلال أنشطة البحث والتطوير وشبكة مكاتبها بمسح جميع احتياجات السوق ورؤاه لمنتج معين، وتوفر كل المعلومات اللازمة لعمليات اتخاذ القرار.",
-        image: "/services/s1.png",
+        image: SERVICE_IMAGES.market,
         details: [
           "تحليل معمّق لاتجاهات السوق المستهدف وسلوك المستهلك",
           "تقارير مقارنة المنافسين ومعلومات التسعير",
@@ -143,7 +157,7 @@ const TEXT: Record<
       {
         title: "إيجاد الموزعين",
         desc: "تربط بيوت الكوثر عملاءها بأفضل الوكلاء والموزعين القادرين على حمل علامتهم التجارية إلى مناطقهم لإدارة أعمال تصدير مستدامة على مر السنين.",
-        image: "/services/s2.png",
+        image: SERVICE_IMAGES.distributor,
         details: [
           "شبكة موثوقة من الوكلاء والموزعين المعتمدين",
           "فحص خلفيات الشركاء والتحقق من موثوقيتهم",
@@ -154,7 +168,7 @@ const TEXT: Record<
       {
         title: "توليد العملاء المحتملين",
         desc: "تدير بيوت الكوثر حملات تسويق رقمي في مناطق مختلفة لمنتجاتك ضمن استراتيجية تسويقية فعالة مبنية على رؤى دقيقة من خبرتها في أسواق متعددة.",
-        image: "/services/s3.png",
+        image: SERVICE_IMAGES.lead,
         details: [
           "حملات رقمية موجّهة في مناطق متعددة",
           "عملاء محتملون مؤهلون يتم تسليمهم لفريقك مباشرة",
@@ -165,7 +179,7 @@ const TEXT: Record<
       {
         title: "جدولة اجتماعات مع المشترين المحتملين",
         desc: "تنظم بيوت الكوثر اجتماعات وزيارات رسمية للمشترين مباشرة إلى منشآتك التصنيعية لمناقشة التفاصيل الفنية وشروط التسليم والتسعير.",
-        image: "/services/s4.png",
+        image: SERVICE_IMAGES.meeting,
         details: [
           "جدولة اجتماعات مع مشترين مؤهلين مسبقًا",
           "تنظيم زيارات المصانع وجولات المرافق",
@@ -176,7 +190,7 @@ const TEXT: Record<
       {
         title: "البعثات التجارية",
         desc: "تنظم بيوت الكوثر بعثات تجارية متخصصة حسب القطاع إلى الأسواق المحتملة لتسريع التواصل وفتح أسواق جديدة بكفاءة.",
-        image: "/services/s5.png",
+        image: SERVICE_IMAGES.trade,
         details: [
           "بعثات تجارية منظمة إلى أسواق استراتيجية",
           "وفود مجمّعة حسب القطاع لتحقيق أقصى تأثير",
@@ -187,7 +201,7 @@ const TEXT: Record<
       {
         title: "تحليل المنافسين",
         desc: "قبل دخول المسرح العالمي، عليك معرفة اللاعبين. في بيوت الكوثر، نجري تحليلات شاملة للمنافسين لتحديد نقاط القوة والضعف والفجوات في السوق التي يمكنك سدها.",
-        image: "/services/s6.png",
+        image: SERVICE_IMAGES.competition,
         details: [
           "رسم خرائط كامل للمنافسين وتحليل SWOT",
           "تحديد الفجوات والفرص في السوق",
@@ -203,12 +217,12 @@ const TEXT: Record<
     mapLabel: "Nous trouver",
     mapHeading: "Visitez notre bureau",
     mapParagraph:
-      "Rue Ibrahim Ibn Baz, District Al Sulay, Riyad 14276, Arabie Saoudite.",
+      "Tour Al Dana, Route Prince Faisal Bin Fahd, Al Hizam Al Akhdar, Al Khobar 34433, Arabie Saoudite.",
     services: [
       {
         title: "Étude de marché",
         desc: "BOYUT AL-KAWTHAR, grâce à ses activités de R&D et à son réseau de bureaux, analyse tous les besoins et perspectives du marché pour un produit spécifique et fournit toutes les informations de marché nécessaires aux processus de prise de décision.",
-        image: "/services/s1.png",
+        image: SERVICE_IMAGES.market,
         details: [
           "Analyse approfondie des tendances du marché cible et du comportement des consommateurs",
           "Rapports de benchmarking concurrentiel et de veille tarifaire",
@@ -219,7 +233,7 @@ const TEXT: Record<
       {
         title: "Recherche de distributeur",
         desc: "BOYUT AL-KAWTHAR met ses clients en relation avec les meilleurs prospects d'agents et de distributeurs capables de porter leur marque dans leurs régions de manière adéquate pour mener une activité d'exportation durable sur plusieurs années.",
-        image: "/services/s2.png",
+        image: SERVICE_IMAGES.distributor,
         details: [
           "Réseau vérifié d'agents et de distributeurs de confiance",
           "Vérification des antécédents et contrôle de fiabilité",
@@ -230,7 +244,7 @@ const TEXT: Record<
       {
         title: "Génération de prospects",
         desc: "BOYUT AL-KAWTHAR mène des campagnes de marketing digital dans différentes régions pour vos produits dans le cadre d'une stratégie marketing efficace fondée sur des informations précises issues de son expertise sur différents marchés.",
-        image: "/services/s3.png",
+        image: SERVICE_IMAGES.lead,
         details: [
           "Campagnes digitales ciblées dans plusieurs régions",
           "Prospects B2B qualifiés livrés directement à votre équipe",
@@ -241,7 +255,7 @@ const TEXT: Record<
       {
         title: "Ordre du jour des réunions avec les acheteurs potentiels",
         desc: "BOYUT AL-KAWTHAR organise des réunions et des visites officielles pour les acheteurs directement dans vos installations de fabrication afin de discuter avec vous de tous les détails techniques, des conditions de livraison et des prix.",
-        image: "/services/s4.png",
+        image: SERVICE_IMAGES.meeting,
         details: [
           "Planification de réunions avec des acheteurs pré-qualifiés",
           "Organisation de visites d'usine et de circuits des installations",
@@ -252,7 +266,7 @@ const TEXT: Record<
       {
         title: "Missions commerciales",
         desc: "BOYUT AL-KAWTHAR organise des missions commerciales spécialisées et regroupées par secteur vers des marchés potentiels afin d'accélérer les communications et de trouver une pierre de touche pour ouvrir efficacement de nouveaux marchés.",
-        image: "/services/s5.png",
+        image: SERVICE_IMAGES.trade,
         details: [
           "Missions commerciales organisées vers des marchés stratégiques",
           "Délégations sectorielles pour un impact maximal",
@@ -263,7 +277,7 @@ const TEXT: Record<
       {
         title: "Analyse de la concurrence",
         desc: "Avant de vous lancer sur la scène mondiale, vous devez connaître les acteurs. Chez BOYUT AL-KAWTHAR, nous réalisons des analyses complètes de la concurrence, en examinant vos marchés cibles pour identifier vos rivaux, leurs forces et faiblesses, ainsi que les lacunes du marché que vous pouvez combler.",
-        image: "/services/s6.png",
+        image: SERVICE_IMAGES.competition,
         details: [
           "Cartographie complète des concurrents et analyse SWOT",
           "Identification des lacunes et opportunités du marché",

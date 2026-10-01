@@ -19,6 +19,9 @@ const poppins = Poppins({
 const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
 
+// ⚠️ LOCAL TESTING API URL (baad mein production URL se replace karna)
+const API_URL = "https://psm.neezamiya.com/api/contactExporter";
+
 const CONTACT_IMAGE = "/contact/contact1.jpg";
 
 const SERVICES = {
@@ -74,9 +77,12 @@ const TEXT = {
     message: "Message",
     selectService: "Select a service",
     submit: "Submit",
+    sending: "Sending...",
     required: "Required",
     thankYou: "Thank you!",
     thankYouMsg: "Your request has been received. We'll get back to you shortly.",
+    errorMsg: "Something went wrong. Please try again.",
+    networkError: "Network error. Please try again.",
   },
   AR: {
     overlayTitle: "ما وراء الربح، ما وراء التأثير",
@@ -91,9 +97,12 @@ const TEXT = {
     message: "الرسالة",
     selectService: "اختر خدمة",
     submit: "إرسال",
+    sending: "جاري الإرسال...",
     required: "مطلوب",
     thankYou: "شكرًا لك!",
     thankYouMsg: "تم استلام طلبك، وسنتواصل معك قريبًا.",
+    errorMsg: "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    networkError: "خطأ في الشبكة. يرجى المحاولة مرة أخرى.",
   },
   FR: {
     overlayTitle: "Au-delà du profit, au-delà de l'impact",
@@ -109,10 +118,13 @@ const TEXT = {
     message: "Message",
     selectService: "Sélectionnez un service",
     submit: "Envoyer",
+    sending: "Envoi...",
     required: "Requis",
     thankYou: "Merci !",
     thankYouMsg:
       "Votre demande a été reçue. Nous vous répondrons sous peu.",
+    errorMsg: "Une erreur s'est produite. Veuillez réessayer.",
+    networkError: "Erreur réseau. Veuillez réessayer.",
   },
 } as const;
 
@@ -187,6 +199,8 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -194,11 +208,43 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    // TODO: yahan apna API / email logic laga do
-    console.log("Form submitted:", form);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          formType: "consultation", // API ko batane ke liye yeh consultation form hai
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.ok) {
+        setSubmitted(true);
+        setForm({
+          name: "",
+          position: "",
+          company: "",
+          email: "",
+          service: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setError(data.error || t.errorMsg);
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+      setError(t.networkError);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const [leftRef, leftInView] = useInView<HTMLDivElement>(0.15);
@@ -375,21 +421,31 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* Error message */}
+              {error && (
+                <p className="text-center font-[family-name:var(--font-poppins)] text-[13px] font-medium text-[#F5B301]">
+                  {error}
+                </p>
+              )}
+
               {/* Submit */}
               <button
                 type="submit"
-                className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#F5B301] px-6 py-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-semibold text-[#2C7046] transition-colors duration-300 hover:bg-white hover:text-[#2C7046] sm:w-auto sm:text-[14px]"
+                disabled={loading}
+                className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#F5B301] px-6 py-3 font-[family-name:var(--font-poppins)] text-[13.5px] font-semibold text-[#2C7046] transition-colors duration-300 hover:bg-white hover:text-[#2C7046] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:text-[14px]"
               >
-                {t.submit}
-                <span
-                  className={`transition-transform duration-300 ${
-                    isAr
-                      ? "group-hover/btn:-translate-x-1 rotate-180"
-                      : "group-hover/btn:translate-x-1"
-                  }`}
-                >
-                  →
-                </span>
+                {loading ? t.sending : t.submit}
+                {!loading && (
+                  <span
+                    className={`transition-transform duration-300 ${
+                      isAr
+                        ? "group-hover/btn:-translate-x-1 rotate-180"
+                        : "group-hover/btn:translate-x-1"
+                    }`}
+                  >
+                    →
+                  </span>
+                )}
               </button>
             </form>
           )}

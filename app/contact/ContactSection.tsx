@@ -19,6 +19,9 @@ const poppins = Poppins({
 const LANG_KEY = "bk-lang";
 type LangCode = "EN" | "AR" | "FR";
 
+// ⚠️ LOCAL TESTING API URL (baad mein production URL se replace karna)
+const API_URL = "https://psm.neezamiya.com/api/contactExporter";
+
 // Same subtle background image as WhoWeAreSection
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1759272840712-c7e5ea852367?fm=jpg&q=80&w=2400&auto=format&fit=crop";
@@ -44,13 +47,13 @@ const CONTACT_ITEMS: ContactItem[] = [
     title: "Location",
     titleAr: "الموقع",
     titleFr: "Emplacement",
-    value: "4329 Ibrahim Ibn Baz st., Al Sulay District, Riyadh 14276, Saudi Arabia.",
-    valueAr: "٤٣٢٩ شارع إبراهيم بن باز، حي السلي، الرياض ١٤٢٧٦، المملكة العربية السعودية.",
-    valueFr: "Rue Ibrahim Ibn Baz, District Al Sulay, Riyad 14276, Arabie Saoudite.",
-    href: "https://maps.google.com/?q=Riyadh+Al+Sulay",
-    desc: "Visit our head office in Riyadh for in-person consultations and meetings with our export experts.",
-    descAr: "قم بزيارة مكتبنا الرئيسي في الرياض للاستشارات الشخصية والاجتماعات مع خبراء التصدير لدينا.",
-    descFr: "Visitez notre siège à Riyad pour des consultations en personne et des réunions avec nos experts en exportation.",
+    value: "Al Dana Tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433.",
+    valueAr: "برج الدانة، طريق الأمير فيصل بن فهد، الحزام الأخضر، الخبر 34433.",
+    valueFr: "Al Dana Tower, Prince Faisal Bin Fahd Road, Al Hizam Al Akhdar, Al Khobar 34433.",
+    href: "https://maps.google.com/?q=Al+Dana+Tower+Al+Khobar",
+    desc: "Visit our office in Al Khobar for in-person consultations and meetings with our export experts.",
+    descAr: "قم بزيارة مكتبنا في الخبر للاستشارات الشخصية والاجتماعات مع خبراء التصدير لدينا.",
+    descFr: "Visitez notre bureau à Al Khobar pour des consultations en personne et des réunions avec nos experts en exportation.",
     icon: "location",
   },
   {
@@ -58,10 +61,10 @@ const CONTACT_ITEMS: ContactItem[] = [
     title: "Call Us",
     titleAr: "اتصل بنا",
     titleFr: "Appelez-nous",
-    value: "+966538597719",
-    valueAr: "+966538597719",
-    valueFr: "+966538597719",
-    href: "tel:+966538597719",
+    value: "0509726031",
+    valueAr: "0509726031",
+    valueFr: "0509726031",
+    href: "tel:0509726031",
     desc: "Our team is available Sunday to Thursday, 9 AM to 6 PM (KSA time) to answer your questions.",
     descAr: "فريقنا متاح من الأحد إلى الخميس، من ٩ صباحًا حتى ٦ مساءً (بتوقيت السعودية) للإجابة على أسئلتك.",
     descFr: "Notre équipe est disponible du dimanche au jeudi, de 9h à 18h (heure saoudienne) pour répondre à vos questions.",
@@ -72,10 +75,10 @@ const CONTACT_ITEMS: ContactItem[] = [
     title: "Email Us",
     titleAr: "راسلنا",
     titleFr: "Écrivez-nous",
-    value: "Info@bk.com.sa",
-    valueAr: "Info@bk.com.sa",
-    valueFr: "Info@bk.com.sa",
-    href: "mailto:Info@bk.com.sa",
+    value: "info@bk.com.sa",
+    valueAr: "info@bk.com.sa",
+    valueFr: "info@bk.com.sa",
+    href: "mailto:info@bk.com.sa",
     desc: "Send us your inquiries and we'll get back to you within 24 hours with the information you need.",
     descAr: "أرسل لنا استفساراتك وسنرد عليك خلال ٢٤ ساعة بالمعلومات التي تحتاجها.",
     descFr: "Envoyez-nous vos demandes et nous vous répondrons dans les 24 heures avec les informations dont vous avez besoin.",
@@ -164,7 +167,10 @@ const TEXT = {
     formSubject: "Subject",
     formMessage: "Your Message",
     formSubmit: "Send Message",
+    formSending: "Sending...",
     formSuccess: "Thank you! We'll get back to you within 24 hours.",
+    formError: "Something went wrong. Please try again.",
+    formNetworkError: "Network error. Please try again.",
     openLink: "Open Link",
   },
   AR: {
@@ -177,7 +183,10 @@ const TEXT = {
     formSubject: "الموضوع",
     formMessage: "رسالتك",
     formSubmit: "إرسال الرسالة",
+    formSending: "جاري الإرسال...",
     formSuccess: "شكرًا لك! سنرد عليك خلال ٢٤ ساعة.",
+    formError: "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    formNetworkError: "خطأ في الشبكة. يرجى المحاولة مرة أخرى.",
     openLink: "فتح الرابط",
   },
   FR: {
@@ -190,7 +199,10 @@ const TEXT = {
     formSubject: "Sujet",
     formMessage: "Votre message",
     formSubmit: "Envoyer le message",
+    formSending: "Envoi...",
     formSuccess: "Merci ! Nous vous répondrons dans les 24 heures.",
+    formError: "Une erreur s'est produite. Veuillez réessayer.",
+    formNetworkError: "Erreur réseau. Veuillez réessayer.",
     openLink: "Ouvrir le lien",
   },
 } as const;
@@ -319,6 +331,8 @@ export default function ContactSection() {
   const [langCode, setLangCode] = useState<LangCode>(() => readStoredLang());
   const [activeId, setActiveId] = useState<string>("location");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -358,10 +372,32 @@ export default function ContactSection() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    console.log("Form submitted:", form);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.ok) {
+        setSubmitted(true);
+        setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+      } else {
+        setError(data.error || t.formError);
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+      setError(t.formNetworkError);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const [headingRef, headingInView] = useInView<HTMLDivElement>(0.2);
@@ -602,21 +638,31 @@ export default function ContactSection() {
                     />
                   </div>
 
+                  {/* Error message */}
+                  {error && (
+                    <p className="text-center text-[13px] font-medium text-red-500">
+                      {error}
+                    </p>
+                  )}
+
                   {/* Submit button — GOLD with white text, hover flips to green */}
                   <button
                     type="submit"
-                    className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#F5B301] px-6 py-3.5 font-[family-name:var(--font-poppins)] text-[13px] font-bold text-white transition-colors duration-300 hover:bg-[#2C7046] sm:w-auto sm:text-[13.5px]"
+                    disabled={loading}
+                    className="group/btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#F5B301] px-6 py-3.5 font-[family-name:var(--font-poppins)] text-[13px] font-bold text-white transition-colors duration-300 hover:bg-[#2C7046] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:text-[13.5px]"
                   >
-                    {t.formSubmit}
-                    <span
-                      className={`transition-transform duration-300 ${
-                        isAr
-                          ? "group-hover/btn:-translate-x-1 rotate-180"
-                          : "group-hover/btn:translate-x-1"
-                      }`}
-                    >
-                      →
-                    </span>
+                    {loading ? t.formSending : t.formSubmit}
+                    {!loading && (
+                      <span
+                        className={`transition-transform duration-300 ${
+                          isAr
+                            ? "group-hover/btn:-translate-x-1 rotate-180"
+                            : "group-hover/btn:translate-x-1"
+                        }`}
+                      >
+                        →
+                      </span>
+                    )}
                   </button>
                 </form>
               )}
